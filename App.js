@@ -1,10 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Pedometer } from 'expo-sensors';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Pedometer } from "expo-sensors";
 
 export default class App extends React.Component {
   state = {
-    isPedometerAvailable: 'checking',
+    isPedometerAvailable: "checking",
     pastStepCount: 0,
     currentStepCount: 0,
   };
@@ -18,37 +18,37 @@ export default class App extends React.Component {
   }
 
   _subscribe = () => {
-    this._subscription = Pedometer.watchStepCount(result => {
+    this._subscription = Pedometer.watchStepCount((result) => {
       this.setState({
         currentStepCount: result.steps,
       });
     });
 
     Pedometer.isAvailableAsync().then(
-      result => {
+      (result) => {
         this.setState({
           isPedometerAvailable: String(result),
         });
       },
-      error => {
+      (error) => {
         this.setState({
-          isPedometerAvailable: 'Could not get isPedometerAvailable: ' + error,
+          isPedometerAvailable: "Could not get isPedometerAvailable: " + error,
         });
       }
     );
 
     const end = new Date();
     const start = new Date();
-    start.setHours(0,0,0,0);
-    console.log(start)
-    console.log(end)
+    start.setHours(0, 0, 0, 0);
+    console.log(start);
+    console.log(end);
     Pedometer.getStepCountAsync(start, end).then(
-      result => {
+      (result) => {
         this.setState({ pastStepCount: result.steps });
       },
-      error => {
+      (error) => {
         this.setState({
-          pastStepCount: 'Could not get stepCount: ' + error,
+          pastStepCount: "Could not get stepCount: " + error,
         });
       }
     );
@@ -63,7 +63,10 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         {/* <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text> */}
-        <Text>Steps taken today: {this.state.pastStepCount + this.state.currentStepCount}</Text>
+        <Text>
+          Steps taken today:{" "}
+          {this.state.pastStepCount + this.state.currentStepCount}
+        </Text>
         {/* <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text> */}
       </View>
     );
@@ -73,12 +76,12 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#aabbcc',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#aabbcc",
   },
   text: {
-    color: 'white',
-    fontWeight: 'bold',
+    color: "white",
+    fontWeight: "bold",
   },
 });
