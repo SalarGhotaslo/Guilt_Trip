@@ -1,48 +1,68 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { performStepAPI } from './stepApi'
-import * as SplashScreen from 'expo-splash-screen';
+import { Pedometer } from 'expo-sensors';
 
 export default class App extends React.Component {
   state = {
-    appIsReady: false,
+    isPedometerAvailable: 'checking',
+    pastStepCount: 0,
+    currentStepCount: 0,
   };
 
-  async componentDidMount() {
-    // Prevent native splash screen from autohiding
-    try {
-      await SplashScreen.preventAutoHideAsync();
-    } catch (e) {
-      console.warn(e);
-    }
-    this.prepareResources();
+  componentDidMount() {
+    this._subscribe();
   }
 
-  /**
-   * Method that serves to load resources and make API calls
-   */
-  prepareResources = async () => {
-    try {
-      stepCount = await performStepAPI();
-    } catch (e) {
-      console.warn(e);
-    } finally {
-      this.setState({ appIsReady: true }, async () => {
-        await SplashScreen.hideAsync();
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
+
+  _subscribe = () => {
+    this._subscription = Pedometer.watchStepCount(result => {
+      this.setState({
+        currentStepCount: result.steps,
       });
-    }
+    });
+
+    Pedometer.isAvailableAsync().then(
+      result => {
+        this.setState({
+          isPedometerAvailable: String(result),
+        });
+      },
+      error => {
+        this.setState({
+          isPedometerAvailable: 'Could not get isPedometerAvailable: ' + error,
+        });
+      }
+    );
+
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 1);
+    Pedometer.getStepCountAsync(start, end).then(
+      result => {
+        this.setState({ pastStepCount: result.steps });
+      },
+      error => {
+        this.setState({
+          pastStepCount: 'Could not get stepCount: ' + error,
+        });
+      }
+    );
+  };
+
+  _unsubscribe = () => {
+    this._subscription && this._subscription.remove();
+    this._subscription = null;
   };
 
   render() {
-    if (!this.state.appIsReady) {
-      return null;
-    }
-    console.log(stepCount);
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Guilt trip demo! 👋</Text>
-        <Text>{stepCount}</Text>
+        <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text>
+        <Text>Steps taken in the last 24 hours: {this.state.pastStepCount}</Text>
+        <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text>
       </View>
     );
   }
