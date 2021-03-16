@@ -39,7 +39,9 @@ export default class App extends React.Component {
 
     const end = new Date();
     const start = new Date();
-    start.setDate(end.getDate() - 1);
+    start.setHours(0,0,0,0);
+    console.log(start)
+    console.log(end)
     Pedometer.getStepCountAsync(start, end).then(
       result => {
         this.setState({ pastStepCount: result.steps });
@@ -60,15 +62,13 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text>
-        <Text>Steps taken in the last 24 hours: {this.state.pastStepCount}</Text>
-        <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text>
+        {/* <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text> */}
+        <Text>Steps taken today: {this.state.pastStepCount + this.state.currentStepCount}</Text>
+        {/* <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text> */}
       </View>
     );
   }
 }
-
-// Put any code you need to prepare your app in these functions
 
 const styles = StyleSheet.create({
   container: {
