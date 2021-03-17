@@ -1,7 +1,6 @@
-const DEFAULT_POPULATION = 5
+const DEFAULT_POPULATION = 5;
 
 class Colony {
-
   constructor(population = DEFAULT_POPULATION) {
     this.population = population;
   }
@@ -11,7 +10,11 @@ class Colony {
   }
 
   addCreature() {
-    this.population += 1
+    this.population++;
+  }
+
+  killCreature() {
+    this.population--;
   }
 }
 
