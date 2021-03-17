@@ -1,7 +1,9 @@
+const DEFAULT_POPULATION = 5
+
 class Colony {
 
-  constructor() {
-    this.population = 5;
+  constructor(population = DEFAULT_POPULATION) {
+    this.population = population;
   }
 
   showPopulation() {
