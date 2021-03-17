@@ -8,6 +8,10 @@ class Target {
   showTarget() {
     return this.target;
   }
+
+  isReached(steps) {
+    return steps >= this.target;
+  }
 }
 
 module.exports = Target;
