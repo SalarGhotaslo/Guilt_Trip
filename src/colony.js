@@ -9,6 +9,10 @@ class Colony {
   showPopulation() {
     return this.population;
   }
+
+  addCreature() {
+    this.population += 1
+  }
 }
 
 module.exports = {
