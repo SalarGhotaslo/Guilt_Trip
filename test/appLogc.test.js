@@ -1,6 +1,6 @@
-import { AppLogic } from "../src/AppLogic";
+import { AppLogic } from "../src/updatePopulation";
 const Target = require("../src/Target");
-const { Colony } = require("../src/colony");
+const { Colony } = require("../src/Colony");
 
 describe("AppLogic function", () => {
   let testTarget, testColony, testSteps;

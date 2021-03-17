@@ -1,14 +1,14 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import performStepAPI from "./src/stepApi";
+import React, { Component } from "react";
+import { StyleSheet, Text, SafeAreaView } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
-import { AppLogic } from "./src/AppLogic";
-const Target = require("./src/Target");
-const { Colony } = require("./src/colony");
+import { updatePopulation } from "./src/updatePopulation";
+import { Target } from "./src/Target";
+import { Colony } from "./src/Colony";
+import { performStepApi } from "./src/performStepApi";
 
-export default class App extends React.Component {
+export default class App extends Component {
   state = {
     isPedometerAvailable: "checking",
     appIsReady: false,
@@ -53,10 +53,10 @@ export default class App extends React.Component {
 
   prepareResources = async () => {
     try {
-      var steps = await performStepAPI(),
+      var steps = await performStepApi(),
         target = new Target(),
         colony = new Colony();
-      AppLogic(target, colony, steps);
+      updatePopulation(target, colony, steps);
     } catch (e) {
     } finally {
       this.setState(

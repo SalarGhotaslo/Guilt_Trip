@@ -1,4 +1,4 @@
-const { Colony } = require("../src/colony");
+const { Colony } = require("../src/Colony");
 
 describe("Colony", function () {
   let colonyTest;

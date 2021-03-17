@@ -1,4 +1,4 @@
-export function AppLogic(target, colony, steps) {
+export function updatePopulation(target, colony, steps) {
   if (target.isReached(steps)) {
     colony.addCreature();
   } else {
