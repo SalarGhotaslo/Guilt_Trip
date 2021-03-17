@@ -1,16 +1,30 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Pedometer } from "expo-sensors";
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+const stepApi = require('./src/stepApi.js');
+import * as SplashScreen from 'expo-splash-screen';
+import { Pedometer } from 'expo-sensors';
+import { AppLogic } from "./src/AppLogic";
+const Target = require("./src/Target");
+const { Colony } = require("./src/colony");
 
 export default class App extends React.Component {
   state = {
-    isPedometerAvailable: "checking",
-    pastStepCount: 0,
+    isPedometerAvailable: 'checking',
+    appIsReady: false,
+    stepCount: 0,
     currentStepCount: 0,
+    population: 0,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
+    try {
+      await SplashScreen.preventAutoHideAsync();
+    } catch (e) {
+      console.warn(e);
+    }
     this._subscribe();
+    this.prepareResources();
   }
 
   componentWillUnmount() {
@@ -23,35 +37,30 @@ export default class App extends React.Component {
         currentStepCount: result.steps,
       });
     });
-
     Pedometer.isAvailableAsync().then(
-      (result) => {
+      result => {
         this.setState({
           isPedometerAvailable: String(result),
         });
       },
-      (error) => {
+      error => {
         this.setState({
-          isPedometerAvailable: "Could not get isPedometerAvailable: " + error,
+          isPedometerAvailable: 'Could not get isPedometerAvailable: ' + error,
         });
       }
     );
+  };
 
-    const end = new Date();
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
-    console.log(start);
-    console.log(end);
-    Pedometer.getStepCountAsync(start, end).then(
-      (result) => {
-        this.setState({ pastStepCount: result.steps });
-      },
-      (error) => {
-        this.setState({
-          pastStepCount: "Could not get stepCount: " + error,
-        });
-      }
-    );
+  prepareResources = async () => {
+    try {
+      var steps = await stepApi.performStepAPI(), target = new Target(), colony = new Colony();
+      AppLogic(target, colony, steps);
+    } catch (e) {
+    } finally {
+      this.setState({ appIsReady: true, stepCount: steps, population: colony.showPopulation() }, async () => {
+        await SplashScreen.hideAsync();
+      });
+    }
   };
 
   _unsubscribe = () => {
@@ -60,15 +69,16 @@ export default class App extends React.Component {
   };
 
   render() {
+    if (!this.state.appIsReady) {
+      return null;
+    }
     return (
-      <View style={styles.container}>
-        {/* <Text>Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}</Text> */}
-        <Text>
-          Steps taken today:{" "}
-          {this.state.pastStepCount + this.state.currentStepCount}
-        </Text>
-        {/* <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text> */}
-      </View>
+      <SafeAreaView style={styles.container}>
+        <Text>Hello! welcome to Guilt Trip.</Text>
+        <Text>stepCount: 'Steps taken today': {this.state.stepCount}, app is: {String(this.state.appIsReady)}, currentStepCount: {this.state.currentStepCount}</Text>
+        <Text>population = {this.state.population}</Text>
+        <StatusBar style="auto" />
+      </SafeAreaView>
     );
   }
 }
@@ -76,12 +86,8 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#aabbcc",
-  },
-  text: {
-    color: "white",
-    fontWeight: "bold",
+    backgroundColor: '#145DA0',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
