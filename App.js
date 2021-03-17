@@ -69,7 +69,7 @@ export default class App extends React.Component {
     }
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Hello! welcome to Tree Test.</Text>
+        <Text>Hello! welcome to Guilt Trip.</Text>
         <Text>stepCount: 'Steps taken today': {this.state.stepCount}, app is: {String(this.state.appIsReady)}, currentStepCount: {this.state.currentStepCount}</Text>
         <StatusBar style="auto" />
       </SafeAreaView>
