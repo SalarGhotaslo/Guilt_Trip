@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "cypress": "cypress open"
   },
   "jest": {
     "preset": "jest-expo",
@@ -15,6 +16,7 @@
     ]
   },
   "dependencies": {
+    "cypress": "^6.7.1",
     "expo": "^40.0.1",
     "expo-sensors": "~9.2.0",
     "expo-splash-screen": "~0.8.1",
