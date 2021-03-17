@@ -5,6 +5,8 @@ import performStepAPI from "./src/stepApi";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
 import { AppLogic } from "./src/AppLogic";
+import { save, getValueFor } from "./src/accessStorage";
+import * as SecureStore from 'expo-secure-store';
 const Target = require("./src/Target");
 const { Colony } = require("./src/colony");
 
@@ -15,6 +17,7 @@ export default class App extends React.Component {
     stepCount: 0,
     currentStepCount: 0,
     population: 0,
+    testValue: 0,
   };
 
   async componentDidMount() {
@@ -57,13 +60,17 @@ export default class App extends React.Component {
         target = new Target(),
         colony = new Colony();
       AppLogic(target, colony, steps);
+      // save("key", "something differet")
+      var test = await getValueFor("key")
     } catch (e) {
     } finally {
+      console.log(test)
       this.setState(
         {
           appIsReady: true,
           stepCount: steps,
           population: colony.showPopulation(),
+          testValue: test,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -85,6 +92,7 @@ export default class App extends React.Component {
       <SafeAreaView style={styles.container}>
         <Text>Hello! welcome to Guilt Trip.</Text>
         <Text>
+          {this.state.testValue}
           stepCount: 'Steps taken today': {this.state.stepCount}, app is:{" "}
           {String(this.state.appIsReady)}, currentStepCount:{" "}
           {this.state.currentStepCount}
