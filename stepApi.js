@@ -1,12 +1,17 @@
 import { Pedometer } from 'expo-sensors';
 
-export async function performStepAPI() {
-  Pedometer.isAvailableAsync().then(function(isAvailable) {
-    if (isAvailable) {
-      let start = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), end = new Date;
-      Pedometer.getStepCountAsync(start, end).then(function(response) {
-        return response.steps;
-      });
-    }
-  });
+const DAY = 24 * 60 * 60 * 1000
+
+async function performStepAPI() {
+  let start = new Date; start.setHours(0, 0, 0, 0);
+  let end = new Date, stepData = Pedometer.getStepCountAsync(start, end), checkPedometer = Pedometer.isAvailableAsync();
+  var isAvailable = await checkPedometer;
+  if (isAvailable) {
+    var result = await stepData;
+    return result.steps}
+  else {console.log('Error');}
 }
+
+exports.performStepAPI = performStepAPI;
+
+// let start = new Date(end - DAY)
