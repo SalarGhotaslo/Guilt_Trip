@@ -1,6 +1,6 @@
 import { Pedometer } from "expo-sensors";
 
-const DAY = 24 * 60 * 60 * 1000;
+export const DAY = 24 * 60 * 60 * 1000;
 
 let startTime = new Date();
 startTime.setHours(0, 0, 0, 0);
