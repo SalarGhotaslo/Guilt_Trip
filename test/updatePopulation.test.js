@@ -1,8 +1,8 @@
-import { AppLogic } from "../src/updatePopulation";
-const Target = require("../src/Target");
-const { Colony } = require("../src/Colony");
+import { updatePopulation } from "../src/updatePopulation";
+import { Target } from "../src/Target";
+import { Colony } from "../src/Colony";
 
-describe("AppLogic function", () => {
+describe("updatePopulation function", () => {
   let testTarget, testColony, testSteps;
   beforeEach(() => {
     testTarget = new Target();
@@ -10,13 +10,13 @@ describe("AppLogic function", () => {
   });
   test("if steps target is reached, colony population increases", () => {
     testSteps = 5000;
-    AppLogic(testTarget, testColony, testSteps);
+    updatePopulation(testTarget, testColony, testSteps);
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(6);
   });
   test("if steps target is not reached, colony population decreases", () => {
     testSteps = 4999;
-    AppLogic(testTarget, testColony, testSteps);
+    updatePopulation(testTarget, testColony, testSteps);
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(4);
   });

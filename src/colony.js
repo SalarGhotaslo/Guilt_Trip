@@ -1,4 +1,4 @@
-const DEFAULT_POPULATION = 5;
+export const DEFAULT_POPULATION = 5;
 
 export class Colony {
   constructor(population = DEFAULT_POPULATION) {
