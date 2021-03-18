@@ -4,7 +4,7 @@ import { StyleSheet, Text, SafeAreaView } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
 import { save, getValueFor } from "./src/accessStorage";
-import * as SecureStore from 'expo-secure-store';
+import * as SecureStore from "expo-secure-store";
 import { updatePopulation } from "./src/updatePopulation";
 import { Target } from "./src/Target";
 import { Colony } from "./src/Colony";
@@ -64,18 +64,18 @@ export default class App extends Component {
         target = new Target(),
         colony = new Colony();
       // save("key", "something differet")
-      var test = await getValueFor("key");
       updatePopulation(target, colony, yesterdaysSteps);
+      var test = await getValueFor("key");
       var steps = await performStepApi();
     } catch (e) {
     } finally {
-      console.log(test)
+      // console.log(test)
       this.setState(
         {
           appIsReady: true,
           stepCount: steps,
           population: colony.showPopulation(),
-          testValue: test,
+          // testValue: test,
           yesterdaysCount: yesterdaysSteps,
         },
         async () => {
