@@ -1,8 +1,6 @@
 import { updatePopulation } from "../src/updatePopulation";
 import { Target } from "../src/Target";
 import { Colony } from "../src/Colony";
-import { performStepApi } from "../src/performStepApi";
-
 
 describe("updatePopulation function", () => {
   let testTarget, testColony, testSteps;
@@ -23,5 +21,6 @@ describe("updatePopulation function", () => {
     updatePopulation(testTarget, testColony, threeDaysAgo, today);
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(8);
+
   });
 });
