@@ -9,11 +9,13 @@ describe("createColony function", () => {
     );
   });
   test("if date is greater than 7 days, create new population", () => {
-    expect(createColony(dateToday - 7, 5).showPopulation()).toEqual(
+    expect(createColony("02/02/2020", 5).showPopulation()).toEqual(
       DEFAULT_POPULATION
     );
   });
   test("if the date is todays date, population stays the same", () => {
-    expect(createColony(dateToday, 10, dateToday).showPopulation()).toEqual(10);
+    expect(
+      createColony("03/18/2021", 10, "03/18/2021").showPopulation()
+    ).toEqual(10);
   });
 });
