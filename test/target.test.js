@@ -1,4 +1,4 @@
-const Target = require("../src/Target");
+import { Target } from "../src/Target";
 
 describe("Target class", () => {
   let testTarget;
