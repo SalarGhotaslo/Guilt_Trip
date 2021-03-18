@@ -1,6 +1,6 @@
 import { updatePopulation } from "../src/updatePopulation";
 import { Target } from "../src/Target";
-const { Colony } = require("../src/Colony");
+import { Colony } from "../src/Colony";
 
 describe("updatePopulation function", () => {
   let testTarget, testColony, testSteps;
