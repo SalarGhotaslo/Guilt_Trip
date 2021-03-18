@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { StyleSheet, Text, SafeAreaView } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
+import { save, getValueFor } from "./src/accessStorage";
+import * as SecureStore from 'expo-secure-store';
 import { updatePopulation } from "./src/updatePopulation";
 import { Target } from "./src/Target";
 import { Colony } from "./src/Colony";
@@ -15,6 +17,7 @@ export default class App extends Component {
     stepCount: 0,
     currentStepCount: 0,
     population: 0,
+    testValue: 0,
     yesterdaysCount: 0,
   };
 
@@ -60,15 +63,19 @@ export default class App extends Component {
         yesterdaysSteps = await performStepApi(startTime, endTime),
         target = new Target(),
         colony = new Colony();
+      // save("key", "something differet")
+      var test = await getValueFor("key");
       updatePopulation(target, colony, yesterdaysSteps);
       var steps = await performStepApi();
     } catch (e) {
     } finally {
+      console.log(test)
       this.setState(
         {
           appIsReady: true,
           stepCount: steps,
           population: colony.showPopulation(),
+          testValue: test,
           yesterdaysCount: yesterdaysSteps,
         },
         async () => {
@@ -90,6 +97,7 @@ export default class App extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <Text>Hello! welcome to Guilt Trip.</Text>
+        <Text>{this.state.testValue}</Text>
         <Text>Steps taken today: {this.state.stepCount}</Text>
         <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
         <Text>Steps while using this app: {this.state.currentStepCount}</Text>
