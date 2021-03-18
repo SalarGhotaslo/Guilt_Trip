@@ -1,4 +1,4 @@
-const DEFAULT_TARGET = 5000;
+export const DEFAULT_TARGET = 5000;
 
 export class Target {
   constructor(target = DEFAULT_TARGET) {

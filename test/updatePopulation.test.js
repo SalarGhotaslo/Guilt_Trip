@@ -9,7 +9,7 @@ describe("updatePopulation function", () => {
     testColony = new Colony();
   });
 
-  test("it increase by 3 when target is met 3 days in a row", async () => {
+  xtest("it increase by 3 when target is met 3 days in a row", async () => {
     let today = new Date();
     today.setHours(0, 0, 0, 0);
     let threeDaysAgo = new Date();
