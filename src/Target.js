@@ -1,6 +1,6 @@
 const DEFAULT_TARGET = 5000;
 
-class Target {
+export class Target {
   constructor(target = DEFAULT_TARGET) {
     this.target = target;
   }
@@ -13,5 +13,3 @@ class Target {
     return steps >= this.target;
   }
 }
-
-module.exports = Target;

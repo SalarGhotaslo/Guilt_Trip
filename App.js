@@ -1,16 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import performStepAPI from "./src/stepApi";
+import React, { Component } from "react";
+import { StyleSheet, Text, SafeAreaView } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
-import { AppLogic } from "./src/AppLogic";
 import { save, getValueFor } from "./src/accessStorage";
 import * as SecureStore from 'expo-secure-store';
-const Target = require("./src/Target");
-const { Colony } = require("./src/colony");
+import { updatePopulation } from "./src/updatePopulation";
+import { Target } from "./src/Target";
+import { Colony } from "./src/Colony";
+import { performStepApi, DAY } from "./src/performStepApi";
 
-export default class App extends React.Component {
+export default class App extends Component {
   state = {
     isPedometerAvailable: "checking",
     appIsReady: false,
@@ -18,6 +18,7 @@ export default class App extends React.Component {
     currentStepCount: 0,
     population: 0,
     testValue: 0,
+    yesterdaysCount: 0,
   };
 
   async componentDidMount() {
@@ -56,12 +57,16 @@ export default class App extends React.Component {
 
   prepareResources = async () => {
     try {
-      var steps = await performStepAPI(),
+      var endTime = new Date();
+      endTime.setHours(0, 0, 0, 0);
+      var startTime = new Date(endTime - DAY),
+        yesterdaysSteps = await performStepApi(startTime, endTime),
         target = new Target(),
         colony = new Colony();
-      AppLogic(target, colony, steps);
       // save("key", "something differet")
-      var test = await getValueFor("key")
+      var test = await getValueFor("key");
+      updatePopulation(target, colony, yesterdaysSteps);
+      var steps = await performStepApi();
     } catch (e) {
     } finally {
       console.log(test)
@@ -71,6 +76,7 @@ export default class App extends React.Component {
           stepCount: steps,
           population: colony.showPopulation(),
           testValue: test,
+          yesterdaysCount: yesterdaysSteps,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -91,12 +97,11 @@ export default class App extends React.Component {
     return (
       <SafeAreaView style={styles.container}>
         <Text>Hello! welcome to Guilt Trip.</Text>
-        <Text>
-          {this.state.testValue}
-          stepCount: 'Steps taken today': {this.state.stepCount}, app is:{" "}
-          {String(this.state.appIsReady)}, currentStepCount:{" "}
-          {this.state.currentStepCount}
-        </Text>
+        <Text>{this.state.testValue}</Text>
+        <Text>Steps taken today: {this.state.stepCount}</Text>
+        <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
+        <Text>Steps while using this app: {this.state.currentStepCount}</Text>
+        <Text>Steps till target reached: {5000 - this.state.stepCount}</Text>
         <Text>population = {this.state.population}</Text>
         <StatusBar style="auto" />
       </SafeAreaView>
