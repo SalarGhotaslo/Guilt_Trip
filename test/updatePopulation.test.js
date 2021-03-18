@@ -21,11 +21,13 @@ describe("updatePopulation function", () => {
     expect(testColony.showPopulation()).toBe(4);
   });
   test("it increase by 3 when target is met 3 days in a row", () => {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
     let threeDaysAgo = new Date();
     threeDaysAgo.setHours(0, 0, 0, 0);
     threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
     console.log(threeDaysAgo);
-    updatePopulation(testTarget, testColony, threeDaysAgo);
+    updatePopulation(testTarget, testColony, threeDaysAgo, today);
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(8);
   });
