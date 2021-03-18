@@ -60,23 +60,21 @@ export default class App extends Component {
     try {
       var date = await getValueFor("date");
       var population = await getValueFor("population");
-      var colony = createColony(date, population);
+      var colony = await createColony(date, population);
       let today = new Date()
-      let todayForStorage =`${today.getFullYear()}-${today.getMonth().toString().padStart(2,"0")}-${today.getDay().toString().padStart(2,"0")}`
-      console.log('today');
+      let todayForStorage = JSON.stringify(today)
+      todayForStorage = todayForStorage.substring(1,11)
       save("date", todayForStorage);
-      save("population",colony.showPopulation())
+      save("population", String(colony.showPopulation()))
       var steps = await performStepApi();
     } catch (e) {
     } finally {
-      // console.log(test)
       this.setState(
         {
           appIsReady: true,
           stepCount: steps,
           population: colony.showPopulation(),
           lastLogin: date,
-          // yesterdaysCount: yesterdaysSteps,
         },
         async () => {
           await SplashScreen.hideAsync();

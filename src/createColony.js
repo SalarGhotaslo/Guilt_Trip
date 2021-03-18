@@ -10,7 +10,7 @@ export function createColony(date, population, dateToday = new Date()) {
   if (date === null) {
     console.log("Welcome to Guilt Trip");
     return new Colony();
-  } else if (dateDifference > SIX_DAYS) {
+  } else if (dateDifference > SIX_DAYS || population === '0') {
     console.log("Your colony is dead you lazy bastard");
     return new Colony();
   } else if (dateDifference === 0) {

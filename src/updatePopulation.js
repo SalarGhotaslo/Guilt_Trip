@@ -1,3 +1,4 @@
+import { Colony } from "./Colony";
 import { performStepApi } from "./performStepApi";
 
 export async function updatePopulation(target, colony, lastLogin, today) {
@@ -9,5 +10,10 @@ export async function updatePopulation(target, colony, lastLogin, today) {
     target.isReached(steps) ? colony.addCreature() : colony.killCreature();
     lastLogin = range;
   }
-  return colony;
+  if(colony.showPopulation() === 0 ){
+    console.log("your population died you negligent lazy bastard")
+    return new Colony();
+  } else {
+    return colony;
+  }
 }
