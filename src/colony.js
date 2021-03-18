@@ -1,6 +1,6 @@
 const DEFAULT_POPULATION = 5;
 
-class Colony {
+export class Colony {
   constructor(population = DEFAULT_POPULATION) {
     this.population = population;
   }
@@ -17,7 +17,3 @@ class Colony {
     this.population--;
   }
 }
-
-module.exports = {
-  Colony,
-};
