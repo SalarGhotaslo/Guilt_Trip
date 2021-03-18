@@ -6,9 +6,10 @@ import { Pedometer } from "expo-sensors";
 import { save, getValueFor } from "./src/accessStorage";
 import * as SecureStore from "expo-secure-store";
 import { updatePopulation } from "./src/updatePopulation";
-import { Target } from "./src/Target";
-import { Colony } from "./src/Colony";
+import { Target, DEFAULT_TARGET } from "./src/Target";
+import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
+import { createColony } from "./src/createColony";
 
 export default class App extends Component {
   state = {
@@ -17,8 +18,8 @@ export default class App extends Component {
     stepCount: 0,
     currentStepCount: 0,
     population: 0,
-    testValue: 0,
-    yesterdaysCount: 0,
+    lastLogin: 0,
+    // yesterdaysCount: 0,
   };
 
   async componentDidMount() {
@@ -57,9 +58,14 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      
-      // save("key", "something differet")
-      //var test = await getValueFor("key");
+      var date = await getValueFor("date");
+      var population = await getValueFor("population");
+      var colony = createColony(date, population);
+      let today = new Date()
+      let todayForStorage =`${today.getFullYear()}-${today.getMonth().toString().padStart(2,"0")}-${today.getDay().toString().padStart(2,"0")}`
+      console.log('today');
+      save("date", todayForStorage);
+      save("population",colony.showPopulation())
       var steps = await performStepApi();
     } catch (e) {
     } finally {
@@ -69,8 +75,8 @@ export default class App extends Component {
           appIsReady: true,
           stepCount: steps,
           population: colony.showPopulation(),
-          // testValue: test,
-          yesterdaysCount: yesterdaysSteps,
+          lastLogin: date,
+          // yesterdaysCount: yesterdaysSteps,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -91,11 +97,11 @@ export default class App extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <Text>Hello! welcome to Guilt Trip.</Text>
-        <Text>{this.state.testValue}</Text>
+        <Text>{this.state.lastLogin}</Text>
         <Text>Steps taken today: {this.state.stepCount}</Text>
-        <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
+        {/* <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text> */}
         <Text>Steps while using this app: {this.state.currentStepCount}</Text>
-        <Text>Steps till target reached: {5000 - this.state.stepCount}</Text>
+        <Text>Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}</Text>
         <Text>population = {this.state.population}</Text>
         <StatusBar style="auto" />
       </SafeAreaView>
