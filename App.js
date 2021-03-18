@@ -57,14 +57,9 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      var endTime = new Date();
-      endTime.setHours(0, 0, 0, 0);
-      var startTime = new Date(endTime - DAY),
-        yesterdaysSteps = await performStepApi(startTime, endTime),
-        target = new Target(),
-        colony = new Colony();
+      
       // save("key", "something differet")
-      var test = await getValueFor("key");
+      //var test = await getValueFor("key");
       var steps = await performStepApi();
     } catch (e) {
     } finally {

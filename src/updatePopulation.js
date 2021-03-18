@@ -1,4 +1,4 @@
-import { performStepApi, DAY } from "./performStepApi";
+import { performStepApi } from "./performStepApi";
 
 export async function updatePopulation(target, colony, lastLogin, today) {
   while (today.getTime() > lastLogin.getTime()) {
@@ -9,6 +9,5 @@ export async function updatePopulation(target, colony, lastLogin, today) {
     target.isReached(steps) ? colony.addCreature() : colony.killCreature();
     lastLogin = range;
   }
-  return colony.showPopulation();
-  // store last login
+  return colony;
 }
