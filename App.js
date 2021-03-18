@@ -64,7 +64,6 @@ export default class App extends Component {
         target = new Target(),
         colony = new Colony();
       // save("key", "something differet")
-      updatePopulation(target, colony, yesterdaysSteps);
       var test = await getValueFor("key");
       var steps = await performStepApi();
     } catch (e) {
