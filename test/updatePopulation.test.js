@@ -27,7 +27,6 @@ describe("updatePopulation function", () => {
     yesterday.setDate(yesterday.getDate() - 1);
     Pedometer.getStepCountAsync.mockReturnValue({"steps":50000})
     await updatePopulation(testTarget, testColony, yesterday, today)
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(6);
   });
@@ -40,7 +39,6 @@ describe("updatePopulation function", () => {
     yesterday.setDate(yesterday.getDate() - 1);
     Pedometer.getStepCountAsync.mockReturnValue({"steps":5})
     await updatePopulation(testTarget, testColony, yesterday, today)
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(4);
   });
@@ -54,8 +52,6 @@ describe("updatePopulation function", () => {
     console.log(threeDaysAgo)
     Pedometer.getStepCountAsync.mockReturnValue({"steps":50000})
     await updatePopulation(testTarget, testColony, threeDaysAgo, today);
-    console.log("Population is now")
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(8);
   });
@@ -69,8 +65,6 @@ describe("updatePopulation function", () => {
     console.log(threeDaysAgo)
     Pedometer.getStepCountAsync.mockReturnValue({"steps":5})
     await updatePopulation(testTarget, testColony, threeDaysAgo, today);
-    console.log("Population is now")
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(2);
   });
@@ -84,8 +78,6 @@ describe("updatePopulation function", () => {
     console.log(threeDaysAgo)
     Pedometer.getStepCountAsync.mockReturnValueOnce({"steps":5}).mockReturnValueOnce({"steps":5}).mockReturnValue({"steps":5000});
     await updatePopulation(testTarget, testColony, threeDaysAgo, today);
-    console.log("Population is now")
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(4);
   });
@@ -99,8 +91,6 @@ describe("updatePopulation function", () => {
     console.log(threeDaysAgo)
     Pedometer.getStepCountAsync.mockReturnValueOnce({"steps":5000}).mockReturnValueOnce({"steps":5000}).mockReturnValue({"steps":5});
     await updatePopulation(testTarget, testColony, threeDaysAgo, today);
-    console.log("Population is now")
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(6);
   });
@@ -114,8 +104,6 @@ describe("updatePopulation function", () => {
     console.log(fourDaysAgo)
     Pedometer.getStepCountAsync.mockReturnValueOnce({"steps":5000}).mockReturnValueOnce({"steps":5}).mockReturnValue({"steps":7000}).mockReturnValue({"steps":6000});
     await updatePopulation(testTarget, testColony, fourDaysAgo, today);
-    console.log("Population is now")
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(7);
   });
@@ -128,12 +116,9 @@ describe("updatePopulation function", () => {
     fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
     Pedometer.getStepCountAsync.mockReturnValue({"steps":5})
     await updatePopulation(testTarget, testColony, fiveDaysAgo, today);
-    console.log("Population is now")
-    console.log(testColony.showPopulation())
     expect(testColony.showPopulation()).toBe(0);
     expect(Colony).toHaveBeenCalled
   });
-
 
 
 });
