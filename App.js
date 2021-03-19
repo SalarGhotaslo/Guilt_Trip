@@ -8,6 +8,7 @@ import {
   Image,
   ScrollView,
   ImageBackground,
+  ImageBackgroundComponent,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -113,23 +114,35 @@ export default class App extends Component {
             style={styles.slothImage}
           />
           <DisplaySloths slothPopulation={this.state.population} />
-          <View styles={styles.viewContainer}>
-            <Image
-              source={require("./assets/slothTrunk.png")}
-              style={styles.slothImage}
-            />
-            <Text>Hello! welcome to Guilt Trip.</Text>
-            <Text>{this.state.lastLogin}</Text>
-            <Text>Steps taken today: {this.state.stepCount}</Text>
-            {/* <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text> */}
-            <Text>
-              Steps while using this app: {this.state.currentStepCount}
-            </Text>
-            <Text>
-              Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
-            </Text>
-            <Text>population = {this.state.population}</Text>
-          </View>
+          <ImageBackground
+            source={require("./assets/slothTrunk.png")}
+            style={styles.trunkImage}
+          >
+            <View
+              style={{
+                position: "relative",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>Hello! welcome to Guilt Trip.</Text>
+              <Text>{this.state.lastLogin}</Text>
+              <Text>Steps taken today: {this.state.stepCount}</Text>
+              <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
+              <Text>
+                Steps while using this app: {this.state.currentStepCount}
+              </Text>
+              <Text>
+                Steps till target reached:{" "}
+                {DEFAULT_TARGET - this.state.stepCount}
+              </Text>
+              <Text>population = {this.state.population}</Text>
+            </View>
+          </ImageBackground>
           <StatusBar style="auto" />
         </ScrollView>
       </SafeAreaView>
@@ -144,11 +157,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   slothImage: {
-    // width: "100%",
+    width: 385,
     // height: "",
   },
   scrollView: {
     flex: 1,
+  },
+  trunkImage: {
+    width: 385,
+    height: 500,
   },
   viewContainer: {},
 });
