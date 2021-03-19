@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StyleSheet, Text, SafeAreaView, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  View,
+  Image,
+  ScrollView,
+} from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
 import { save, getValueFor } from "./src/accessStorage";
@@ -95,17 +102,19 @@ export default class App extends Component {
     }
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Hello! welcome to Guilt Trip.</Text>
-        <Text>{this.state.lastLogin}</Text>
-        <Text>Steps taken today: {this.state.stepCount}</Text>
-        {/* <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text> */}
-        <Text>Steps while using this app: {this.state.currentStepCount}</Text>
-        <Text>
-          Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
-        </Text>
-        <Text>population = {this.state.population}</Text>
-        <DisplaySloths slothPopulation={this.state.population} />
-        <StatusBar style="auto" />
+        <ScrollView style={styles.scrollView}>
+          <Text>Hello! welcome to Guilt Trip.</Text>
+          <Text>{this.state.lastLogin}</Text>
+          <Text>Steps taken today: {this.state.stepCount}</Text>
+          {/* <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text> */}
+          <Text>Steps while using this app: {this.state.currentStepCount}</Text>
+          <Text>
+            Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
+          </Text>
+          <Text>population = {this.state.population}</Text>
+          <DisplaySloths slothPopulation={this.state.population} />
+          <StatusBar style="auto" />
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -122,6 +131,9 @@ const styles = StyleSheet.create({
     width: 90,
     height: 50,
   },
+  scrollView: {
+    flex: 1,
+  },
 });
 
 const DisplaySloths = (props) => {
@@ -129,10 +141,17 @@ const DisplaySloths = (props) => {
   for (let i = 0; i < props.slothPopulation; i++) {
     sloths.push(
       <Image
-        source={require("./assets/sloth-image.png")}
+        source={require("./assets/sloth.png")}
         style={styles.slothImage}
+        key={i}
       />
     );
   }
   return <View>{sloths}</View>;
 };
+
+// let imagePaths = [
+//   "./assets/sloth.png",
+//   "./assets/sloth1.png",
+//   "./assets/sloth2.png",
+// ];
