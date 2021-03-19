@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { StyleSheet, Text, SafeAreaView } from "react-native";
+import { StyleSheet, Text, SafeAreaView, View, Image } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
 import { save, getValueFor } from "./src/accessStorage";
@@ -10,6 +10,7 @@ import { Target, DEFAULT_TARGET } from "./src/Target";
 import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
+import { render } from "react-dom";
 
 export default class App extends Component {
   state = {
@@ -61,11 +62,11 @@ export default class App extends Component {
       var date = await getValueFor("date");
       var population = await getValueFor("population");
       var colony = await createColony(date, population);
-      let today = new Date()
-      let todayForStorage = JSON.stringify(today)
-      todayForStorage = todayForStorage.substring(1,11)
+      let today = new Date();
+      let todayForStorage = JSON.stringify(today);
+      todayForStorage = todayForStorage.substring(1, 11);
       save("date", todayForStorage);
-      save("population", String(colony.showPopulation()))
+      save("population", String(colony.showPopulation()));
       var steps = await performStepApi();
     } catch (e) {
     } finally {
@@ -92,6 +93,7 @@ export default class App extends Component {
     if (!this.state.appIsReady) {
       return null;
     }
+
     return (
       <SafeAreaView style={styles.container}>
         <Text>Hello! welcome to Guilt Trip.</Text>
@@ -99,8 +101,11 @@ export default class App extends Component {
         <Text>Steps taken today: {this.state.stepCount}</Text>
         {/* <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text> */}
         <Text>Steps while using this app: {this.state.currentStepCount}</Text>
-        <Text>Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}</Text>
+        <Text>
+          Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
+        </Text>
         <Text>population = {this.state.population}</Text>
+        <CreateSloths slothPopulation={this.state.population} />
         <StatusBar style="auto" />
       </SafeAreaView>
     );
@@ -115,3 +120,42 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+const CreateSloths = (props) => new Sloth();
+
+class Sloth extends Component {
+  // let counter = 0;
+
+  render() {
+    return <Text>"helllo!!!!!!"</Text>;
+  }
+
+  // for (counter < props.slothPopulation) {
+  //   return (
+  //     <View>
+  //       <Text>Sloth population: {props.slothPopulation}</Text>
+  //     </View>
+  //   );
+  //   counter++;
+  // }
+
+  // return (
+  //   <View>
+  //     <Text>Sloth population: {props.slothPopulation}</Text>
+  //     <SlothImage />
+  //   </View>
+  // );
+}
+
+// const SlothImage = () => {
+//   return (
+//     <View>
+//       <Text>Sloth population: 4</Text>
+//     </View>
+//   );
+//   // return (
+//   //   <View>
+//   //     <Image source={require("./assets/sloth-image.png")} />
+//   //   </View>
+//   // );
+// };
