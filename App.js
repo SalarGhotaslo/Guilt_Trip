@@ -93,7 +93,6 @@ export default class App extends Component {
     if (!this.state.appIsReady) {
       return null;
     }
-
     return (
       <SafeAreaView style={styles.container}>
         <Text>Hello! welcome to Guilt Trip.</Text>
@@ -105,7 +104,7 @@ export default class App extends Component {
           Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
         </Text>
         <Text>population = {this.state.population}</Text>
-        <CreateSloths slothPopulation={this.state.population} />
+        <DisplaySloths slothPopulation={this.state.population} />
         <StatusBar style="auto" />
       </SafeAreaView>
     );
@@ -119,43 +118,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  slothImage: {
+    width: 90,
+    height: 50,
+  },
 });
 
-const CreateSloths = (props) => new Sloth();
-
-class Sloth extends Component {
-  // let counter = 0;
-
-  render() {
-    return <Text>"helllo!!!!!!"</Text>;
+const DisplaySloths = (props) => {
+  let sloths = [];
+  for (let i = 0; i < props.slothPopulation; i++) {
+    sloths.push(
+      <Image
+        source={require("./assets/sloth-image.png")}
+        style={styles.slothImage}
+      />
+    );
   }
-
-  // for (counter < props.slothPopulation) {
-  //   return (
-  //     <View>
-  //       <Text>Sloth population: {props.slothPopulation}</Text>
-  //     </View>
-  //   );
-  //   counter++;
-  // }
-
-  // return (
-  //   <View>
-  //     <Text>Sloth population: {props.slothPopulation}</Text>
-  //     <SlothImage />
-  //   </View>
-  // );
-}
-
-// const SlothImage = () => {
-//   return (
-//     <View>
-//       <Text>Sloth population: 4</Text>
-//     </View>
-//   );
-//   // return (
-//   //   <View>
-//   //     <Image source={require("./assets/sloth-image.png")} />
-//   //   </View>
-//   // );
-// };
+  return <View>{sloths}</View>;
+};
