@@ -14,4 +14,8 @@ describe("Target class", () => {
   test("4999 steps should pass default target", () => {
     expect(testTarget.isReached(4999)).toEqual(false);
   });
+  test("Target should be 400 when set", () => {
+    testTarget = new Target(400);
+    expect(testTarget.showTarget()).toBe(400);
+  });
 });
