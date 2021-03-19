@@ -7,6 +7,7 @@ import {
   View,
   Image,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -66,8 +67,10 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
+      console.log("can i see this");
       var date = await getValueFor("date");
       var population = await getValueFor("population");
+      console.log("after 70");
       var colony = await createColony(date, population);
       let today = new Date();
       let todayForStorage = JSON.stringify(today);
@@ -76,7 +79,9 @@ export default class App extends Component {
       save("population", String(colony.showPopulation()));
       var steps = await performStepApi();
     } catch (e) {
+      console.log(e);
     } finally {
+      console.log(colony);
       this.setState(
         {
           appIsReady: true,
@@ -103,16 +108,28 @@ export default class App extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
-          <Text>Hello! welcome to Guilt Trip.</Text>
-          <Text>{this.state.lastLogin}</Text>
-          <Text>Steps taken today: {this.state.stepCount}</Text>
-          {/* <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text> */}
-          <Text>Steps while using this app: {this.state.currentStepCount}</Text>
-          <Text>
-            Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
-          </Text>
-          <Text>population = {this.state.population}</Text>
+          <Image
+            source={require("./assets/slothCanopy.png")}
+            style={styles.slothImage}
+          />
           <DisplaySloths slothPopulation={this.state.population} />
+          <View styles={styles.viewContainer}>
+            <Image
+              source={require("./assets/slothTrunk.png")}
+              style={styles.slothImage}
+            />
+            <Text>Hello! welcome to Guilt Trip.</Text>
+            <Text>{this.state.lastLogin}</Text>
+            <Text>Steps taken today: {this.state.stepCount}</Text>
+            {/* <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text> */}
+            <Text>
+              Steps while using this app: {this.state.currentStepCount}
+            </Text>
+            <Text>
+              Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
+            </Text>
+            <Text>population = {this.state.population}</Text>
+          </View>
           <StatusBar style="auto" />
         </ScrollView>
       </SafeAreaView>
@@ -123,17 +140,17 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#145DA0",
     alignItems: "center",
     justifyContent: "center",
   },
   slothImage: {
-    width: 90,
-    height: 50,
+    // width: "100%",
+    // height: "",
   },
   scrollView: {
     flex: 1,
   },
+  viewContainer: {},
 });
 
 const DisplaySloths = (props) => {
@@ -141,7 +158,7 @@ const DisplaySloths = (props) => {
   for (let i = 0; i < props.slothPopulation; i++) {
     sloths.push(
       <Image
-        source={require("./assets/sloth.png")}
+        source={require("./assets/slothStem.png")}
         style={styles.slothImage}
         key={i}
       />

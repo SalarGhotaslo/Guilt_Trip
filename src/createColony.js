@@ -7,16 +7,21 @@ export function createColony(date, population, dateToday = new Date()) {
   let lastLogin = new Date(date);
   let today = new Date(dateToday);
   let dateDifference = today.setHours(0, 0, 0, 0) - lastLogin;
-  if (date === null) {
-    console.log("Welcome to Guilt Trip");
-    return new Colony();
-  } else if (dateDifference > SIX_DAYS || population === '0') {
+  if (dateDifference > 0 && dateDifference <= SIX_DAYS) {
+    return updatePopulation(
+      new Target(),
+      new Colony(population),
+      lastLogin,
+      today
+    );
+  } else if (dateDifference > SIX_DAYS || population === "0") {
     console.log("Your colony is dead you lazy bastard");
     return new Colony();
   } else if (dateDifference === 0) {
     console.log("Welcome back");
     return new Colony(population);
   } else {
-    return updatePopulation(new Target(), new Colony(population), lastLogin, today);
+    console.log("Welcome to Guilt Trip");
+    return new Colony();
   }
 }
