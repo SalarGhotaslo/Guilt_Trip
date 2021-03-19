@@ -118,14 +118,7 @@ export default class App extends Component {
             source={require("./assets/treeBottom.png")}
             style={styles.slothImage}
           />
-          {/* <ImageBackground> */}
-          {/* source={require("./assets/treeBottom.png")} */}
-          {/* style={styles.trunkImage} */}
           <View style={styles.footerText}>
-            {/* <Image
-              source={require("./assets/treeBottom.png")}
-              style={styles.slothImage}
-            /> */}
             <Text>Hello! welcome to Guilt Trip.</Text>
             <Text>{this.state.lastLogin}</Text>
             <Text>Steps taken today: {this.state.stepCount}</Text>
@@ -138,7 +131,6 @@ export default class App extends Component {
             </Text>
             <Text>population = {this.state.population}</Text>
           </View>
-          {/* </ImageBackground> */}
           <StatusBar style="auto" />
         </ScrollView>
       </SafeAreaView>
@@ -153,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   slothImage: {
-    width: 385,
+    // width: 385,
     // height: "",
   },
   scrollView: {
@@ -173,7 +165,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  viewContainer: {},
 });
 
 const DisplaySloths = (props) => {
