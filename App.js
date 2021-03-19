@@ -110,29 +110,35 @@ export default class App extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <Image
-            source={require("./assets/slothCanopy.png")}
+            source={require("./assets/treeTop.png")}
             style={styles.slothImage}
           />
           <DisplaySloths slothPopulation={this.state.population} />
-          <ImageBackground
-            source={require("./assets/slothTrunk.png")}
-            style={styles.trunkImage}
-          >
-            <View style={styles.trunkText}>
-              <Text>Hello! welcome to Guilt Trip.</Text>
-              <Text>{this.state.lastLogin}</Text>
-              <Text>Steps taken today: {this.state.stepCount}</Text>
-              <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
-              <Text>
-                Steps while using this app: {this.state.currentStepCount}
-              </Text>
-              <Text>
-                Steps till target reached:{" "}
-                {DEFAULT_TARGET - this.state.stepCount}
-              </Text>
-              <Text>population = {this.state.population}</Text>
-            </View>
-          </ImageBackground>
+          <Image
+            source={require("./assets/treeBottom.png")}
+            style={styles.slothImage}
+          />
+          {/* <ImageBackground> */}
+          {/* source={require("./assets/treeBottom.png")} */}
+          {/* style={styles.trunkImage} */}
+          <View style={styles.footerText}>
+            {/* <Image
+              source={require("./assets/treeBottom.png")}
+              style={styles.slothImage}
+            /> */}
+            <Text>Hello! welcome to Guilt Trip.</Text>
+            <Text>{this.state.lastLogin}</Text>
+            <Text>Steps taken today: {this.state.stepCount}</Text>
+            <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
+            <Text>
+              Steps while using this app: {this.state.currentStepCount}
+            </Text>
+            <Text>
+              Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
+            </Text>
+            <Text>population = {this.state.population}</Text>
+          </View>
+          {/* </ImageBackground> */}
           <StatusBar style="auto" />
         </ScrollView>
       </SafeAreaView>
@@ -154,11 +160,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   trunkImage: {
-    width: 385,
-    height: 500,
+    width: 0,
+    height: 0,
   },
-  trunkText: {
+  footerText: {
     position: "relative",
+    backgroundColor: "#20fc00",
     top: 0,
     left: 0,
     right: 0,
@@ -174,7 +181,7 @@ const DisplaySloths = (props) => {
   for (let i = 0; i < props.slothPopulation; i++) {
     sloths.push(
       <Image
-        source={require("./assets/slothStem.png")}
+        source={require("./assets/treeSegment.png")}
         style={styles.slothImage}
         key={i}
       />
