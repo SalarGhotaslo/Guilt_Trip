@@ -118,17 +118,7 @@ export default class App extends Component {
             source={require("./assets/slothTrunk.png")}
             style={styles.trunkImage}
           >
-            <View
-              style={{
-                position: "relative",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+            <View style={styles.trunkText}>
               <Text>Hello! welcome to Guilt Trip.</Text>
               <Text>{this.state.lastLogin}</Text>
               <Text>Steps taken today: {this.state.stepCount}</Text>
@@ -166,6 +156,15 @@ const styles = StyleSheet.create({
   trunkImage: {
     width: 385,
     height: 500,
+  },
+  trunkText: {
+    position: "relative",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
   },
   viewContainer: {},
 });
