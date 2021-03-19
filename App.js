@@ -107,7 +107,7 @@ export default class App extends Component {
       return null;
     }
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
         <ScrollView style={styles.scrollView}>
           <Image
             source={require("./assets/treeTop.png")}
@@ -133,7 +133,7 @@ export default class App extends Component {
           </View>
           <StatusBar style="auto" />
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   slothImage: {
-    // width: 385,
+    // width: ,
     // height: "",
   },
   scrollView: {
@@ -170,16 +170,30 @@ const styles = StyleSheet.create({
 const DisplaySloths = (props) => {
   let sloths = [];
   for (let i = 0; i < props.slothPopulation; i++) {
-    sloths.push(
-      <Image
-        source={require("./assets/treeSegment.png")}
-        style={styles.slothImage}
-        key={i}
-      />
-    );
+    if (isOdd(i)) {
+      sloths.push(
+        <Image
+          source={require("./assets/rightSloth.png")}
+          style={styles.slothImage}
+          key={i}
+        />
+      );
+    } else {
+      sloths.push(
+        <Image
+          source={require("./assets/leftSloth.png")}
+          style={styles.slothImage}
+          key={i}
+        />
+      );
+    }
   }
   return <View>{sloths}</View>;
 };
+
+function isOdd(n) {
+  return n % 2 === 1;
+}
 
 // let imagePaths = [
 //   "./assets/sloth.png",
