@@ -108,7 +108,14 @@ export default class App extends Component {
     }
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView
+          ref={(ref) => {
+            this.scrollView = ref;
+          }}
+          onContentSizeChange={() =>
+            this.scrollView.scrollToEnd({ animated: true })
+          }
+        >
           <Image
             source={require("./assets/treeTop.png")}
             style={styles.slothImage}
@@ -141,29 +148,14 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#00ffff",
   },
   slothImage: {
-    // width: ,
-    // height: "",
-  },
-  scrollView: {
-    flex: 1,
-  },
-  trunkImage: {
-    width: 0,
-    height: 0,
+    width: "100%",
+    position: "relative",
   },
   footerText: {
     position: "relative",
     backgroundColor: "#20fc00",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: "center",
     alignItems: "center",
   },
 });
