@@ -12,8 +12,6 @@ export function alertsFunction(lastLogin, today) {
   }
 }
 
-//int comparison = date1.compareTo(date2);
-
 // console.log(`lastLogin: ${this.state.lastLogin}`);
 //           let today = new Date();
 //           let todayForStorage = JSON.stringify(today);
