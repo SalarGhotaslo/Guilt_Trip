@@ -1,4 +1,5 @@
-const { Colony } = require("../src/Colony");
+const { Colony, DEFAULT_POPULATION } = require("../src/Colony");
+import { Sloth } from "../src/Sloth";
 
 describe("Colony", function () {
   let colonyTest;
@@ -24,4 +25,12 @@ describe("Colony", function () {
     colonyTest = new Colony(7);
     expect(colonyTest.showPopulation()).toBe(7);
   });
+
+  test("new colony generates DEFAULT_POPULATION number of random sloths", () => {
+    colony = new Colony();
+    expect(colony.sloths instanceof Array).toBe(true)
+    expect(colony.sloths.length).toEqual(DEFAULT_POPULATION)
+    expect(colony.sloths[0] instanceof Sloth).toBe(true)
+    console.log(colony.sloths)
+  })
 });
