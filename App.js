@@ -93,7 +93,14 @@ export default class App extends Component {
         },
         async () => {
           await SplashScreen.hideAsync();
-          Alert.alert("Random");
+          console.log(`lastLogin: ${this.state.lastLogin}`);
+          let today = new Date();
+          let todayForStorage = JSON.stringify(today);
+          todayForStorage = todayForStorage.substring(1, 11);
+          console.log(todayForStorage);
+          if (this.state.lastLogin == todayForStorage) {
+            Alert.alert("Welcome to Guilt trip!");
+          }
         }
       );
     }
