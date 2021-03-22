@@ -4,11 +4,13 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
+  FlatList,
   View,
   Image,
   ScrollView,
   ImageBackground,
   ImageBackgroundComponent,
+  Dimensions,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -21,6 +23,9 @@ import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import { render } from "react-dom";
 import TreeTop from "./assets/svgs/TreeTop";
+import TreeSegmentTom from "./assets/svgs/TreeSegmentTom";
+import TreeSegmentSarah from "./assets/svgs/TreeSegmentSarah";
+import TreeBottom from "./assets/svgs/TreeBottom";
 
 export default class App extends Component {
   state = {
@@ -108,33 +113,12 @@ export default class App extends Component {
       return null;
     }
     return (
-      <View style={styles.container}>
-        <ScrollView
-          ref={(ref) => {
-            this.scrollView = ref;
-          }}
-          onContentSizeChange={() =>
-            this.scrollView.scrollToEnd({ animated: true })
-          }
-        >
-          <View style={{ width: "100%", height: 78, margin: "auto" }}>
-            <TreeTop />
-          </View>
-          {/* <DisplaySloths slothPopulation={this.state.population} /> */}
-          {/* <Image
-            source={require("./assets/treeBottom.png")}
-            style={styles.treeTip}
-          /> */}
-          {/* <View style={styles.footerText}>
-            <Text>Steps taken today: {this.state.stepCount}</Text>
-            <Text>
-              Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
-            </Text>
-            <Text>Step target: {DEFAULT_TARGET}</Text>
-          </View> */}
-          <StatusBar style="auto" />
-        </ScrollView>
-      </View>
+      <ScrollView style={styles.scrollView}>
+        <TreeTop />
+        <TreeSegmentSarah />
+        <TreeSegmentTom />
+        <TreeBottom />
+      </ScrollView>
     );
   }
 }
@@ -143,20 +127,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  slothImage: {
-    position: "relative",
+  scrollView: {
+    height: "40%",
     width: "100%",
-  },
-  footerText: {
-    position: "absolute",
     alignSelf: "center",
-    alignItems: "center",
-    bottom: 0,
-    width: "100%",
-  },
-  treeTip: {
-    position: "relative",
-    width: "100%",
   },
 });
 
@@ -165,19 +139,11 @@ const DisplaySloths = (props) => {
   for (let i = 0; i < props.slothPopulation; i++) {
     if (isOdd(i)) {
       sloths.push(
-        <Image
-          source={require("./assets/rightSloth.png")}
-          style={styles.slothImage}
-          key={i}
-        />
+        <Image source={TreeSegmentSarah} style={styles.slothImage} key={i} />
       );
     } else {
       sloths.push(
-        <Image
-          source={require("./assets/leftSloth.png")}
-          style={styles.slothImage}
-          key={i}
-        />
+        <Image source={TreeSegment} style={styles.slothImage} key={i} />
       );
     }
   }

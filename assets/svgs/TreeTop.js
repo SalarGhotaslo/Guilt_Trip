@@ -1,12 +1,14 @@
 import * as React from "react";
 import Svg, { G, Path, Ellipse } from "react-native-svg";
+import { Dimensions } from "react-native";
+const windowHeight = Dimensions.get("window").height;
 
 const TreeTop = (props) => {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
-      height={100}
+      height={windowHeight * 0.4}
       viewBox="0 0 90 78"
       {...props}
     >
