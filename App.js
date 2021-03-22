@@ -115,8 +115,7 @@ export default class App extends Component {
     return (
       <ScrollView style={styles.scrollView}>
         <TreeTop />
-        <TreeSegmentSarah />
-        <TreeSegmentTom />
+        <DisplaySloths slothPopulation={this.state.population} />
         <TreeBottom />
       </ScrollView>
     );
@@ -138,13 +137,9 @@ const DisplaySloths = (props) => {
   let sloths = [];
   for (let i = 0; i < props.slothPopulation; i++) {
     if (isOdd(i)) {
-      sloths.push(
-        <Image source={TreeSegmentSarah} style={styles.slothImage} key={i} />
-      );
+      sloths.push(<TreeSegmentTom />);
     } else {
-      sloths.push(
-        <Image source={TreeSegment} style={styles.slothImage} key={i} />
-      );
+      sloths.push(<TreeSegmentSarah />);
     }
   }
   return <View>{sloths}</View>;
