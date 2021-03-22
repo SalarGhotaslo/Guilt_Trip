@@ -88,7 +88,7 @@ export default class App extends Component {
         {
           appIsReady: true,
           stepCount: steps,
-          population: colony.showPopulation(),
+          population: 5,
           lastLogin: date,
         },
         async () => {
@@ -117,19 +117,21 @@ export default class App extends Component {
             this.scrollView.scrollToEnd({ animated: true })
           }
         >
-          <TreeTop />
+          <View style={{ width: "100%", height: 78, margin: "auto" }}>
+            <TreeTop />
+          </View>
           {/* <DisplaySloths slothPopulation={this.state.population} /> */}
-          <Image
+          {/* <Image
             source={require("./assets/treeBottom.png")}
             style={styles.treeTip}
-          />
-          <View style={styles.footerText}>
+          /> */}
+          {/* <View style={styles.footerText}>
             <Text>Steps taken today: {this.state.stepCount}</Text>
             <Text>
               Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
             </Text>
             <Text>Step target: {DEFAULT_TARGET}</Text>
-          </View>
+          </View> */}
           <StatusBar style="auto" />
         </ScrollView>
       </View>
