@@ -118,25 +118,19 @@ export default class App extends Component {
         >
           <Image
             source={require("./assets/treeTop.png")}
-            style={styles.slothImage}
+            style={styles.treeTip}
           />
           <DisplaySloths slothPopulation={this.state.population} />
           <Image
             source={require("./assets/treeBottom.png")}
-            style={styles.slothImage}
+            style={styles.treeTip}
           />
           <View style={styles.footerText}>
-            <Text>Hello! welcome to Guilt Trip.</Text>
-            <Text>{this.state.lastLogin}</Text>
             <Text>Steps taken today: {this.state.stepCount}</Text>
-            <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
-            <Text>
-              Steps while using this app: {this.state.currentStepCount}
-            </Text>
             <Text>
               Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
             </Text>
-            <Text>population = {this.state.population}</Text>
+            <Text>Step target: {DEFAULT_TARGET}</Text>
           </View>
           <StatusBar style="auto" />
         </ScrollView>
@@ -154,9 +148,14 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   footerText: {
-    position: "relative",
-    backgroundColor: "#20fc00",
+    position: "absolute",
+    alignSelf: "center",
     alignItems: "center",
+    bottom: 0,
+  },
+  treeTip: {
+    width: "100%",
+    position: "relative",
   },
 });
 
