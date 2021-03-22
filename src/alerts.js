@@ -1,24 +1,24 @@
-export function alertsFunction(lastLogin, today) {
+export function alertsFunction(
+  lastLogin,
+  today,
+  yesterdayPopulation,
+  todayPopulation
+) {
   let lastLogin2 = new Date(lastLogin);
-  console.log(lastLogin2);
   let today2 = new Date(today);
-  console.log(today2);
   let dateDifference2 = today2.setHours(0, 0, 0, 0) - lastLogin2;
-  console.log(dateDifference2);
+  dateDifference2 = secondsToDays(dateDifference2);
   if (dateDifference2 === 0) {
     return "Welcome to Guilt trip!";
   } else if (dateDifference2 > 6) {
     return "You are a lazy loser!";
+  } else if (dateDifference2 === 1 && yesterdayPopulation < todayPopulation) {
+    return "Well done, you hit your target yesterday!";
+  } else if (dateDifference2 === 1 && yesterdayPopulation > todayPopulation) {
+    return "You lazy loser, you killed a sloth";
   }
 }
 
-// console.log(`lastLogin: ${this.state.lastLogin}`);
-//           let today = new Date();
-//           let todayForStorage = JSON.stringify(today);
-//           todayForStorage = todayForStorage.substring(1, 11);
-//           console.log(todayForStorage);
-//           if (this.state.lastLogin == todayForStorage) {
-//             Alert.alert("Welcome to Guilt trip!");
-//           } else if (this.state.population() === 3) {
-//             Alert.alert("You lose!!");
-//           }
+function secondsToDays(milliseconds) {
+  return milliseconds / 24 / 60 / 60 / 1000;
+}

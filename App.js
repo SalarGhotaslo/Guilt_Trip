@@ -93,6 +93,7 @@ export default class App extends Component {
         },
         async () => {
           await SplashScreen.hideAsync();
+          // alertFunction() goes here
         }
       );
     }
