@@ -20,6 +20,7 @@ import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import { render } from "react-dom";
+import TreeTop from "./TreeTop";
 
 export default class App extends Component {
   state = {
@@ -116,10 +117,11 @@ export default class App extends Component {
             this.scrollView.scrollToEnd({ animated: true })
           }
         >
-          <Image
+          {/* <Image
             source={require("./assets/treeTop.png")}
             style={styles.treeTip}
-          />
+          /> */}
+          <TreeTop />
           <DisplaySloths slothPopulation={this.state.population} />
           <Image
             source={require("./assets/treeBottom.png")}
