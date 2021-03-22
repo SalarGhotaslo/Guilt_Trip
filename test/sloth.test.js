@@ -1,5 +1,6 @@
 import { names } from "../src/names";
 import { personalities } from "../src/personalities";
+import { passions } from "../src/passions";
 import { Sloth } from "../src/Sloth";
 
 //Sloth._randomPersonalityGroup = jest.fn()
@@ -36,4 +37,11 @@ describe("Sloth", () => {
     console.log(sloth.personality)
     expect(personalities.some(personalityGroup => personalityGroup.includes(sloth.personality))).toEqual(true)
   });
+
+  test("random passion is generated when default sloth creatred", () =>{
+    sloth = new Sloth();
+    console.log(sloth.passion)
+    expect(passions.includes(sloth.passion)).toEqual(true)
+  })
+  
 });
