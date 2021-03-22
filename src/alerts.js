@@ -11,27 +11,33 @@ export function alertsFunction(
   let dateDifference2 = today2.setHours(0, 0, 0, 0) - lastLogin2;
   dateDifference2 = secondsToDays(dateDifference2);
   if (dateDifference2 === 0) {
-    Alert.alert("Welcome back to Guilt trip!");
+    Alert.alert(
+      "Welcome back!",
+      "Check your steps - have you hit today's target yet?"
+    );
   } else if (dateDifference2 > 6) {
-    Alert.alert("GAME OVER. You are a lazy loser!");
+    Alert.alert("GAME OVER!", "You are a lazy loser!");
   } else if (dateDifference2 === 1 && previousPopulation < todayPopulation) {
-    Alert.alert("Well done, you hit your target yesterday!");
+    Alert.alert(
+      "Good job!",
+      "You hit your target yesterday!, come meet your new sloth"
+    );
   } else if (dateDifference2 === 1 && previousPopulation > todayPopulation) {
-    Alert.alert("You lazy loser, you killed a sloth");
+    Alert.alert("Oh dear!", "You lazy loser, you killed a sloth");
   } else if (dateDifference2 > 1 && previousPopulation < todayPopulation) {
     Alert.alert(
-      `Well done, you've gained ${todayPopulation - previousPopulation} sloths!`
+      "Good job!",
+      `You've gained ${todayPopulation - previousPopulation} sloths!`
     );
   } else if (dateDifference2 > 1 && previousPopulation > todayPopulation) {
     Alert.alert(
-      `You lazy loser, you killed ${
+      "Shame on you!",
+      `You lazy loser. You killed ${
         previousPopulation - todayPopulation
       } adorable sloth's`
     );
   } else if (dateDifference2 === "" || previousPopulation === "") {
-    Alert.alert(
-      "Welcome to Guilt Trip. Walk to save you Sloths live and build the snuggle"
-    );
+    Alert.alert("Welcome to Guilt trip!", "Walk to grow your Sloth family");
   }
 }
 

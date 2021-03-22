@@ -6,23 +6,29 @@ jest.spyOn(Alert, "alert");
 describe("alerts function", () => {
   test("if date last logged in is the same as today", () => {
     alertsFunction("2021-03-18", "2021-03-18");
-    expect(Alert.alert).toHaveBeenCalledWith("Welcome back to Guilt trip!");
+    expect(Alert.alert).toHaveBeenCalledWith(
+      "Welcome back!",
+      "Check your steps - have you hit today's target yet?"
+    );
   });
   test("if date last logged is over 6 days", () => {
     alertsFunction("2021-03-11", "2021-03-18");
     expect(Alert.alert).toHaveBeenCalledWith(
-      "GAME OVER. You are a lazy loser!"
+      "GAME OVER!",
+      "You are a lazy loser!"
     );
   });
   test("if population has gone up, user gets positive message", () => {
     alertsFunction("2021-03-11", "2021-03-12", 4, 5);
     expect(Alert.alert).toHaveBeenCalledWith(
-      "Well done, you hit your target yesterday!"
+      "Good job!",
+      "You hit your target yesterday!, come meet your new sloth"
     );
   });
   test("if population has gone down, user gets negative message", () => {
     alertsFunction("2021-03-11", "2021-03-12", 6, 5);
     expect(Alert.alert).toHaveBeenCalledWith(
+      "Oh dear!",
       "You lazy loser, you killed a sloth"
     );
   });
@@ -36,7 +42,8 @@ describe("alerts function", () => {
       todayPopulation
     );
     expect(Alert.alert).toHaveBeenCalledWith(
-      `Well done, you've gained ${todayPopulation - previousPopulation} sloths!`
+      "Good job!",
+      `You've gained ${todayPopulation - previousPopulation} sloths!`
     );
   });
   test("if population has gone up over four days, user gets positive message", () => {
@@ -49,7 +56,8 @@ describe("alerts function", () => {
       todayPopulation
     );
     expect(Alert.alert).toHaveBeenCalledWith(
-      `Well done, you've gained ${todayPopulation - previousPopulation} sloths!`
+      "Good job!",
+      `You've gained ${todayPopulation - previousPopulation} sloths!`
     );
   });
   test("if population has gone down over two days, user gets negative message", () => {
@@ -62,7 +70,8 @@ describe("alerts function", () => {
       todayPopulation
     );
     expect(Alert.alert).toHaveBeenCalledWith(
-      `You lazy loser, you killed ${
+      "Shame on you!",
+      `You lazy loser. You killed ${
         previousPopulation - todayPopulation
       } adorable sloth's`
     );
@@ -72,7 +81,8 @@ describe("alerts function", () => {
     let todayPopulation = 5;
     alertsFunction("", "2021-03-13", previousPopulation, todayPopulation);
     expect(Alert.alert).toHaveBeenCalledWith(
-      "Welcome to Guilt Trip. Walk to save you Sloths live and build the snuggle"
+      "Welcome to Guilt trip!",
+      "Walk to grow your Sloth family"
     );
   });
 });
