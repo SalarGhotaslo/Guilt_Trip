@@ -93,7 +93,7 @@ export default class App extends Component {
         {
           appIsReady: true,
           stepCount: steps,
-          population: 5,
+          population: colony.showPopulation(),
           lastLogin: date,
         },
         async () => {
