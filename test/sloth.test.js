@@ -10,4 +10,9 @@ describe("Sloth", () => {
     let sloth = new Sloth("Ollie", "Happy")
     expect(sloth.personality).toEqual("Happy")
   })
+
+  test("has something it likes", () => {
+    let sloth = new Sloth("Jimmy", "joyful", "javascript")
+    expect(sloth.passion).toEqual("javascript")
+  });
 });
