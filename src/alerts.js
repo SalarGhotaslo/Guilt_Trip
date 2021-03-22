@@ -28,7 +28,7 @@ export function alertsFunction(
         previousPopulation - todayPopulation
       } adorable sloth's`
     );
-  } else if (dateDifference2 === "" || previousPopulation === null) {
+  } else if (dateDifference2 === "" || previousPopulation === "") {
     Alert.alert(
       "Welcome to Guilt Trip. Walk to save you Sloths live and build the snuggle"
     );
