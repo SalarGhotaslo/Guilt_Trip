@@ -25,11 +25,19 @@ export class Colony {
 
   _generateSloths() {
     if(this.sloths.length === 0) {
-      for(let i = 0; i<DEFAULT_POPULATION; i++) {
+      for(let i = 0; i<this.population; i++) {
         this.sloths.push(new Sloth())
       }
     } else {
-      console.log(this.sloths)
+      let newSloths = []
+      for(let i = 0; i <this.population; i++) {
+        let name = this.sloths[i].name, 
+          personality = this.sloths[i].personality,
+          passion = this.sloths[i].passion
+        newSloths.push(new Sloth(name, personality, passion))
+        console.log(`Hi! I'm ${name}, I'm a ${personality} sloth and I love ${passion}`)
+      }
+      this.sloths = newSloths;
     }
   }
 }

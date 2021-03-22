@@ -68,16 +68,13 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      console.log("can i see this");
       var date = await getValueFor("date");
       var population = await getValueFor("population");
-      console.log("after 70");
-      var colony = await createColony(date, population);
-      let today = new Date();
-      let todayForStorage = JSON.stringify(today);
-      todayForStorage = todayForStorage.substring(1, 11);
-      save("date", todayForStorage);
+      var sloths = await getValueFor("sloths");
+      var colony = await createColony(date, population, JSON.parse(sloths));
+      save("date", JSON.stringify(new Date()).substring(1, 11));
       save("population", String(colony.showPopulation()));
+      save("sloths", JSON.stringify(colony.sloths));
       var steps = await performStepApi();
     } catch (e) {
       console.log(e);
