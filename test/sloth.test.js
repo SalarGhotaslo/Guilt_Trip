@@ -5,4 +5,9 @@ describe("Sloth", () => {
     let sloth = new Sloth("Pete")
     expect(sloth.name).toEqual("Pete")
   });
+
+  test("has a personality at birth", () => {
+    let sloth = new Sloth("Ollie", "Happy")
+    expect(sloth.personality).toEqual("Happy")
+  })
 });

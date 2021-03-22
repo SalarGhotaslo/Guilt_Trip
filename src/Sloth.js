@@ -1,6 +1,7 @@
 export class Sloth {
-  constructor(name) {
+  constructor(name, personality) {
     this.name = name;
+    this.personality = personality;
   }
 
 }
