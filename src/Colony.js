@@ -15,10 +15,12 @@ export class Colony {
 
   addCreature() {
     this.population++;
+    this.sloths.push(new Sloth());
   }
 
   killCreature() {
     this.population--;
+    this.sloths.pop();
   }
 
   _generateSloths() {
