@@ -2,7 +2,7 @@ import React from "react";
 import { SvgXml } from "react-native-svg";
 export default function TreeTop() {
   const svgMarkup = `
-  <svg height="100%" width="100%"
+  <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -10,8 +10,8 @@ export default function TreeTop() {
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="90mm"
-   height="78.000206mm"
+   width="100%"
+   height={100}
    viewBox="0 0 90 78.000206"
    version="1.1"
    id="svg1564"

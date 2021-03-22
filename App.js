@@ -20,7 +20,7 @@ import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import { render } from "react-dom";
-import TreeTop from "./TreeTop";
+import TreeTop from "./assets/svgs/TreeTop";
 
 export default class App extends Component {
   state = {
@@ -117,12 +117,8 @@ export default class App extends Component {
             this.scrollView.scrollToEnd({ animated: true })
           }
         >
-          {/* <Image
-            source={require("./assets/treeTop.png")}
-            style={styles.treeTip}
-          /> */}
           <TreeTop />
-          <DisplaySloths slothPopulation={this.state.population} />
+          {/* <DisplaySloths slothPopulation={this.state.population} /> */}
           <Image
             source={require("./assets/treeBottom.png")}
             style={styles.treeTip}
@@ -146,18 +142,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   slothImage: {
-    width: "100%",
     position: "relative",
+    width: "100%",
   },
   footerText: {
     position: "absolute",
     alignSelf: "center",
     alignItems: "center",
     bottom: 0,
+    width: "100%",
   },
   treeTip: {
-    width: "100%",
     position: "relative",
+    width: "100%",
   },
 });
 
