@@ -443,7 +443,6 @@ export let personalities = [[
   "Extravagant",
   "Extreme",
   "Faithless",
-  "FALSE",
   "Fanatical",
   "Fanciful",
   "Fatalistic",
