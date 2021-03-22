@@ -9,6 +9,7 @@ import {
   ScrollView,
   ImageBackground,
   ImageBackgroundComponent,
+  Alert,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -20,6 +21,7 @@ import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import { render } from "react-dom";
+import { alertsFunction } from "./src/alerts";
 
 export default class App extends Component {
   state = {
@@ -29,6 +31,7 @@ export default class App extends Component {
     currentStepCount: 0,
     population: 0,
     lastLogin: 0,
+    previousPopulation: null,
     // yesterdaysCount: 0,
   };
 
@@ -68,10 +71,9 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      console.log("can i see this");
       var date = await getValueFor("date");
       var population = await getValueFor("population");
-      console.log("after 70");
+      var previousPopulation = population;
       var colony = await createColony(date, population);
       let today = new Date();
       let todayForStorage = JSON.stringify(today);
@@ -89,9 +91,16 @@ export default class App extends Component {
           stepCount: steps,
           population: colony.showPopulation(),
           lastLogin: date,
+          previousPopulation: previousPopulation,
         },
         async () => {
           await SplashScreen.hideAsync();
+          alertsFunction(
+            this.state.lastLogin,
+            new Date(),
+            this.state.previousPopulation,
+            this.state.population
+          );
         }
       );
     }
