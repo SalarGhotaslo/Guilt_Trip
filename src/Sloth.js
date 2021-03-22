@@ -14,7 +14,7 @@ export class Sloth {
   }
 
   _randomPersonalityGroup () {
-    return Math.floor(Math.random() * 2)
+    return Math.floor(Math.random() * personalities.length)
   }
 
   _randomPersonality() {
