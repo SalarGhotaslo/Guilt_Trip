@@ -9,6 +9,7 @@ import {
   ScrollView,
   ImageBackground,
   ImageBackgroundComponent,
+  Alert,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -92,6 +93,7 @@ export default class App extends Component {
         },
         async () => {
           await SplashScreen.hideAsync();
+          Alert.alert("Random");
         }
       );
     }
