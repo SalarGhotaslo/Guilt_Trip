@@ -172,10 +172,10 @@ const DisplaySloths = (props) => {
     setVisible(!visible);
   }, [visible]);
 
-  let sloths = [];
+  let slothImages = [];
   for (let i = 0; i < props.slothPopulation; i++) {
     if (isOdd(i)) {
-      sloths.push(
+      slothImages.push(
         <View key={i}>
           <TouchableWithoutFeedback onPress={toggleAlert}>
              <TreeSegmentTom />
@@ -210,7 +210,7 @@ const DisplaySloths = (props) => {
         </View>
       );
     } else {
-      sloths.push(
+      slothImages.push(
 
         <View key={i}>
           <TouchableWithoutFeedback onPress={toggleAlert}>
@@ -247,5 +247,5 @@ const DisplaySloths = (props) => {
       );
     }
   }
-  return sloths;
+  return slothImages;
 };
