@@ -11,6 +11,7 @@ import {
   ImageBackgroundComponent,
   Alert,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -175,10 +176,10 @@ const DisplaySloths = (props) => {
   for (let i = 0; i < props.slothPopulation; i++) {
     if (isOdd(i)) {
       sloths.push(
-        <View>
-          <TouchableOpacity onPress={toggleAlert}>
-            <TreeSegmentTom />
-          </TouchableOpacity>
+        <View key={i}>
+          <TouchableWithoutFeedback onPress={toggleAlert}>
+             <TreeSegmentTom />
+          </TouchableWithoutFeedback>
 
           <FancyAlert
             visible={visible}
@@ -202,18 +203,19 @@ const DisplaySloths = (props) => {
             <Text style={{ marginTop: -16, marginBottom: 32 }}>
               Hello there
             </Text>
-            <TouchableOpacity onPress={toggleAlert}>
+            <TouchableWithoutFeedback onPress={toggleAlert}>
               <Text>Tap me</Text>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </FancyAlert>
         </View>
       );
     } else {
       sloths.push(
-        <View>
-          <TouchableOpacity onPress={toggleAlert}>
-            <TreeSegmentSarah />
-          </TouchableOpacity>
+
+        <View key={i}>
+          <TouchableWithoutFeedback onPress={toggleAlert}>
+           <TreeSegmentSarah />
+          </TouchableWithoutFeedback>
 
           <FancyAlert
             visible={visible}
@@ -237,9 +239,9 @@ const DisplaySloths = (props) => {
             <Text style={{ marginTop: -16, marginBottom: 32 }}>
               Hello there
             </Text>
-            <TouchableOpacity onPress={toggleAlert}>
+            <TouchableWithoutFeedback onPress={toggleAlert}>
               <Text>Tap me</Text>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </FancyAlert>
         </View>
       );
