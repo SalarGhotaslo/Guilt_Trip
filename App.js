@@ -44,6 +44,7 @@ export default class App extends Component {
     population: 0,
     lastLogin: 0,
     previousPopulation: null,
+    speech: false
     // yesterdaysCount: 0,
   };
 
@@ -57,9 +58,20 @@ export default class App extends Component {
     this.prepareResources();
     this.interval = setInterval(() => {
       console.log("interval is ticking")
+      if (this.state.speech) {
       this.setState({
         slothWords: slothSpeech(this.state.slothCollection),
+        speech: false,
+        speechBackground: "white",
       });
+    } else {
+      this.setState({
+        slothWords: "",
+        speech: true,
+        speechBackground:"transparent"
+      })
+    }
+
     }, 5000);
   }
 
@@ -112,6 +124,9 @@ export default class App extends Component {
           lastLogin: date,
           previousPopulation: previousPopulation,
           slothCollection: colony.sloths,
+          speech: false,
+          speechBackround:"transparent",
+          slothWords: "",
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -155,7 +170,7 @@ export default class App extends Component {
           target={DEFAULT_TARGET}
         />
         <Text
-        style={{position: 'absolute', top: 800, left: 220, right: 0, bottom: 0, backgroundColor: "white", width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
+        style={{position: 'absolute', top: 800, left: 220, right: 0, bottom: 0, backgroundColor: this.state.speechBackground, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
         {this.state.slothWords}
         </Text>
       </ScrollView>
