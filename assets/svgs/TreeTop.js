@@ -1,5 +1,5 @@
 import * as React from "react";
-import Svg, { G, Path, Ellipse } from "react-native-svg";
+import Svg, { G, Path, Ellipse, Text } from "react-native-svg";
 import { Dimensions } from "react-native";
 const windowHeight = Dimensions.get("window").height;
 

@@ -1,5 +1,5 @@
 import * as React from "react";
-import Svg, { G, Path } from "react-native-svg";
+import Svg, { G, Path, Text, TSpan } from "react-native-svg";
 import { Dimensions } from "react-native";
 const windowHeight = Dimensions.get("window").height;
 
@@ -24,6 +24,64 @@ function TreeBottom(props) {
         d="M49.5 0l.094 3.978.756 6.426 1.842 3.307.567 5.055.848 2.741 1.036 1.738.902 1.085 1.236 1.287 1.052.5 1.37.585 1.553-.1.785.602-2.79 1.135-1.118-.367-1.554-.134-1.403.134.752.919 2.088 2.004 1.186 1.955-1.871-.618-.718-.802-1.37-.134-1.921-.3-1.604-.1-.484.367-.501.133-.268.418-.167.701 1.67 2.306 1.504 2.522-2.155-.785-1.27-.819-1.453-.851-.735-1.086-.434-.368-.785-.167-1.637.134-.568.334-1.386 1.887-1.02 1.788-.534.417-1.002.05-2.389.802-2.222.769.017-.25 1.053-1.588.885-.818 1.27-.802.467-.919.451-.618-1.37-.434-1.653-.418-.401.318-1.17.183-1.57.034-.468.234-1.653.484-1.454.067.619-.652 1.252-1.135.284.033 1.47-.668.451-.451.217-.568.468-.284.618-.284.635-1.036-.384-.017-.902.05-.518.134-1.12.501-1.169.05s-.84-.268-.776-.394c.063-.126-.284-.095.19-.378.472-.283.85-.378 1.417-.85.567-.473 1.26-.82 1.7-1.418.442-.598.977-1.26 1.323-1.795.347-.535.85-.441 1.04-1.607.189-1.165.818-1.449 1.134-3.023.315-1.575-.327-3.326.567-5.765.819-2.236 1.582-3.824 1.748-6.614.166-2.79.284-5.96.45-8.75z"
         fill="purple"
       />
+      <G>
+        <Path
+          style={{
+            fontVariationSettings: "normal",
+          }}
+          fill="#a47e57"
+          fillRule="evenodd"
+          d="M29.266 38.186h5.479v25.19h-5.479z"
+        />
+        <Path
+          style={{
+            fontVariationSettings: "normal",
+          }}
+          fill="#c49567"
+          fillRule="evenodd"
+          d="M10.173 35.079h43.553v5.212H10.173z"
+        />
+        <Path
+          style={{
+            fontVariationSettings: "normal",
+          }}
+          fill="#b4895f"
+          fillRule="evenodd"
+          d="M10.623 30.163h43.798v4.916H10.623z"
+        />
+        <Path
+          style={{
+            fontVariationSettings: "normal",
+          }}
+          fill="#c49567"
+          fillRule="evenodd"
+          d="M10.173 24.946h43.055v5.217H10.173z"
+        />
+        <Path
+          style={{
+            fontVariationSettings: "normal",
+          }}
+          fill="#b4895f"
+          fillRule="evenodd"
+          d="M10.995 19.82h43.047v5.126H10.995z"
+        />
+        <Text
+          style={{
+            lineHeight: 1.25,
+          }}
+          x={17.537}
+          y={24.122}
+          transform="scale(1.0105 .98962)"
+          fontWeight={400}
+          fontFamily="Arial, Helvetica, sans-serif"
+          fontSize={4.23}
+          strokeWidth={0.106}
+        >
+          <TSpan x={17.537} y={24.122}>
+            {"Population : 0"}
+          </TSpan>
+        </Text>
+      </G>
     </Svg>
   );
 }
