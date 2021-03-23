@@ -71,6 +71,7 @@ export default class App extends Component {
       var date = await getValueFor("date");
       var population = await getValueFor("population");
       var sloths = await getValueFor("sloths");
+      console.log(JSON.parse(sloths))
       var colony = await createColony(date, population, JSON.parse(sloths));
       save("date", JSON.stringify(new Date()).substring(1, 11));
       save("population", String(colony.showPopulation()));

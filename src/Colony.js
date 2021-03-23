@@ -24,6 +24,10 @@ export class Colony {
   }
 
   _generateSloths() {
+    if(this.sloths === 0 ) {
+      this.sloths = [];
+      this.population = DEFAULT_POPULATION;
+    }
     if(this.sloths.length === 0) {
       for(let i = 0; i<this.population; i++) {
         this.sloths.push(new Sloth())

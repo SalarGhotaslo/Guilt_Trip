@@ -35,4 +35,23 @@ describe("Colony", function () {
     expect(colony.sloths[0] instanceof Sloth).toBe(true)
     console.log(colony.sloths)
   })
+  test("non default sloths can be passed as an argument and generated", () => {
+    colonyTest = new Colony(1, [
+      { "name": "Emie",
+       "passion": "Writing music",
+       "personality": "Unsentimental",
+     },
+   ]);
+    expect(colonyTest.sloths.length).toEqual(1);
+    expect(colonyTest.sloths[0].name).toEqual("Emie");
+    expect(colonyTest.sloths[0].personality).toEqual("Unsentimental");
+    expect(colonyTest.sloths[0].passion).toEqual("Writing music");
+  });
+  
+  test("default colony is created when there is no data in SecureStore", () => {
+    colony = new Colony(0, 0) 
+    expect(colony.sloths instanceof Array).toBe(true)
+    expect(colony.sloths.length).toEqual(DEFAULT_POPULATION)
+    expect(colony.sloths[0] instanceof Sloth).toBe(true)
+  })
 });
