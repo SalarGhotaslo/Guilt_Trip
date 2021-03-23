@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
+
 import {
   StyleSheet,
+  Modal,
   Text,
   SafeAreaView,
   View,
@@ -13,6 +15,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TouchableWithoutFeedback,
+  TouchableHighlightBase,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -138,8 +141,15 @@ export default class App extends Component {
           <DisplaySloths slothPopulation={this.state.population} slothCollection={this.state.slothCollection} />
           <TreeBottom slothPopulation={this.state.population} />
           <StatusBar style="auto" />
+
         </ScrollView>
       </View>
+
+
+
+
+      
+
     );
   }
 }
@@ -162,6 +172,76 @@ const styles = StyleSheet.create({
     width: "100%",
     position: "relative",
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: '#F194FF',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  container: {
+    flex: 1,
+    backgroundColor:'yellow'
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalView: {
+    width: '90%',
+    height: 100,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  textStyle: {
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+
 });
 
 function isOdd(n) {
@@ -181,12 +261,11 @@ const DisplaySloths = (props) => {
     if (isOdd(j)) {
       slothImages.push(
         <View key={j}>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          onPress={() => alert(props.slothCollection[i].name)}>
+        <TouchableWithoutFeedback
+          onPress={() => 
+            Alert.alert(`Hi!`, `I'm ${props.slothCollection[i].name}. I'm ${props.slothCollection[i].personality.toLowerCase()} and I love ${props.slothCollection[i].passion.toLowerCase()}` )}>
            <TreeSegmentTom />
-        </TouchableHighlight>
+        </TouchableWithoutFeedback>
         </View>
           // <TouchableWithoutFeedback onPress={toggleAlert}>
           //
@@ -224,12 +303,11 @@ const DisplaySloths = (props) => {
     } else {
       slothImages.push(
         <View key={j}>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          onPress={() => alert(props.slothCollection[i].name)}>
+        <TouchableWithoutFeedback
+          onPress={() => 
+          Alert.alert(`Hi!`, `I'm ${props.slothCollection[i].name}. I'm ${props.slothCollection[i].personality.toLowerCase()} and I love ${props.slothCollection[i].passion.toLowerCase()}` )}>
            <TreeSegmentSarah />
-        </TouchableHighlight>
+        </TouchableWithoutFeedback>
         </View>
       // slothImages.push(
       //
