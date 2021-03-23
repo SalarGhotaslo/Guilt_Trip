@@ -120,7 +120,7 @@ const TreeBottom = (props) => {
           stroke="none"
           strokeWidth={0.106}
         >
-          {`Remaining : ${props.remaining}`}
+          {`Remaining : ${props.remaining <= 0 ? 0 : props.remaining}`}
         </Text>
         <Text
           xmlSpace="preserve"
