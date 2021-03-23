@@ -151,20 +151,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#00ffff",
     paddingTop: "10%",
   },
-  slothImage: {
-    width: "100%",
-    position: "relative",
-  },
-  footerText: {
-    position: "absolute",
-    alignSelf: "center",
-    alignItems: "center",
-    bottom: 0,
-  },
-  treeTip: {
-    width: "100%",
-    position: "relative",
-  },
 });
 
 function isOdd(n) {
