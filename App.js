@@ -128,28 +128,25 @@ export default class App extends Component {
       return null;
     }
     return (
-      <View style={styles.container}>
-        <ScrollView
-          ref={(ref) => {
-            this.scrollView = ref;
-          }}
-          onContentSizeChange={() =>
-            this.scrollView.scrollToEnd({ animated: true })
-          }
-        >
-          <TreeTop />
-          <DisplaySloths slothPopulation={this.state.population} slothCollection={this.state.slothCollection} />
-          <TreeBottom slothPopulation={this.state.population} />
-          <StatusBar style="auto" />
 
-        </ScrollView>
-      </View>
-
-
-
-
-      
-
+      <ScrollView
+        style={styles.container}
+        ref={(ref) => {
+          this.scrollView = ref;
+        }}
+        onContentSizeChange={() =>
+          this.scrollView.scrollToEnd({ animated: true })
+        }
+      >
+        <TreeTop />
+        <DisplaySloths slothPopulation={this.state.population} slothCollection={this.state.slothCollection} />
+        <TreeBottom
+          slothPopulation={this.state.population}
+          count={this.state.stepCount}
+          remaining={DEFAULT_TARGET - this.state.stepCount}
+          target={DEFAULT_TARGET}
+        />
+      </ScrollView>
     );
   }
 }
@@ -157,6 +154,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#00ffff",
+    paddingTop: "10%",
   },
   slothImage: {
     width: "100%",
