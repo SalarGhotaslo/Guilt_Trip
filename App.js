@@ -11,6 +11,7 @@ import {
   ImageBackgroundComponent,
   Alert,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -185,13 +186,13 @@ const DisplaySloths = (props) => {
     if (isOdd(i)) {
       sloths.push(
         <View key={i}>
-          <TouchableOpacity onPress={toggleAlert}>
+          <TouchableWithoutFeedback onPress={toggleAlert}>
             <Image
               source={require("./assets/rightSloth.png")}
               style={styles.slothImage}
               key={i}
             />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
 
           <FancyAlert
             visible={visible}
@@ -215,22 +216,22 @@ const DisplaySloths = (props) => {
             <Text style={{ marginTop: -16, marginBottom: 32 }}>
               Hello there
             </Text>
-            <TouchableOpacity onPress={toggleAlert}>
+            <TouchableWithoutFeedback onPress={toggleAlert}>
               <Text>Tap me</Text>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </FancyAlert>
         </View>
       );
     } else {
       sloths.push(
         <View key={i}>
-          <TouchableOpacity onPress={toggleAlert}>
+          <TouchableWithoutFeedback onPress={toggleAlert}>
             <Image
               source={require("./assets/leftSloth.png")}
               style={styles.slothImage}
               key={i}
             />
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
 
           <FancyAlert
             visible={visible}
@@ -254,9 +255,9 @@ const DisplaySloths = (props) => {
             <Text style={{ marginTop: -16, marginBottom: 32 }}>
               Hello there
             </Text>
-            <TouchableOpacity onPress={toggleAlert}>
+            <TouchableWithoutFeedback onPress={toggleAlert}>
               <Text>Tap me</Text>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </FancyAlert>
         </View>
       );
