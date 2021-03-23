@@ -26,6 +26,7 @@ import { Target, DEFAULT_TARGET } from "./src/Target";
 import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
+import { slothSpeech } from "./src/slothSpeech";
 import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
@@ -54,10 +55,14 @@ export default class App extends Component {
     }
     this._subscribe();
     this.prepareResources();
+    this.interval = setInterval(() => {
+      console.log("interval is ticking")
+    }, 5000);
   }
 
   componentWillUnmount() {
     this._unsubscribe();
+    clearInterval(this.interval);
   }
 
   _subscribe = () => {
@@ -128,7 +133,6 @@ export default class App extends Component {
       return null;
     }
     return (
-
       <ScrollView
         style={styles.container}
         ref={(ref) => {
@@ -140,12 +144,14 @@ export default class App extends Component {
       >
         <TreeTop />
         <DisplaySloths slothPopulation={this.state.population} slothCollection={this.state.slothCollection} />
+
         <TreeBottom
           slothPopulation={this.state.population}
           count={this.state.stepCount}
           remaining={DEFAULT_TARGET - this.state.stepCount}
           target={DEFAULT_TARGET}
         />
+        <SpeechBubble slothCollection={this.state.slothCollection}/>
       </ScrollView>
     );
   }
@@ -163,6 +169,31 @@ function isOdd(n) {
   return n % 2 === 1;
 }
 
+
+const SpeechBubble = (props) => {
+  let slothWords = slothSpeech(props.slothCollection);
+  console.log("WORDS")
+  console.log(slothWords)
+  return(
+  <Text
+  style={{position: 'absolute', top: 800, left: 220, right: 0, bottom: 0, backgroundColor: "white", width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
+  {slothWords}
+  </Text>
+  )
+}
+// const SlothSpeak = (props) => {
+//   //slothSpeech(this.state.slothCollection)
+//   state = {
+//     backgroundColor: transparent
+//       speech: ""
+//     }
+//
+//   <Text
+//   key={j}
+//   style={{position: 'absolute', top: -50, left: 220, right: 0, bottom: 0, backgroundColor: `{speak}`, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
+//   props.speech</Text>
+// }
+
 const DisplaySloths = (props) => {
   console.log("slothCollection")
   console.log(props.slothCollection)
@@ -177,11 +208,13 @@ const DisplaySloths = (props) => {
       slothImages.push(
         <View key={j}>
         <TouchableWithoutFeedback
-          onPress={() => 
+          onPress={() =>
             Alert.alert(`Hi!`, `I'm ${props.slothCollection[i].name}. I'm ${props.slothCollection[i].personality.toLowerCase()} and I love ${props.slothCollection[i].passion.toLowerCase()}` )}>
            <TreeSegmentTom />
         </TouchableWithoutFeedback>
         </View>
+
+
           // <TouchableWithoutFeedback onPress={toggleAlert}>
           //
           // </TouchableWithoutFeedback>
@@ -219,7 +252,7 @@ const DisplaySloths = (props) => {
       slothImages.push(
         <View key={j}>
         <TouchableWithoutFeedback
-          onPress={() => 
+          onPress={() =>
           Alert.alert(`Hi!`, `I'm ${props.slothCollection[i].name}. I'm ${props.slothCollection[i].personality.toLowerCase()} and I love ${props.slothCollection[i].passion.toLowerCase()}` )}>
            <TreeSegmentSarah />
         </TouchableWithoutFeedback>
