@@ -183,7 +183,7 @@ const TreeBottom = (props) => {
           stroke="none"
           strokeWidth={0.106}
         >
-          {"Population : 5"}
+          {`Population : ${props.slothPopulation}`}
         </Text>
       </G>
     </Svg>
