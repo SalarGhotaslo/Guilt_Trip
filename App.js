@@ -10,6 +10,7 @@ import {
   ImageBackground,
   ImageBackgroundComponent,
   Alert,
+  TouchableOpacity,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -22,6 +23,7 @@ import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
+import { FancyAlert } from "react-native-expo-fancy-alerts";
 
 export default class App extends Component {
   state = {
