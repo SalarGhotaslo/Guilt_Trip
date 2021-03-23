@@ -11,11 +11,11 @@ import {
   ImageBackgroundComponent,
   Alert,
   TouchableOpacity,
-  TouchableHighlight,
   TouchableWithoutFeedback,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
+
 import { save, getValueFor } from "./src/accessStorage";
 import * as SecureStore from "expo-secure-store";
 import { updatePopulation } from "./src/updatePopulation";
@@ -30,6 +30,8 @@ import TreeTop from "./assets/svgs/TreeTop";
 import TreeSegmentTom from "./assets/svgs/TreeSegmentTom";
 import TreeSegmentSarah from "./assets/svgs/TreeSegmentSarah";
 import TreeBottom from "./assets/svgs/TreeBottom";
+import Modal from 'react-native-modalbox';
+
 
 export default class App extends Component {
   state = {
@@ -171,7 +173,7 @@ function isOdd(n) {
 const DisplaySloths = (props) => {
   console.log("slothCollection")
   console.log(props.slothCollection)
-  const [visible, setVisible] = React.useState(false);
+  let [visible, setVisible] = React.useState(false);
   const toggleAlert = React.useCallback(() => {
     setVisible(!visible);
   }, [visible]);
@@ -181,93 +183,78 @@ const DisplaySloths = (props) => {
     if (isOdd(j)) {
       slothImages.push(
         <View key={j}>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          onPress={() => alert(props.slothCollection[i].name)}>
-           <TreeSegmentTom />
-        </TouchableHighlight>
+          <TouchableWithoutFeedback onPress={toggleAlert}>
+             <TreeSegmentTom />
+          </TouchableWithoutFeedback>
+          <FancyAlert
+            visible={visible}
+            icon={
+              <View
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  width: "100%",
+                }}
+              >
+                <Text>🤓</Text>
+              </View>
+            }
+            style={{ backgroundColor: "white" }}
+          >
+            <Text style={{ marginTop: -16, marginBottom: 32 }}>
+              Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
+            </Text>
+            <TouchableWithoutFeedback onPress={toggleAlert}>
+              <Text>Tap me</Text>
+            </TouchableWithoutFeedback>
+          </FancyAlert>
         </View>
-          // <TouchableWithoutFeedback onPress={toggleAlert}>
-          //
-          // </TouchableWithoutFeedback>
-
-          // <FancyAlert
-          //   visible={visible}
-          //   icon={
-          //     <View
-          //       style={{
-          //         flex: 1,
-          //         display: "flex",
-          //         justifyContent: "center",
-          //         alignItems: "center",
-          //         backgroundColor: "red",
-          //         borderRadius: 50,
-          //         width: "100%",
-          //       }}
-          //     >
-          //       <Text>🤓</Text>
-          //     </View>
-          //   }
-          //   style={{ backgroundColor: "white" }}
-          // >
-          //   <Text style={{ marginTop: -16, marginBottom: 32 }}>
-          //     Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
-          //   </Text>
-          //   <TouchableWithoutFeedback onPress={toggleAlert}>
-          //     <Text>Tap me</Text>
-          //   </TouchableWithoutFeedback>
-          // </FancyAlert>
-      // </View>
       );
       s++
     } else {
       slothImages.push(
+
         <View key={j}>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor="#DDDDDD"
-          onPress={() => alert(props.slothCollection[i].name)}>
+          <TouchableWithoutFeedback onPress={toggleAlert}>
            <TreeSegmentSarah />
-        </TouchableHighlight>
+          </TouchableWithoutFeedback>
+
+          <FancyAlert
+            visible={visible}
+            icon={
+              <View
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  width: "100%",
+                }}
+              >
+                <Text>🤓</Text>
+              </View>
+            }
+            style={{ backgroundColor: "white" }}
+          >
+            <Text style={{ marginTop: -16, marginBottom: 32 }}>
+              Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
+            </Text>
+            <TouchableWithoutFeedback onPress={toggleAlert}>
+              <Text>Tap me</Text>
+            </TouchableWithoutFeedback>
+          </FancyAlert>
         </View>
-      // slothImages.push(
-      //
-      //   <View key={j}>
-      //     <TouchableWithoutFeedback onPress={toggleAlert}>
-      //      <TreeSegmentSarah />
-      //     </TouchableWithoutFeedback>
-      //
-      //     <FancyAlert
-      //       visible={visible}
-      //       icon={
-      //         <View
-      //           style={{
-      //             flex: 1,
-      //             display: "flex",
-      //             justifyContent: "center",
-      //             alignItems: "center",
-      //             backgroundColor: "red",
-      //             borderRadius: 50,
-      //             width: "100%",
-      //           }}
-      //         >
-      //           <Text>🤓</Text>
-      //         </View>
-      //       }
-      //       style={{ backgroundColor: "white" }}
-      //     >
-      //       <Text style={{ marginTop: -16, marginBottom: 32 }}>
-      //         Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
-      //       </Text>
-      //       <TouchableWithoutFeedback onPress={toggleAlert}>
-      //         <Text>Tap me</Text>
-      //       </TouchableWithoutFeedback>
-      //     </FancyAlert>
-      //   </View>
       );
     }
   }
-  console.log(slothImages)
+    console.log(slothImages.length)
+    console.log(slothImages)
   return <View>{slothImages}</View>;
+
 };
