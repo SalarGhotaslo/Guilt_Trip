@@ -1659,6 +1659,7 @@
     "jest-resolve" "^25.5.1"
     "jest-util" "^25.5.0"
     "jest-worker" "^25.5.0"
+    "node-notifier" "^6.0.0"
     "slash" "^3.0.0"
     "source-map" "^0.6.0"
     "string-length" "^3.1.0"
@@ -1691,6 +1692,7 @@
     "jest-resolve" "^26.6.2"
     "jest-util" "^26.6.2"
     "jest-worker" "^26.6.2"
+    "node-notifier" "^8.0.0"
     "slash" "^3.0.0"
     "source-map" "^0.6.0"
     "string-length" "^4.0.1"
@@ -3397,6 +3399,7 @@
   "resolved" "https://registry.npmjs.org/cli-table3/-/cli-table3-0.6.0.tgz"
   "version" "0.6.0"
   dependencies:
+    "colors" "^1.1.2"
     "object-assign" "^4.1.0"
     "string-width" "^4.2.0"
   optionalDependencies:
@@ -4415,7 +4418,7 @@
   dependencies:
     "uuid" "^3.4.0"
 
-"expo-font@~8.4.0":
+"expo-font@^8.4.0", "expo-font@~8.4.0":
   "integrity" "sha512-CPGcHLUkPP+yf618fiw2bWTFLojIYCCqWonco/JONcM3tsv6wjkafx4Qw1mMCRoFL7XoiBfHylkKnD0avpzQIQ=="
   "resolved" "https://registry.npmjs.org/expo-font/-/expo-font-8.4.0.tgz"
   "version" "8.4.0"
@@ -5909,6 +5912,7 @@
     "@jest/types" "^24.9.0"
     "anymatch" "^2.0.0"
     "fb-watchman" "^2.0.0"
+    "fsevents" "^1.2.7"
     "graceful-fs" "^4.1.15"
     "invariant" "^2.2.4"
     "jest-serializer" "^24.9.0"
@@ -5929,6 +5933,7 @@
     "@types/graceful-fs" "^4.1.2"
     "anymatch" "^3.0.3"
     "fb-watchman" "^2.0.0"
+    "fsevents" "^2.1.2"
     "graceful-fs" "^4.2.4"
     "jest-serializer" "^25.5.0"
     "jest-util" "^25.5.0"
@@ -5950,6 +5955,7 @@
     "@types/node" "*"
     "anymatch" "^3.0.3"
     "fb-watchman" "^2.0.0"
+    "fsevents" "^2.1.2"
     "graceful-fs" "^4.2.4"
     "jest-regex-util" "^26.0.0"
     "jest-serializer" "^26.6.2"

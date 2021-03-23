@@ -29,6 +29,7 @@ import TreeTop from "./assets/svgs/TreeTop";
 import TreeSegmentTom from "./assets/svgs/TreeSegmentTom";
 import TreeSegmentSarah from "./assets/svgs/TreeSegmentSarah";
 import TreeBottom from "./assets/svgs/TreeBottom";
+import * as Font from "expo-font";
 
 export default class App extends Component {
   state = {
@@ -44,6 +45,9 @@ export default class App extends Component {
 
   async componentDidMount() {
     try {
+      await Font.loadAsync({
+        Caveman: require("./assets/fonts/Caveman.otf"),
+      });
       await SplashScreen.preventAutoHideAsync();
     } catch (e) {
       console.warn(e);
@@ -134,7 +138,11 @@ export default class App extends Component {
         >
           <TreeTop />
           <DisplaySloths slothPopulation={this.state.population} />
-          <TreeBottom slothPopulation={this.state.population} />
+          <Text style={{ fontFamily: "Caveman" }}>Hello!!!!!!</Text>
+          <TreeBottom
+            slothPopulation={this.state.population}
+            style={{ fontFamily: "Caveman" }}
+          />
           <StatusBar style="auto" />
         </ScrollView>
       </View>
@@ -145,6 +153,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    fontFamily: "Caveman",
   },
   slothImage: {
     width: "100%",
@@ -178,7 +187,7 @@ const DisplaySloths = (props) => {
       sloths.push(
         <View key={i}>
           <TouchableWithoutFeedback onPress={toggleAlert}>
-             <TreeSegmentTom />
+            <TreeSegmentTom />
           </TouchableWithoutFeedback>
 
           <FancyAlert
@@ -211,10 +220,9 @@ const DisplaySloths = (props) => {
       );
     } else {
       sloths.push(
-
         <View key={i}>
           <TouchableWithoutFeedback onPress={toggleAlert}>
-           <TreeSegmentSarah />
+            <TreeSegmentSarah />
           </TouchableWithoutFeedback>
 
           <FancyAlert
