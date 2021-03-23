@@ -2,13 +2,14 @@ import * as React from "react";
 import Svg, { Path, G } from "react-native-svg";
 import { Dimensions } from "react-native";
 const windowHeight = Dimensions.get("window").height;
+const windowWidth = Dimensions.get("window").width;
 
 function TreeSegmentSarah(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height={windowHeight * 0.2}
+      width={windowWidth}
+      height={windowWidth * (39 / 90)}
       viewBox="0 0 90 39"
       {...props}
     >

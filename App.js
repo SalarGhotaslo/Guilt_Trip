@@ -116,7 +116,7 @@ export default class App extends Component {
       <ScrollView style={styles.scrollView}>
         <TreeTop />
         <DisplaySloths slothPopulation={this.state.population} />
-        <TreeBottom />
+        <TreeBottom slothPopulation={this.state.population} />
       </ScrollView>
     );
   }
@@ -127,8 +127,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    height: "40%",
-    width: "100%",
     alignSelf: "center",
   },
 });
