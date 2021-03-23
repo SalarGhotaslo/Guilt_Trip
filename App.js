@@ -24,6 +24,10 @@ import { createColony } from "./src/createColony";
 import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
+import TreeTop from "./assets/svgs/TreeTop";
+import TreeSegmentTom from "./assets/svgs/TreeSegmentTom";
+import TreeSegmentSarah from "./assets/svgs/TreeSegmentSarah";
+import TreeBottom from "./assets/svgs/TreeBottom";
 
 export default class App extends Component {
   state = {
@@ -127,22 +131,9 @@ export default class App extends Component {
             this.scrollView.scrollToEnd({ animated: true })
           }
         >
-          <Image
-            source={require("./assets/treeTop.png")}
-            style={styles.treeTip}
-          />
+          <TreeTop />
           <DisplaySloths slothPopulation={this.state.population} />
-          <Image
-            source={require("./assets/treeBottom.png")}
-            style={styles.treeTip}
-          />
-          <View style={styles.footerText}>
-            <Text>Steps taken today: {this.state.stepCount}</Text>
-            <Text>
-              Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
-            </Text>
-            <Text>Step target: {DEFAULT_TARGET}</Text>
-          </View>
+          <TreeBottom slothPopulation={this.state.population} />
           <StatusBar style="auto" />
         </ScrollView>
       </View>
@@ -186,11 +177,7 @@ const DisplaySloths = (props) => {
       sloths.push(
         <View>
           <TouchableOpacity onPress={toggleAlert}>
-            <Image
-              source={require("./assets/rightSloth.png")}
-              style={styles.slothImage}
-              key={i}
-            />
+            <TreeSegmentTom />
           </TouchableOpacity>
 
           <FancyAlert
@@ -225,11 +212,7 @@ const DisplaySloths = (props) => {
       sloths.push(
         <View>
           <TouchableOpacity onPress={toggleAlert}>
-            <Image
-              source={require("./assets/leftSloth.png")}
-              style={styles.slothImage}
-              key={i}
-            />
+            <TreeSegmentSarah />
           </TouchableOpacity>
 
           <FancyAlert
