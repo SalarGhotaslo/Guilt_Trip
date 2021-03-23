@@ -26,7 +26,7 @@ import { Target, DEFAULT_TARGET } from "./src/Target";
 import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
-import { slothSpeech } from "./src/slothSpeech";
+import { slothSpeech, getSloth } from "./src/slothSpeech";
 import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
@@ -59,8 +59,12 @@ export default class App extends Component {
     this.interval = setInterval(() => {
       console.log("interval is ticking")
       if (this.state.speech) {
+      var speaker = getSloth(this.state.slothCollection)
+      console.log("NEW SPEAKER")
+      console.log(speaker)
+
       this.setState({
-        slothWords: slothSpeech(this.state.slothCollection),
+        slothWords: slothSpeech(speaker),
         speech: false,
         speechBackground: "white",
       });
@@ -106,7 +110,7 @@ export default class App extends Component {
       var population = await getValueFor("population");
       var previousPopulation = population;
       var sloths = await getValueFor("sloths");
-      console.log(JSON.parse(sloths));
+    //  console.log(JSON.parse(sloths));
       var colony = await createColony(date, population, JSON.parse(sloths));
       save("date", JSON.stringify(new Date()).substring(1, 11));
       save("population", String(colony.showPopulation()));
@@ -115,7 +119,7 @@ export default class App extends Component {
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(colony);
+  //    console.log(colony);
       this.setState(
         {
           appIsReady: true,
@@ -217,7 +221,7 @@ const SpeechBubble = (props) => {
 
 const DisplaySloths = (props) => {
   console.log("slothCollection")
-  console.log(props.slothCollection)
+//  console.log(props.slothCollection)
   const [visible, setVisible] = React.useState(false);
   const toggleAlert = React.useCallback(() => {
     setVisible(!visible);
@@ -315,6 +319,6 @@ const DisplaySloths = (props) => {
       );
     }
   }
-  console.log(slothImages)
+//  console.log(slothImages)
   return <View>{slothImages}</View>;
 };
