@@ -86,7 +86,7 @@ const TreeBottom = (props) => {
           stroke="none"
           strokeWidth={0.106}
         >
-          {`Population : ${props.slothPopulation}`}
+          {`Sloths : ${props.slothPopulation}`}
         </Text>
         <Text
           xmlSpace="preserve"
