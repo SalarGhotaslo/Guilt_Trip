@@ -97,12 +97,12 @@ export default class App extends Component {
         },
         async () => {
           await SplashScreen.hideAsync();
-          alertsFunction(
-            this.state.lastLogin,
-            new Date(),
-            this.state.previousPopulation,
-            this.state.population
-          );
+          // alertsFunction(
+          //   this.state.lastLogin,
+          //   new Date(),
+          //   this.state.previousPopulation,
+          //   this.state.population
+          // );
         }
       );
     }
@@ -143,7 +143,6 @@ export default class App extends Component {
             </Text>
             <Text>Step target: {DEFAULT_TARGET}</Text>
           </View>
-          <Notifications />
           <StatusBar style="auto" />
         </ScrollView>
       </View>
@@ -171,76 +170,97 @@ const styles = StyleSheet.create({
   },
 });
 
-const DisplaySloths = (props) => {
-  let sloths = [];
-  for (let i = 0; i < props.slothPopulation; i++) {
-    if (isOdd(i)) {
-      sloths.push(
-        <Image
-          source={require("./assets/rightSloth.png")}
-          style={styles.slothImage}
-          key={i}
-        />
-      );
-    } else {
-      sloths.push(
-        <Image
-          source={require("./assets/leftSloth.png")}
-          style={styles.slothImage}
-          key={i}
-        />
-      );
-    }
-  }
-  return <View>{sloths}</View>;
-};
-
 function isOdd(n) {
   return n % 2 === 1;
 }
 
-// let imagePaths = [
-//   "./assets/sloth.png",
-//   "./assets/sloth1.png",
-//   "./assets/sloth2.png",
-// ];
-
-const Notifications = () => {
+const DisplaySloths = (props) => {
   const [visible, setVisible] = React.useState(false);
   const toggleAlert = React.useCallback(() => {
     setVisible(!visible);
   }, [visible]);
 
-  return (
-    <View>
-      <TouchableOpacity onPress={toggleAlert}>
-        <Text>Tap me</Text>
-      </TouchableOpacity>
+  let sloths = [];
+  for (let i = 0; i < props.slothPopulation; i++) {
+    if (isOdd(i)) {
+      sloths.push(
+        <View>
+          <TouchableOpacity onPress={toggleAlert}>
+            <Image
+              source={require("./assets/rightSloth.png")}
+              style={styles.slothImage}
+              key={i}
+            />
+          </TouchableOpacity>
 
-      <FancyAlert
-        visible={visible}
-        icon={
-          <View
-            style={{
-              flex: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "red",
-              borderRadius: 50,
-              width: "100%",
-            }}
+          <FancyAlert
+            visible={visible}
+            icon={
+              <View
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  width: "100%",
+                }}
+              >
+                <Text>🤓</Text>
+              </View>
+            }
+            style={{ backgroundColor: "white" }}
           >
-            <Text>🤓</Text>
-          </View>
-        }
-        style={{ backgroundColor: "white" }}
-      >
-        <Text style={{ marginTop: -16, marginBottom: 32 }}>Hello there</Text>
-        <TouchableOpacity onPress={toggleAlert}>
-          <Text>Tap me</Text>
-        </TouchableOpacity>
-      </FancyAlert>
-    </View>
-  );
+            <Text style={{ marginTop: -16, marginBottom: 32 }}>
+              Hello there
+            </Text>
+            <TouchableOpacity onPress={toggleAlert}>
+              <Text>Tap me</Text>
+            </TouchableOpacity>
+          </FancyAlert>
+        </View>
+      );
+    } else {
+      sloths.push(
+        <View>
+          <TouchableOpacity onPress={toggleAlert}>
+            <Image
+              source={require("./assets/leftSloth.png")}
+              style={styles.slothImage}
+              key={i}
+            />
+          </TouchableOpacity>
+
+          <FancyAlert
+            visible={visible}
+            icon={
+              <View
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: "red",
+                  borderRadius: 50,
+                  width: "100%",
+                }}
+              >
+                <Text>🤓</Text>
+              </View>
+            }
+            style={{ backgroundColor: "white" }}
+          >
+            <Text style={{ marginTop: -16, marginBottom: 32 }}>
+              Hello there
+            </Text>
+            <TouchableOpacity onPress={toggleAlert}>
+              <Text>Tap me</Text>
+            </TouchableOpacity>
+          </FancyAlert>
+        </View>
+      );
+    }
+  }
+  return sloths;
 };
