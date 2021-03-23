@@ -3,13 +3,11 @@ import { performStepApi } from "./performStepApi";
 
 export async function updatePopulation(target, colony, lastLogin, today) {
   while (today.getTime() > lastLogin.getTime()) {
-    console.log(`lastLogin: ${lastLogin}`);
     let range = String(lastLogin);
     range = new Date(range);
     range.setDate(range.getDate() + 1);
-    console.log(`range: ${range}`);
     let steps = await performStepApi(lastLogin, range);
-    console.log(`steps: ${steps}`);
+    console.log(`HERE ARE STEPS: ${steps}`);
     target.isReached(steps) ? colony.addCreature() : colony.killCreature();
     lastLogin = range;
   }

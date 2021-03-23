@@ -17,7 +17,7 @@ describe("createColony function", () => {
     );
   });
   test("if date is greater than 7 days, create new population", () => {
-    expect(createColony("2020-02-02", 5).showPopulation()).toEqual(
+    expect(createColony("2020-03-10", 5).showPopulation()).toEqual(
       DEFAULT_POPULATION
     );
   });

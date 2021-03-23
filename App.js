@@ -9,6 +9,7 @@ import {
   ScrollView,
   ImageBackground,
   ImageBackgroundComponent,
+  Alert,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -20,6 +21,7 @@ import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import { render } from "react-dom";
+import { alertsFunction } from "./src/alerts";
 
 export default class App extends Component {
   state = {
@@ -29,6 +31,7 @@ export default class App extends Component {
     currentStepCount: 0,
     population: 0,
     lastLogin: 0,
+    previousPopulation: null,
     // yesterdaysCount: 0,
   };
 
@@ -70,6 +73,7 @@ export default class App extends Component {
     try {
       var date = await getValueFor("date");
       var population = await getValueFor("population");
+      var previousPopulation = population;
       var sloths = await getValueFor("sloths");
       console.log(JSON.parse(sloths))
       var colony = await createColony(date, population, JSON.parse(sloths));
@@ -87,9 +91,16 @@ export default class App extends Component {
           stepCount: steps,
           population: colony.showPopulation(),
           lastLogin: date,
+          previousPopulation: previousPopulation,
         },
         async () => {
           await SplashScreen.hideAsync();
+          alertsFunction(
+            this.state.lastLogin,
+            new Date(),
+            this.state.previousPopulation,
+            this.state.population
+          );
         }
       );
     }
@@ -106,28 +117,29 @@ export default class App extends Component {
     }
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.scrollView}>
+        <ScrollView
+          ref={(ref) => {
+            this.scrollView = ref;
+          }}
+          onContentSizeChange={() =>
+            this.scrollView.scrollToEnd({ animated: true })
+          }
+        >
           <Image
             source={require("./assets/treeTop.png")}
-            style={styles.slothImage}
+            style={styles.treeTip}
           />
           <DisplaySloths slothPopulation={this.state.population} />
           <Image
             source={require("./assets/treeBottom.png")}
-            style={styles.slothImage}
+            style={styles.treeTip}
           />
           <View style={styles.footerText}>
-            <Text>Hello! welcome to Guilt Trip.</Text>
-            <Text>{this.state.lastLogin}</Text>
             <Text>Steps taken today: {this.state.stepCount}</Text>
-            <Text>Steps taken yesterday: {this.state.yesterdaysCount}</Text>
-            <Text>
-              Steps while using this app: {this.state.currentStepCount}
-            </Text>
             <Text>
               Steps till target reached: {DEFAULT_TARGET - this.state.stepCount}
             </Text>
-            <Text>population = {this.state.population}</Text>
+            <Text>Step target: {DEFAULT_TARGET}</Text>
           </View>
           <StatusBar style="auto" />
         </ScrollView>
@@ -139,30 +151,20 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#00ffff",
   },
   slothImage: {
-    // width: ,
-    // height: "",
-  },
-  scrollView: {
-    flex: 1,
-  },
-  trunkImage: {
-    width: 0,
-    height: 0,
+    width: "100%",
+    position: "relative",
   },
   footerText: {
-    position: "relative",
-    backgroundColor: "#20fc00",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: "center",
+    position: "absolute",
+    alignSelf: "center",
     alignItems: "center",
+    bottom: 0,
+  },
+  treeTip: {
+    width: "100%",
+    position: "relative",
   },
 });
 
