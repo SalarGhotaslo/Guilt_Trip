@@ -184,7 +184,7 @@ const DisplaySloths = (props) => {
   for (let i = 0; i < props.slothPopulation; i++) {
     if (isOdd(i)) {
       sloths.push(
-        <View>
+        <View key={i}>
           <TouchableOpacity onPress={toggleAlert}>
             <Image
               source={require("./assets/rightSloth.png")}
@@ -223,7 +223,7 @@ const DisplaySloths = (props) => {
       );
     } else {
       sloths.push(
-        <View>
+        <View key={i}>
           <TouchableOpacity onPress={toggleAlert}>
             <Image
               source={require("./assets/leftSloth.png")}
