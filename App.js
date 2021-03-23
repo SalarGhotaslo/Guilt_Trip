@@ -77,7 +77,7 @@ export default class App extends Component {
       var population = await getValueFor("population");
       var previousPopulation = population;
       var sloths = await getValueFor("sloths");
-      console.log(JSON.parse(sloths))
+      console.log(JSON.parse(sloths));
       var colony = await createColony(date, population, JSON.parse(sloths));
       save("date", JSON.stringify(new Date()).substring(1, 11));
       save("population", String(colony.showPopulation()));
@@ -97,12 +97,12 @@ export default class App extends Component {
         },
         async () => {
           await SplashScreen.hideAsync();
-          // alertsFunction(
-          //   this.state.lastLogin,
-          //   new Date(),
-          //   this.state.previousPopulation,
-          //   this.state.population
-          // );
+          alertsFunction(
+            this.state.lastLogin,
+            new Date(),
+            this.state.previousPopulation,
+            this.state.population
+          );
         }
       );
     }
