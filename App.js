@@ -143,6 +143,7 @@ export default class App extends Component {
             </Text>
             <Text>Step target: {DEFAULT_TARGET}</Text>
           </View>
+          <Notifications />
           <StatusBar style="auto" />
         </ScrollView>
       </View>
@@ -203,3 +204,43 @@ function isOdd(n) {
 //   "./assets/sloth1.png",
 //   "./assets/sloth2.png",
 // ];
+
+const Notifications = () => {
+  const [visible, setVisible] = React.useState(false);
+  const toggleAlert = React.useCallback(() => {
+    setVisible(!visible);
+  }, [visible]);
+
+  return (
+    <View>
+      <TouchableOpacity onPress={toggleAlert}>
+        <Text>Tap me</Text>
+      </TouchableOpacity>
+
+      <FancyAlert
+        visible={visible}
+        icon={
+          <View
+            style={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "red",
+              borderRadius: 50,
+              width: "100%",
+            }}
+          >
+            <Text>🤓</Text>
+          </View>
+        }
+        style={{ backgroundColor: "white" }}
+      >
+        <Text style={{ marginTop: -16, marginBottom: 32 }}>Hello there</Text>
+        <TouchableOpacity onPress={toggleAlert}>
+          <Text>Tap me</Text>
+        </TouchableOpacity>
+      </FancyAlert>
+    </View>
+  );
+};
