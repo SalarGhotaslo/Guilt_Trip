@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 
-import TreeSegmentTom from "../assets/svgs/segments/regular/BigBallsTom";
-import TreeSegmentSarah from "../assets/svgs/segments/regular/Sarah";
-import TreeSegmentYPatrick from "../assets/svgs/segments/regular/YPatrick";
-import TreeSegmentHiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
+import BigBallsTom from "../assets/svgs/segments/regular/BigBallsTom";
+import Sarah from "../assets/svgs/segments/regular/Sarah";
+import YPatrick from "../assets/svgs/segments/regular/YPatrick";
+import HiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
+import Patrick from "../assets/svgs/segments/regular/Patrick";
+import Steve from "../assets/svgs/segments/regular/Steve";
 
 export const arrayOfClassics = [
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <YPatrick />,
+  <BigBallsTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Sarah />,
+  <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
   "Placeholder",
-  <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Steve />,
+  <YPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Sarah />,
+  <Patrick style={[{ transform: [{ scaleX: -1 }] }]} />,
   "Placeholder",
 ];
 
-export const arrayOfRares = [<TreeSegmentHiddenSteve />];
+export const arrayOfRares = [<HiddenSteve />];
