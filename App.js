@@ -140,8 +140,6 @@ export default class App extends Component {
         }
       >
         <TreeTop />
-        <TreeSegmentYPatrick />
-        <TreeSegmentHiddenSteve />
         <DisplaySloths
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
