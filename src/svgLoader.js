@@ -49,4 +49,5 @@ export const arrayOfRares = [
   <Shark style={[{ transform: [{ scaleX: -1 }] }]} />,
   <BeerHat />,
   <Devil style={[{ transform: [{ scaleX: -1 }] }]} />,
+  "Placeholder",
 ];
