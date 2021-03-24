@@ -31,6 +31,7 @@ import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
 import TreeTop from "./assets/svgs/TreeTop";
 import TreeBottom from "./assets/svgs/TreeBottom";
+import Svg from "react-native-svg";
 
 export default class App extends Component {
   state = {
@@ -80,11 +81,13 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
+      // var colony2 = new Colony(50);
+      // save("population", String(colony2.showPopulation()));
+      // save("sloths", JSON.stringify(colony2.sloths));
       var date = await getValueFor("date");
       var population = await getValueFor("population");
       var previousPopulation = population;
       var sloths = await getValueFor("sloths");
-      console.log(JSON.parse(sloths));
       var colony = await createColony(date, population, JSON.parse(sloths));
       save("date", JSON.stringify(new Date()).substring(1, 11));
       save("population", String(colony.showPopulation()));
@@ -93,7 +96,6 @@ export default class App extends Component {
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(colony);
       this.setState(
         {
           appIsReady: true,
@@ -165,53 +167,59 @@ function isOdd(n) {
   return n % 2 === 1;
 }
 
+const arrayOfClassics = [
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+];
+
+const arrayOfRares = [
+  <TreeSegmentHiddenSteve />,
+];
+
+function returnSloth(i) {
+  if (i % 5 === 0) {
+    let x = ((i/5) % arrayOfRares.length) - 1
+    if(x<0) {x=0} 
+    return arrayOfRares[x];
+  } else {
+    let x = ((i%10) % arrayOfClassics.length) - 1
+    if(x<0) {x=0} 
+    return arrayOfClassics[x];
+  }
+}
+
 const DisplaySloths = (props) => {
   let slothImages = [];
-  for (let i = 0, j = 0; i < props.slothPopulation; i++, j++) {
-    if (isOdd(j)) {
-      slothImages.push(
-        <View key={j}>
-          <TouchableWithoutFeedback
-            onPress={() =>
-              Alert.alert(
-                `Hi!`,
-                `I'm ${
-                  props.slothCollection[i].name
-                }. I'm ${props.slothCollection[
-                  i
-                ].personality.toLowerCase()} and I love ${props.slothCollection[
-                  i
-                ].passion.toLowerCase()}`
-              )
-            }
-          >
-            <TreeSegmentTom />
-          </TouchableWithoutFeedback>
-        </View>
-      );
-    } else {
-      slothImages.push(
-        <View key={j}>
-          <TouchableWithoutFeedback
-            onPress={() =>
-              Alert.alert(
-                `Hi!`,
-                `I'm ${
-                  props.slothCollection[i].name
-                }. I'm ${props.slothCollection[
-                  i
-                ].personality.toLowerCase()} and I love ${props.slothCollection[
-                  i
-                ].passion.toLowerCase()}`
-              )
-            }
-          >
-            <TreeSegmentSarah />
-          </TouchableWithoutFeedback>
-        </View>
-      );
-    }
+  for (let i = 1; i <= props.slothPopulation; i++) {
+    slothImages.push(
+      <View key={i}>
+        <TouchableWithoutFeedback
+          onPress={() =>
+            Alert.alert(
+              `Hi!`,
+              `I'm ${
+                props.slothCollection[i - 1].name
+              }. I'm ${props.slothCollection[
+                i - 1
+              ].personality.toLowerCase()} and I love ${props.slothCollection[
+                i - 1
+              ].passion.toLowerCase()}`
+            )
+          }
+        >
+          {returnSloth(i)}
+        </TouchableWithoutFeedback>
+      </View>
+    );
   }
-  console.log(slothImages);
-  return <View>{slothImages}</View>;
+  return <View>{slothImages.reverse()}</View>;
 };
+
