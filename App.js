@@ -35,6 +35,8 @@ import TreeSegmentSarah from "./assets/svgs/segments/TreeSegmentSarah";
 import TreeSegmentYPatrick from "./assets/svgs/segments/TreeSegmentYPatrick";
 import TreeSegmentHiddenSteve from "./assets/svgs/segments/TreeSegmentHiddenSteve";
 import TreeBottom from "./assets/svgs/TreeBottom";
+import { Sarah } from "./src/prestige";
+import Svg from "react-native-svg";
 
 export default class App extends Component {
   state = {
@@ -169,15 +171,27 @@ function isOdd(n) {
   return n % 2 === 1;
 }
 
+// let Tom = <TreeSegmentTom />;
+// let Segment0 = <TreeSegmentSarah />;
+// let Segment1 = <TreeSegmentSarah />;
+// let Segment2 = <TreeSegmentSarah />;
+// let Segment3 = <TreeSegmentSarah />;
+
+// let arrayOfSegments = [
+// {Segment0: "success"},
+// {Segment1: "yes"},
+// {Segment2: "yep"},
+// ]
+// function returnPrestige(i = 0) {
+//   let num = i.toString()
+//   let test = `Segment${num}`;
+//   arrayOfSegments.includes(test)
+// }
+// for (i = 0; i < arrayOfSegments.length; i++)
+// ("Segment60");
+
 const DisplaySloths = (props) => {
-  console.log("slothCollection");
-  console.log(props.slothCollection);
-  const [visible, setVisible] = React.useState(false);
-  const toggleAlert = React.useCallback(() => {
-    setVisible(!visible);
-  }, [visible]);
   let slothImages = [];
-  let s = 0;
   for (let i = 0, j = 0; i < props.slothPopulation; i++, j++) {
     if (isOdd(j)) {
       slothImages.push(
@@ -199,40 +213,8 @@ const DisplaySloths = (props) => {
             <TreeSegmentTom />
           </TouchableWithoutFeedback>
         </View>
-        // <TouchableWithoutFeedback onPress={toggleAlert}>
-        //
-        // </TouchableWithoutFeedback>
-
-        // <FancyAlert
-        //   visible={visible}
-        //   icon={
-        //     <View
-        //       style={{
-        //         flex: 1,
-        //         display: "flex",
-        //         justifyContent: "center",
-        //         alignItems: "center",
-        //         backgroundColor: "red",
-        //         borderRadius: 50,
-        //         width: "100%",
-        //       }}
-        //     >
-        //       <Text>🤓</Text>
-        //     </View>
-        //   }
-        //   style={{ backgroundColor: "white" }}
-        // >
-        //   <Text style={{ marginTop: -16, marginBottom: 32 }}>
-        //     Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
-        //   </Text>
-        //   <TouchableWithoutFeedback onPress={toggleAlert}>
-        //     <Text>Tap me</Text>
-        //   </TouchableWithoutFeedback>
-        // </FancyAlert>
-        // </View>
       );
-      s++;
-    } else {
+    } else if (!isOdd(j)) {
       slothImages.push(
         <View key={j}>
           <TouchableWithoutFeedback
@@ -252,43 +234,30 @@ const DisplaySloths = (props) => {
             <TreeSegmentSarah />
           </TouchableWithoutFeedback>
         </View>
-        // slothImages.push(
-        //
-        //   <View key={j}>
-        //     <TouchableWithoutFeedback onPress={toggleAlert}>
-        //      <TreeSegmentSarah />
-        //     </TouchableWithoutFeedback>
-        //
-        //     <FancyAlert
-        //       visible={visible}
-        //       icon={
-        //         <View
-        //           style={{
-        //             flex: 1,
-        //             display: "flex",
-        //             justifyContent: "center",
-        //             alignItems: "center",
-        //             backgroundColor: "red",
-        //             borderRadius: 50,
-        //             width: "100%",
-        //           }}
-        //         >
-        //           <Text>🤓</Text>
-        //         </View>
-        //       }
-        //       style={{ backgroundColor: "white" }}
-        //     >
-        //       <Text style={{ marginTop: -16, marginBottom: 32 }}>
-        //         Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
-        //       </Text>
-        //       <TouchableWithoutFeedback onPress={toggleAlert}>
-        //         <Text>Tap me</Text>
-        //       </TouchableWithoutFeedback>
-        //     </FancyAlert>
-        //   </View>
+      );
+    } else if (i % 5 === 0 && i != 0) {
+      slothImages.push(
+        <View key={j}>
+          <TouchableWithoutFeedback
+            onPress={() =>
+              Alert.alert(
+                `Hi!`,
+                `I'm ${
+                  props.slothCollection[i].name
+                }. I'm ${props.slothCollection[
+                  i
+                ].personality.toLowerCase()} and I love ${props.slothCollection[
+                  i
+                ].passion.toLowerCase()}`
+              )
+            }
+          >
+            <TreeSegmentYPatrick />
+            {/* returnPrestige() */}
+          </TouchableWithoutFeedback>
+        </View>
       );
     }
   }
-  console.log(slothImages);
-  return <View>{slothImages}</View>;
+  return <View>{slothImages.reverse()}</View>;
 };
