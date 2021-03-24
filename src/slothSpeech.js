@@ -23,9 +23,9 @@ export function slothSpeech(speaker) {
 
 export function setXPosition(slothPosition) {
   if (slothPosition % 2 === 1) {
-    return 240
+    return windowWidth * 0.7
   } else {
-    return 40
+    return windowWidth * 0.08
   }
 }
 
