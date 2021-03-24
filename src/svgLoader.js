@@ -13,10 +13,10 @@ export const arrayOfClassics = [
   <Sarah />,
   <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
   "Placeholder",
-  <Steve />,
-  <YPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <Sarah />,
-  <Patrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <YPatrick />,
+  <Sarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Patrick />,
   "Placeholder",
 ];
 
