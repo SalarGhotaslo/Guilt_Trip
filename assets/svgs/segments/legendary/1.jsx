@@ -3,7 +3,7 @@ import Svg, { Path, G, Circle } from "react-native-svg";
 import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 
-function Segment1(props) {
+function SvgComponent(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -222,4 +222,4 @@ function Segment1(props) {
   );
 }
 
-export default Segment1;
+export default SvgComponent;
