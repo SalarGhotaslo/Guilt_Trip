@@ -30,10 +30,6 @@ import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
 import TreeTop from "./assets/svgs/TreeTop";
-import TreeSegmentTom from "./assets/svgs/segments/TreeSegmentTom";
-import TreeSegmentSarah from "./assets/svgs/segments/TreeSegmentSarah";
-import TreeSegmentYPatrick from "./assets/svgs/segments/TreeSegmentYPatrick";
-import TreeSegmentHiddenSteve from "./assets/svgs/segments/TreeSegmentHiddenSteve";
 import TreeBottom from "./assets/svgs/TreeBottom";
 import Svg from "react-native-svg";
 
