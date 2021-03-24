@@ -32,6 +32,7 @@ import { FancyAlert } from "react-native-expo-fancy-alerts";
 import TreeTop from "./assets/svgs/TreeTop";
 import TreeBottom from "./assets/svgs/TreeBottom";
 import Svg from "react-native-svg";
+import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
 
 export default class App extends Component {
   state = {
@@ -167,31 +168,18 @@ function isOdd(n) {
   return n % 2 === 1;
 }
 
-const arrayOfClassics = [
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom />,
-];
-
-const arrayOfRares = [
-  <TreeSegmentHiddenSteve />,
-];
-
 function returnSloth(i) {
   if (i % 5 === 0) {
-    let x = ((i/5) % arrayOfRares.length) - 1
-    if(x<0) {x=0} 
+    let x = ((i / 5) % arrayOfRares.length) - 1;
+    if (x < 0) {
+      x = 0;
+    }
     return arrayOfRares[x];
   } else {
-    let x = ((i%10) % arrayOfClassics.length) - 1
-    if(x<0) {x=0} 
+    let x = ((i % 10) % arrayOfClassics.length) - 1;
+    if (x < 0) {
+      x = 0;
+    }
     return arrayOfClassics[x];
   }
 }
@@ -222,4 +210,3 @@ const DisplaySloths = (props) => {
   }
   return <View>{slothImages.reverse()}</View>;
 };
-

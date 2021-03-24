@@ -1,11 +1,20 @@
-import TreeSegmentTom from "../assets/svgs/segments/TreeSegmentTom";
-import TreeSegmentSarah from "../assets/svgs/segments/TreeSegmentSarah";
-import TreeSegmentYPatrick from "../assets/svgs/segments/TreeSegmentYPatrick";
-import TreeSegmentHiddenSteve from "../assets/svgs/segments/TreeSegmentHiddenSteve";
+import React, { Component } from "react";
+import TreeSegmentTom from "../assets/svgs/segments/regular/BigBallsTom";
+import TreeSegmentSarah from "../assets/svgs/segments/regular/Sarah";
+import TreeSegmentYPatrick from "../assets/svgs/segments/regular/YPatrick";
+import TreeSegmentHiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
 
-export const arrayOfSegments = [
+export const arrayOfClassics = [
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
   <TreeSegmentTom />,
-  <TreeSegmentSarah />,
-  <TreeSegmentYPatrick />,
-  <TreeSegmentHiddenSteve />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
 ];
+
+export const arrayOfRares = [<TreeSegmentHiddenSteve />];
