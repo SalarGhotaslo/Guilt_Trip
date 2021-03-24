@@ -5,6 +5,7 @@ import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
 import {
   StyleSheet,
+  Button,
   Modal,
   Text,
   SafeAreaView,
@@ -48,6 +49,7 @@ export default class App extends Component {
     previousPopulation: null,
     speech: false,
     // yesterdaysCount: 0,
+    showInfo:false,
   };
 
 
@@ -142,6 +144,7 @@ export default class App extends Component {
           slothWords: "",
           yPosition: 800,
           xPosition: 220,
+          showInfo:false,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -176,11 +179,18 @@ export default class App extends Component {
           this.scrollView.scrollToEnd({ animated: true })
         }
       >
+    
         <TreeTop />
         <DisplaySloths
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
         />
+
+
+
+
+
+
 
         <TreeBottom
           slothPopulation={this.state.population}
@@ -189,7 +199,45 @@ export default class App extends Component {
             DEFAULT_TARGET - this.state.stepCount - this.state.currentStepCount
           }
           target={DEFAULT_TARGET}
+          showInfo={this.state.showInfo}
         />
+        <View
+        style={{
+          position: "absolute",
+          borderRadius: 10,
+          bottom: 10,
+          right: 10,
+          width: 150,
+          height: 70,
+          backgroundColor: "#000000",
+          justifyContent: "center",
+          flex: 1,
+          alignItems: "center",
+          padding: 12,
+        }}>
+          <Button 
+          title="info" onPress={() => {this.setState({showInfo:true})}}
+          />
+          </View>
+
+
+
+        <Modal 
+        transparent={true}
+        visible={this.state.showInfo}
+        >
+          <View style ={{backgroundColor:"#000000aa", flex:1}}>
+            <View style = {{backgroundColor:"#ffffff", margin:50, padding:40, borderRadius:10, flex:1}}>
+              <Text 
+              style = {{fontSize:80}}
+            >
+              Modal Text</Text>
+              <Button title="hide" onPress={() => {this.setState({showInfo:false})}}/>
+            </View>
+          </View>
+        </Modal>
+        
+
       <SpeechBubble
         xPosition={this.state.xPosition}
         yPosition={this.state.yPosition}
