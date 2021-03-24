@@ -12,11 +12,11 @@ import VerticalSarah from "../assets/svgs/segments/regular/VerticalSarah";
 
 export const arrayOfClassics = [
   <YPatrick />,
-  <Simon style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
   <Sarah />,
   <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
   "Placeholder",
-  <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Simon style={[{ transform: [{ scaleX: -1 }] }]} />,
   <VerticalSarah />,
   <LipSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
   <Patrick />,
