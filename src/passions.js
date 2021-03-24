@@ -89,7 +89,7 @@ export let passions = [
   "Foreign language learning",
   "Furniture building",
   "Tabletop games", 
-  "Role-playing games", 
+  "Role-playing games",
   "Electronic games",
   "Genealogy",
   "Gingerbread house making",
@@ -201,7 +201,6 @@ export let passions = [
   "Stamp collecting",
   "Stand-up comedy",
   "Storytelling",
-  "Stripping",
   "Sudoku",
   "Table tennis playing",
   "Tapestry",
