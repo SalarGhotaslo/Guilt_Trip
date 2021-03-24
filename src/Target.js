@@ -5,11 +5,11 @@ export class Target {
     this.target = target;
   }
 
-  showTarget() {
-    return this.target;
+  isReached(steps, population) {
+    return steps >= this.target + population * 100;
   }
 
-  isReached(steps, population) {
-    return steps >= this.target + (population * 100);
+  updateTarget() {
+    this.target += population * 100;
   }
 }

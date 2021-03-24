@@ -7,7 +7,7 @@ export function createColony(date, population, sloths, dateToday = new Date()) {
   let lastLogin = new Date(date);
   let today = new Date(dateToday);
   let dateDifference = today.setHours(0, 0, 0, 0) - lastLogin;
-  if(date === 0){
+  if (date === 0) {
     console.log("Welcome to Guilt Trip");
     return new Colony();
   } else if (dateDifference > SIX_DAYS || population === "0") {
@@ -18,10 +18,10 @@ export function createColony(date, population, sloths, dateToday = new Date()) {
     return new Colony(population, sloths);
   } else {
     return updatePopulation(
-      new Target(),
+      new Target(population),
       new Colony(population, sloths),
       lastLogin,
       today
     );
-  } 
+  }
 }
