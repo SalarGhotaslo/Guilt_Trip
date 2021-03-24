@@ -142,6 +142,7 @@ export default class App extends Component {
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
         />
+        <InfoPopUp />
         <TreeBottom
           slothPopulation={this.state.population}
           count={this.state.stepCount}
@@ -278,39 +279,7 @@ const DisplaySloths = (props) => {
             <TreeSegmentTom />
           </TouchableWithoutFeedback>
         </View>
-        // <TouchableWithoutFeedback onPress={toggleAlert}>
-        //
-        // </TouchableWithoutFeedback>
-
-        // <FancyAlert
-        //   visible={visible}
-        //   icon={
-        //     <View
-        //       style={{
-        //         flex: 1,
-        //         display: "flex",
-        //         justifyContent: "center",
-        //         alignItems: "center",
-        //         backgroundColor: "red",
-        //         borderRadius: 50,
-        //         width: "100%",
-        //       }}
-        //     >
-        //       <Text>🤓</Text>
-        //     </View>
-        //   }
-        //   style={{ backgroundColor: "white" }}
-        // >
-        //   <Text style={{ marginTop: -16, marginBottom: 32 }}>
-        //     Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
-        //   </Text>
-        //   <TouchableWithoutFeedback onPress={toggleAlert}>
-        //     <Text>Tap me</Text>
-        //   </TouchableWithoutFeedback>
-        // </FancyAlert>
-        // </View>
       );
-      s++;
     } else {
       slothImages.push(
         <View key={j}>
@@ -331,40 +300,6 @@ const DisplaySloths = (props) => {
             <TreeSegmentSarah />
           </TouchableWithoutFeedback>
         </View>
-        // slothImages.push(
-        //
-        //   <View key={j}>
-        //     <TouchableWithoutFeedback onPress={toggleAlert}>
-        //      <TreeSegmentSarah />
-        //     </TouchableWithoutFeedback>
-        //
-        //     <FancyAlert
-        //       visible={visible}
-        //       icon={
-        //         <View
-        //           style={{
-        //             flex: 1,
-        //             display: "flex",
-        //             justifyContent: "center",
-        //             alignItems: "center",
-        //             backgroundColor: "red",
-        //             borderRadius: 50,
-        //             width: "100%",
-        //           }}
-        //         >
-        //           <Text>🤓</Text>
-        //         </View>
-        //       }
-        //       style={{ backgroundColor: "white" }}
-        //     >
-        //       <Text style={{ marginTop: -16, marginBottom: 32 }}>
-        //         Hi I'm {props.slothCollection[i].name}. I'm a {props.slothCollection[i].personality.toLowerCase()} sloth and I love {props.slothCollection[i].passion.toLowerCase()}.
-        //       </Text>
-        //       <TouchableWithoutFeedback onPress={toggleAlert}>
-        //         <Text>Tap me</Text>
-        //       </TouchableWithoutFeedback>
-        //     </FancyAlert>
-        //   </View>
       );
     }
   }
@@ -372,7 +307,7 @@ const DisplaySloths = (props) => {
   return <View>{slothImages}</View>;
 };
 
-const Welcome = () => {
+const InfoPopUp = () => {
   const [visible, setVisible] = React.useState(false);
   const toggleAlert = React.useCallback(() => {
     setVisible(!visible);
@@ -385,7 +320,7 @@ const Welcome = () => {
         style={{
           flex: 1,
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "right",
           alignItems: "center",
         }}
       >
@@ -406,7 +341,7 @@ const Welcome = () => {
               width: "100%",
             }}
           >
-            <Text>🤓</Text>
+            <Text>🦥 </Text>
           </View>
         }
         style={{ backgroundColor: "white" }}
@@ -416,9 +351,19 @@ const Welcome = () => {
           {"\n"}
           This is a page to give the user important information about our app
           and how they can use it.{"\n"}
+          {"\n"}
+          Beat your step target for the day to add to your sloth count.{"\n"}
+          {"\n"}
+          As your tree grows, step targets will become bigger and rarer sloths
+          will be unlocked.{"\n"}
+          {"\n"}
+          But, slackers beware, if you don't hit your target, sloths will die
+          and you WILL feel guilty.{"\n"}
+          {"\n"}
+          Make sure to click on your sloths to learn about them!
         </Text>
         <TouchableOpacity onPress={toggleAlert}>
-          <Text>Close and get walking</Text>
+          <Text>Click here and get walking!</Text>
         </TouchableOpacity>
       </FancyAlert>
     </View>
