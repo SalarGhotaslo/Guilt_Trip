@@ -17,6 +17,7 @@ import {
   TouchableHighlight,
   TouchableWithoutFeedback,
   TouchableHighlightBase,
+  Button,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -47,6 +48,7 @@ export default class App extends Component {
     previousPopulation: null,
     speech: false,
     // yesterdaysCount: 0,
+    showInfo: false,
   };
 
   async componentDidMount() {
@@ -140,6 +142,7 @@ export default class App extends Component {
           slothWords: "",
           yPosition: 800,
           xPosition: 220,
+          showInfo: false,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -188,6 +191,75 @@ export default class App extends Component {
           }
           target={DEFAULT_TARGET}
         />
+        <TouchableOpacity
+          title="Sloth App Info"
+          onPress={() => {
+            this.setState({ showInfo: true });
+          }}
+        >
+          <View
+            style={{
+              position: "absolute",
+              borderRadius: 10,
+              bottom: 80,
+              right: 10,
+              width: 150,
+              height: 70,
+              backgroundColor: "#000000",
+              justifyContent: "center",
+              flex: 1,
+              alignItems: "center",
+              padding: 12,
+            }}
+          ></View>
+        </TouchableOpacity>
+
+        <Modal transparent={true} visible={this.state.showInfo}>
+          <View style={{ backgroundColor: "#000000aa", flex: 1 }}>
+            <View
+              style={{
+                backgroundColor: "#ffffff",
+                margin: 50,
+                padding: 40,
+                borderRadius: 10,
+                flex: 1,
+              }}
+            >
+              <Text style={{ fontSize: 30 }}>Welcome to Sloth</Text>
+              <Text />
+              <Text style={{ fontSize: 15 }}>
+                As we all know, sloth is one of the seven deadly sins. In this
+                case, it's deadly for your sloths!
+              </Text>
+              <Text />
+              <Text>
+                Beat your step target for the day to add to your snuggle of
+                sloths.
+              </Text>
+              <Text />
+              <Text>
+                As your tree grows, step targets will become higher and rarer
+                sloths will be unlocked.
+              </Text>
+              <Text />
+              <Text>
+                But, slackers beware, if you don’t hit your target, sloths will
+                die and you WILL feel guilty.
+              </Text>
+              <Text />
+              <Text>
+                Click on each sloth to learn about their passions, hopes and
+                dreams.
+              </Text>
+              <Button
+                title="Hide"
+                onPress={() => {
+                  this.setState({ showInfo: false });
+                }}
+              />
+            </View>
+          </View>
+        </Modal>
         <SpeechBubble
           xPosition={this.state.xPosition}
           yPosition={this.state.yPosition}
