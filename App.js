@@ -61,12 +61,13 @@ export default class App extends Component {
       if (this.state.speech) {
       var slothPosition = Math.floor(Math.random() * this.state.slothCollection.length)
       var speaker = this.state.slothCollection[slothPosition]
+      var slothPositionY = (slothPosition - (this.state.slothCollection.length - 1)) *-1
       console.log("NEW SPEAKER")
       console.log(speaker)
       this.setState({
         slothWords: slothSpeech(speaker),
         xPosition: setXPosition(slothPosition),
-        yPosition: setYPosition(slothPosition),
+        yPosition: setYPosition(slothPositionY),
         speech: false,
         speechBackground: "white",
       });
@@ -78,7 +79,7 @@ export default class App extends Component {
       })
     }
 
-    }, 5000);
+  }, 2000);
   }
 
   componentWillUnmount() {

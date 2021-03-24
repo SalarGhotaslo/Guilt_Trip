@@ -7,6 +7,7 @@ import { neutralTalk } from "../src/neutralTalk";
 const DEFAULT_X = 220
 const DEFAULT_Y = 800
 
+const windowHeight = Dimensions.get("window").height;
 const windowWidth = Dimensions.get("window").width;
 
 
@@ -36,5 +37,8 @@ function choosePhrase(array) {
 
 export function setYPosition(slothPosition){
     console.log(slothPosition)
-    return 920 - (slothPosition * (windowWidth * (39 / 90)))
+    let totalPosition = ((slothPosition * (windowWidth * 39/90)) + (windowWidth * 78/90))
+    - (windowWidth * 0.15)
+    console.log(totalPosition)
+    return totalPosition
 }
