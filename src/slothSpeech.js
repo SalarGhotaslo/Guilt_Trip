@@ -8,7 +8,7 @@ const DEFAULT_Y = 800;
 
 export const windowHeight = Dimensions.get("window").height;
 export const windowWidth = Dimensions.get("window").width;
-export const RIGHT_SIDE = windowWidth * 0.65;
+export const RIGHT_SIDE = windowWidth * 0.62;
 export const LEFT_SIDE = windowWidth * 0.05;
 
 export function slothSpeech(speaker) {

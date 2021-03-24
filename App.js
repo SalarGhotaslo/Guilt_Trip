@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+
 
 import {
   StyleSheet,
@@ -36,7 +38,7 @@ import TreeSegmentSarah from "./assets/svgs/TreeSegmentSarah";
 import TreeBottom from "./assets/svgs/TreeBottom";
 
 export default class App extends Component {
-  state = {
+    state = {
     isPedometerAvailable: "checking",
     appIsReady: false,
     stepCount: 0,
@@ -47,6 +49,7 @@ export default class App extends Component {
     speech: false,
     // yesterdaysCount: 0,
   };
+
 
   async componentDidMount() {
     try {
@@ -72,7 +75,7 @@ export default class App extends Component {
           xPosition: setXPosition(slothPosition),
           yPosition: setYPosition(slothPositionY),
           speech: false,
-          speechBackground: "#84B1D5",
+          speechBackground: "#F7648B",
         });
       } else {
         this.setState({
@@ -161,6 +164,7 @@ export default class App extends Component {
     if (!this.state.appIsReady) {
       return null;
     }
+
     return (
       <ScrollView
         style={styles.container}
@@ -183,25 +187,12 @@ export default class App extends Component {
           remaining={DEFAULT_TARGET - this.state.stepCount}
           target={DEFAULT_TARGET}
         />
-        <View
-          style={{
-            position: "absolute",
-            borderRadius: 10,
-            top: this.state.yPosition,
-            left: this.state.xPosition,
-            right: 0,
-            bottom: 0,
-            width: 110,
-            height: 70,
-            backgroundColor: this.state.speechBackground,
-            justifyContent: "center",
-            flex: 1,
-            alignItems: "center",
-            padding: 0.1,
-          }}
-        >
-          <Text style={{ alignItems: "center" }}>{this.state.slothWords}</Text>
-        </View>
+      <SpeechBubble
+        xPosition={this.state.xPosition}
+        yPosition={this.state.yPosition}
+        speechBackground={this.state.speechBackground}
+        slothWords={this.state.slothWords}
+         />
       </ScrollView>
     );
   }
@@ -231,6 +222,31 @@ function isOdd(n) {
 //   style={{position: 'absolute', top: -50, left: 220, right: 0, bottom: 0, backgroundColor: `{speak}`, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
 //   props.speech</Text>
 // }
+
+
+const SpeechBubble = (props) => {
+  return(
+  <View
+    style={{
+      position: "absolute",
+      borderRadius: 10,
+      top: props.yPosition,
+      left: props.xPosition,
+      right: 0,
+      bottom: 0,
+      width: 150,
+      height: 70,
+      backgroundColor: props.speechBackground,
+      justifyContent: "center",
+      flex: 1,
+      alignItems: "center",
+      padding: 12,
+    }}
+  >
+    <Text style={{ alignItems: "center", fontSize: 12, }}>{props.slothWords}</Text>
+  </View>
+  )
+}
 
 const DisplaySloths = (props) => {
   console.log("slothCollection");
