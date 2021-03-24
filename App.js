@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+
 
 import {
   StyleSheet,
@@ -26,6 +28,7 @@ import { Target, DEFAULT_TARGET } from "./src/Target";
 import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
+import { slothSpeech, setXPosition, setYPosition } from "./src/slothSpeech";
 import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
@@ -37,7 +40,7 @@ import TreeSegmentHiddenSteve from "./assets/svgs/segments/TreeSegmentHiddenStev
 import TreeBottom from "./assets/svgs/TreeBottom";
 
 export default class App extends Component {
-  state = {
+    state = {
     isPedometerAvailable: "checking",
     appIsReady: false,
     stepCount: 0,
@@ -45,8 +48,10 @@ export default class App extends Component {
     population: 0,
     lastLogin: 0,
     previousPopulation: null,
+    speech: false,
     // yesterdaysCount: 0,
   };
+
 
   async componentDidMount() {
     try {
@@ -56,10 +61,37 @@ export default class App extends Component {
     }
     this._subscribe();
     this.prepareResources();
+    this.interval = setInterval(() => {
+      console.log("interval is ticking");
+      if (this.state.speech) {
+        var slothPosition = Math.floor(
+          Math.random() * this.state.slothCollection.length
+        );
+        var speaker = this.state.slothCollection[slothPosition];
+        var slothPositionY =
+          (slothPosition - (this.state.slothCollection.length - 1)) * -1;
+        console.log("NEW SPEAKER");
+        console.log(speaker);
+        this.setState({
+          slothWords: slothSpeech(speaker),
+          xPosition: setXPosition(slothPosition),
+          yPosition: setYPosition(slothPositionY),
+          speech: false,
+          speechBackground: "#F7648B",
+        });
+      } else {
+        this.setState({
+          slothWords: "",
+          speech: true,
+          speechBackground: "transparent",
+        });
+      }
+    }, 5000);
   }
 
   componentWillUnmount() {
     this._unsubscribe();
+    clearInterval(this.interval);
   }
 
   _subscribe = () => {
@@ -88,7 +120,7 @@ export default class App extends Component {
       var population = await getValueFor("population");
       var previousPopulation = population;
       var sloths = await getValueFor("sloths");
-      console.log(JSON.parse(sloths));
+      //  console.log(JSON.parse(sloths));
       var colony = await createColony(date, population, JSON.parse(sloths));
       save("date", JSON.stringify(new Date()).substring(1, 11));
       save("population", String(colony.showPopulation()));
@@ -97,7 +129,7 @@ export default class App extends Component {
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(colony);
+      //    console.log(colony);
       this.setState(
         {
           appIsReady: true,
@@ -106,6 +138,11 @@ export default class App extends Component {
           lastLogin: date,
           previousPopulation: previousPopulation,
           slothCollection: colony.sloths,
+          speech: false,
+          speechBackround: "transparent",
+          slothWords: "",
+          yPosition: 800,
+          xPosition: 220,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -129,6 +166,7 @@ export default class App extends Component {
     if (!this.state.appIsReady) {
       return null;
     }
+
     return (
       <ScrollView
         style={styles.container}
@@ -144,6 +182,7 @@ export default class App extends Component {
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
         />
+
         <TreeBottom
           slothPopulation={this.state.population}
           count={this.state.stepCount + this.state.currentStepCount}
@@ -152,6 +191,12 @@ export default class App extends Component {
           }
           target={DEFAULT_TARGET}
         />
+      <SpeechBubble
+        xPosition={this.state.xPosition}
+        yPosition={this.state.yPosition}
+        speechBackground={this.state.speechBackground}
+        slothWords={this.state.slothWords}
+         />
       </ScrollView>
     );
   }
@@ -169,9 +214,46 @@ function isOdd(n) {
   return n % 2 === 1;
 }
 
+// const SlothSpeak = (props) => {
+//   //slothSpeech(this.state.slothCollection)
+//   state = {
+//     backgroundColor: transparent
+//       speech: ""
+//     }
+//
+//   <Text
+//   key={j}
+//   style={{position: 'absolute', top: -50, left: 220, right: 0, bottom: 0, backgroundColor: `{speak}`, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
+//   props.speech</Text>
+// }
+
+
+const SpeechBubble = (props) => {
+  return(
+  <View
+    style={{
+      position: "absolute",
+      borderRadius: 10,
+      top: props.yPosition,
+      left: props.xPosition,
+      right: 0,
+      bottom: 0,
+      width: 150,
+      height: 70,
+      backgroundColor: props.speechBackground,
+      justifyContent: "center",
+      flex: 1,
+      alignItems: "center",
+      padding: 12,
+    }}
+  >
+    <Text style={{ alignItems: "center", fontSize: 12, }}>{props.slothWords}</Text>
+  </View>
+  )
+}
+
 const DisplaySloths = (props) => {
   console.log("slothCollection");
-  console.log(props.slothCollection);
   const [visible, setVisible] = React.useState(false);
   const toggleAlert = React.useCallback(() => {
     setVisible(!visible);
@@ -199,9 +281,6 @@ const DisplaySloths = (props) => {
             <TreeSegmentTom />
           </TouchableWithoutFeedback>
         </View>
-        // <TouchableWithoutFeedback onPress={toggleAlert}>
-        //
-        // </TouchableWithoutFeedback>
 
         // <FancyAlert
         //   visible={visible}
@@ -289,6 +368,6 @@ const DisplaySloths = (props) => {
       );
     }
   }
-  console.log(slothImages);
-  return <View>{slothImages}</View>;
+  //  console.log(slothImages)
+  return <View>{slothImages.reverse()}</View>;
 };

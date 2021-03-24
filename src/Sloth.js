@@ -4,10 +4,11 @@ import { passions } from "../src/passions";
 
 
 export class Sloth {
-  constructor(name = this._randomAttribute(names), personality = this._randomPersonality(), passion = this._randomAttribute(passions)) {
+  constructor(name = this._randomAttribute(names), personality = this._randomPersonality(), passion = this._randomAttribute(passions), personalityGroup = this._randomPersonalityGroup()) {
     this.name = name;
     this.personality = personality;
     this.passion = passion;
+    this.personalityGroup = personalityGroup;
   }
 
   // _randomName() {
@@ -19,8 +20,8 @@ export class Sloth {
   }
 
   _randomPersonality() {
-    let personalityGroup = this._randomPersonalityGroup()
-    return personalities[personalityGroup][Math.floor(Math.random() * personalities[personalityGroup].length)]
+    this.personalityGroup = this._randomPersonalityGroup()
+    return personalities[this.personalityGroup][Math.floor(Math.random() * personalities[this.personalityGroup].length)]
   }
 
   // _randomPassion() {
