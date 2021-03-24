@@ -10,6 +10,19 @@ import Steve from "../assets/svgs/segments/regular/Steve";
 import LipSteve from "../assets/svgs/segments/regular/LipSteve";
 import VerticalSarah from "../assets/svgs/segments/regular/VerticalSarah";
 
+export const arrayOfClassics = [
+  <YPatrick />,
+  <Simon style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Sarah />,
+  <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  "Placeholder",
+  <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <VerticalSarah />,
+  <LipSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Patrick />,
+  "Placeholder",
+];
+
 //Legendary Sloths
 
 import Ash from "../assets/svgs/segments/legendary/Ash";
@@ -24,19 +37,6 @@ import Jason from "../assets/svgs/segments/legendary/Jason";
 import Shark from "../assets/svgs/segments/legendary/Shark";
 import ThugLife from "../assets/svgs/segments/legendary/ThugLife";
 import Witch from "../assets/svgs/segments/legendary/Witch";
-
-export const arrayOfClassics = [
-  <YPatrick />,
-  <Simon style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <Sarah />,
-  <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
-  "Placeholder",
-  <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <VerticalSarah />,
-  <LipSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <Patrick />,
-  "Placeholder",
-];
 
 export const arrayOfRares = [
   <Ash />,
