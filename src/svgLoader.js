@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import TreeSegmentTom from "../assets/svgs/segments/regular/BigBallsTom";
 import TreeSegmentSarah from "../assets/svgs/segments/regular/Sarah";
 import TreeSegmentYPatrick from "../assets/svgs/segments/regular/YPatrick";
@@ -9,12 +10,12 @@ export const arrayOfClassics = [
   <TreeSegmentTom />,
   <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
   <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  "Placeholder",
   <TreeSegmentTom />,
   <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
   <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
   <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom />,
+  "Placeholder",
 ];
 
 export const arrayOfRares = [<TreeSegmentHiddenSteve />];
