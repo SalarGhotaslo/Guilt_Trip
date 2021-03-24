@@ -131,7 +131,7 @@ export default class App extends Component {
         {
           appIsReady: true,
           stepCount: steps,
-          population: 30,
+          population: 60,
           lastLogin: date,
           previousPopulation: previousPopulation,
           slothCollection: colony.sloths,

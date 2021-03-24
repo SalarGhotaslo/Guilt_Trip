@@ -45,7 +45,7 @@ export const arrayOfRares = [
   <HeadPhones style={[{ transform: [{ scaleX: -1 }] }]} />,
   <BeerGlass />,
   <Flowers style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <thugLife />,
+  <ThugLife />,
   <Shark style={[{ transform: [{ scaleX: -1 }] }]} />,
   <BeerHat />,
   <Devil style={[{ transform: [{ scaleX: -1 }] }]} />,
