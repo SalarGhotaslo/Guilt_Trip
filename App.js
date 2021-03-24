@@ -32,8 +32,6 @@ import { FancyAlert } from "react-native-expo-fancy-alerts";
 import TreeTop from "./assets/svgs/TreeTop";
 import TreeBottom from "./assets/svgs/TreeBottom";
 
-import SvgComponent from "./assets/svgs/segments/legendary/1";
-
 export default class App extends Component {
   state = {
     isPedometerAvailable: "checking",
@@ -138,7 +136,10 @@ export default class App extends Component {
         }
       >
         <TreeTop />
-        <SvgComponent />
+        <DisplaySloths
+          slothPopulation={this.state.population}
+          slothCollection={this.state.slothCollection}
+        />
         <TreeBottom
           slothPopulation={this.state.population}
           count={this.state.stepCount + this.state.currentStepCount}
@@ -165,6 +166,7 @@ function isOdd(n) {
 }
 
 const DisplaySloths = (props) => {
+  let slothImages = [];
   for (let i = 0, j = 0; i < props.slothPopulation; i++, j++) {
     if (isOdd(j)) {
       slothImages.push(
