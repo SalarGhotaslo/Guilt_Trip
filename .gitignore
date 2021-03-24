@@ -9,6 +9,8 @@ npm-debug.*
 *.orig.*
 web-build/
 coverage/
+assets/babies-first-names-2010-2019.csv
+
 
 # macOS
 .DS_Store

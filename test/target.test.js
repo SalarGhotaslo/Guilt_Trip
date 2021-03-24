@@ -5,11 +5,11 @@ describe("Target class", () => {
   beforeEach(() => {
     testTarget = new Target();
   });
-  test("Target should by 5000 by default", () => {
-    expect(testTarget.showTarget()).toBe(5000);
+  test("Target should by 4500 by default", () => {
+    expect(testTarget.showTarget()).toBe(4500);
   });
   test("5000 steps should pass default target", () => {
-    expect(testTarget.isReached(5000)).toEqual(true);
+    expect(testTarget.isReached(5000, 5)).toEqual(true);
   });
   test("4999 steps should pass default target", () => {
     expect(testTarget.isReached(4999)).toEqual(false);

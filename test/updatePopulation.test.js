@@ -4,7 +4,7 @@ import { Colony } from '../src/Colony'
 import { Pedometer } from 'expo-sensors'
 
 const STEPS_MISSED = 5
-const STEPS_HIT = 5000
+const STEPS_HIT = 10000
 
 Pedometer.getStepCountAsync = jest.fn()
 Pedometer.isAvailableAsync = jest.fn()

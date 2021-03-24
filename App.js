@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
 
 
 import {
@@ -126,6 +125,7 @@ export default class App extends Component {
       save("population", String(colony.showPopulation()));
       save("sloths", JSON.stringify(colony.sloths));
       var steps = await performStepApi();
+
     } catch (e) {
       console.log(e);
     } finally {
@@ -188,7 +188,7 @@ export default class App extends Component {
           remaining={
             DEFAULT_TARGET - this.state.stepCount - this.state.currentStepCount
           }
-          target={DEFAULT_TARGET}
+          target={DEFAULT_TARGET + (this.state.population * 100)}
         />
       <SpeechBubble
         xPosition={this.state.xPosition}

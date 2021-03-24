@@ -8,7 +8,7 @@ export async function updatePopulation(target, colony, lastLogin, today) {
     range.setDate(range.getDate() + 1);
     let steps = await performStepApi(lastLogin, range);
     console.log(`HERE ARE STEPS: ${steps}`);
-    target.isReached(steps) ? colony.addCreature() : colony.killCreature();
+    target.isReached(steps, colony.showPopulation()) ? colony.addCreature() : colony.killCreature();
     lastLogin = range;
   }
   if (colony.showPopulation() === 0) {

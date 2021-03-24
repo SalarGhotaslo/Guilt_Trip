@@ -1,4 +1,4 @@
-export const DEFAULT_TARGET = 5000;
+export const DEFAULT_TARGET = 4500;
 
 export class Target {
   constructor(target = DEFAULT_TARGET) {
@@ -9,7 +9,7 @@ export class Target {
     return this.target;
   }
 
-  isReached(steps) {
-    return steps >= this.target;
+  isReached(steps, population) {
+    return steps >= this.target + (population * 100);
   }
 }
