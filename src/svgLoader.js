@@ -7,6 +7,8 @@ import YPatrick from "../assets/svgs/segments/regular/YPatrick";
 import HiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
 import Patrick from "../assets/svgs/segments/regular/Patrick";
 import Steve from "../assets/svgs/segments/regular/Steve";
+import LipSteve from "../assets/svgs/segments/regular/LipSteve";
+import VerticalSarah from "../assets/svgs/segments/regular/VerticalSarah";
 
 //Legendary Sloths
 
@@ -30,8 +32,8 @@ export const arrayOfClassics = [
   <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
   "Placeholder",
   <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <YPatrick />,
-  <Sarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <VerticalSarah />,
+  <LipSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
   <Patrick />,
   "Placeholder",
 ];
