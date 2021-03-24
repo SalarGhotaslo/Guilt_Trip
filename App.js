@@ -34,7 +34,7 @@ import TreeSegmentTom from "./assets/svgs/segments/TreeSegmentTom";
 import TreeSegmentSarah from "./assets/svgs/segments/TreeSegmentSarah";
 import TreeSegmentYPatrick from "./assets/svgs/segments/TreeSegmentYPatrick";
 import TreeSegmentHiddenSteve from "./assets/svgs/segments/TreeSegmentHiddenSteve";
-import SvgComponent from "./assets/svgs/segments/60";
+import Segment60 from "./assets/svgs/segments/60";
 import TreeBottom from "./assets/svgs/TreeBottom";
 
 export default class App extends Component {
@@ -141,7 +141,7 @@ export default class App extends Component {
         }
       >
         <TreeTop />
-        <SvgComponent />
+        <Segment60 />
         <DisplaySloths
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
