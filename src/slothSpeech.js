@@ -7,8 +7,10 @@ import { neutralTalk } from "../src/neutralTalk";
 const DEFAULT_X = 220
 const DEFAULT_Y = 800
 
-const windowHeight = Dimensions.get("window").height;
-const windowWidth = Dimensions.get("window").width;
+export const windowHeight = Dimensions.get("window").height;
+export const windowWidth = Dimensions.get("window").width;
+export const RIGHT_SIDE = windowWidth * 0.7
+export const LEFT_SIDE = windowWidth * 0.08
 
 
 export function slothSpeech(speaker) {
@@ -23,9 +25,9 @@ export function slothSpeech(speaker) {
 
 export function setXPosition(slothPosition) {
   if (slothPosition % 2 === 1) {
-    return windowWidth * 0.7
+    return RIGHT_SIDE
   } else {
-    return windowWidth * 0.08
+    return LEFT_SIDE
   }
 }
 
