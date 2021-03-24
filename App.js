@@ -89,7 +89,6 @@ export default class App extends Component {
       var population = await getValueFor("population");
       var previousPopulation = population;
       var sloths = await getValueFor("sloths");
-      console.log(JSON.parse(sloths));
       var colony = await createColony(date, population, JSON.parse(sloths));
       save("date", JSON.stringify(new Date()).substring(1, 11));
       save("population", String(colony.showPopulation()));
@@ -98,7 +97,6 @@ export default class App extends Component {
     } catch (e) {
       console.log(e);
     } finally {
-      console.log(colony);
       this.setState(
         {
           appIsReady: true,
@@ -171,19 +169,46 @@ function isOdd(n) {
 }
 
 const arrayOfClassics = [
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]}/>,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
   <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]}/>,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+];
+
+const arrayOfRares = [
   <TreeSegmentHiddenSteve />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]}/>,
-]; 
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentHiddenSteve />,
+];
 
 function returnSloth(i) {
-  if(i % 5 === 0) {
-    console.log("test1")
-    return arrayOfClassics[(i/5)-1]
+  if (i % 5 === 0) {
+    return arrayOfRares[i / 5 - 1];
   } else {
-    return arrayOfClassics[(i%10)-1];
+    return arrayOfClassics[(i % 10) - 1];
   }
 }
 
@@ -197,15 +222,15 @@ const DisplaySloths = (props) => {
             Alert.alert(
               `Hi!`,
               `I'm ${
-                props.slothCollection[i-1].name
+                props.slothCollection[i - 1].name
               }. I'm ${props.slothCollection[
-                i-1
+                i - 1
               ].personality.toLowerCase()} and I love ${props.slothCollection[
-                i-1
+                i - 1
               ].passion.toLowerCase()}`
             )
           }
-        > 
+        >
           {returnSloth(i)}
         </TouchableWithoutFeedback>
       </View>
