@@ -170,85 +170,45 @@ function isOdd(n) {
   return n % 2 === 1;
 }
 
-const arrayOfSegments = [
-  <TreeSegmentYPatrick />,
+const arrayOfClassics = [
+  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]}/>,
   <TreeSegmentTom />,
-  <TreeSegmentSarah />,
+  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]}/>,
   <TreeSegmentHiddenSteve />,
-  <TreeSegmentTom />,
-];
+  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]}/>,
+]; 
 
 function returnSloth(i) {
-  return arrayOfSegments[i];
+  if(i % 5 === 0) {
+    return arrayOfClassics[(i/5)-1]
+  } else {
+    return arrayOfClassics[(i%10)-1];
+  }
 }
 
 const DisplaySloths = (props) => {
   let slothImages = [];
-  for (let i = 0; i < props.slothPopulation; i++) {
-    if (isOdd(i)) {
-      slothImages.push(
-        <View key={i}>
-          <TouchableWithoutFeedback
-            onPress={() =>
-              Alert.alert(
-                `Hi!`,
-                `I'm ${
-                  props.slothCollection[i].name
-                }. I'm ${props.slothCollection[
-                  i
-                ].personality.toLowerCase()} and I love ${props.slothCollection[
-                  i
-                ].passion.toLowerCase()}`
-              )
-            }
-          >
-            {returnSloth(i)}
-          </TouchableWithoutFeedback>
-        </View>
-      );
-    } else if (!isOdd(i)) {
-      slothImages.push(
-        <View key={i}>
-          <TouchableWithoutFeedback
-            onPress={() =>
-              Alert.alert(
-                `Hi!`,
-                `I'm ${
-                  props.slothCollection[i].name
-                }. I'm ${props.slothCollection[
-                  i
-                ].personality.toLowerCase()} and I love ${props.slothCollection[
-                  i
-                ].passion.toLowerCase()}`
-              )
-            }
-          >
-            {returnSloth(i)}
-          </TouchableWithoutFeedback>
-        </View>
-      );
-    } else if (i % 5 === 0 && i != 0) {
-      slothImages.push(
-        <View key={i}>
-          <TouchableWithoutFeedback
-            onPress={() =>
-              Alert.alert(
-                `Hi!`,
-                `I'm ${
-                  props.slothCollection[i].name
-                }. I'm ${props.slothCollection[
-                  i
-                ].personality.toLowerCase()} and I love ${props.slothCollection[
-                  i
-                ].passion.toLowerCase()}`
-              )
-            }
-          >
-            {returnSloth(i)}
-          </TouchableWithoutFeedback>
-        </View>
-      );
-    }
+  for (let i = 1; i <= props.slothPopulation; i++) {
+    slothImages.push(
+      <View key={i}>
+        <TouchableWithoutFeedback
+          onPress={() =>
+            Alert.alert(
+              `Hi!`,
+              `I'm ${
+                props.slothCollection[i].name
+              }. I'm ${props.slothCollection[
+                i
+              ].personality.toLowerCase()} and I love ${props.slothCollection[
+                i
+              ].passion.toLowerCase()}`
+            )
+          }
+        >
+          {returnSloth(i)}
+        </TouchableWithoutFeedback>
+      </View>
+    );
   }
   return <View>{slothImages.reverse()}</View>;
 };
