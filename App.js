@@ -180,6 +180,7 @@ const arrayOfClassics = [
 
 function returnSloth(i) {
   if(i % 5 === 0) {
+    console.log("test1")
     return arrayOfClassics[(i/5)-1]
   } else {
     return arrayOfClassics[(i%10)-1];
@@ -196,15 +197,15 @@ const DisplaySloths = (props) => {
             Alert.alert(
               `Hi!`,
               `I'm ${
-                props.slothCollection[i].name
+                props.slothCollection[i-1].name
               }. I'm ${props.slothCollection[
-                i
+                i-1
               ].personality.toLowerCase()} and I love ${props.slothCollection[
-                i
+                i-1
               ].passion.toLowerCase()}`
             )
           }
-        >
+        > 
           {returnSloth(i)}
         </TouchableWithoutFeedback>
       </View>
