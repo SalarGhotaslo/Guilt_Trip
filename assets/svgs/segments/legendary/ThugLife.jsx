@@ -3,7 +3,7 @@ import Svg, { Path, G, Circle, Image } from "react-native-svg";
 import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 
-function SvgComponent(props) {
+function ThugLife(props) {
   return (
     <Svg
       xmlns="http://www.w3.org/2000/svg"
@@ -331,4 +331,4 @@ function SvgComponent(props) {
   );
 }
 
-export default SvgComponent;
+export default ThugLife;

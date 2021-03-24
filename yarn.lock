@@ -1274,6 +1274,11 @@
     "debug" "^3.1.0"
     "lodash.once" "^4.1.1"
 
+"@expo-google-fonts/inter@^0.1.0":
+  "integrity" "sha512-Y6GCqsUX6JwexQ2wmBkMiJBY6M2GpNQRTczzIGbBGhXWQxqGmP5awRcf0ZJV+OlLeJcKAzas/TW45ZLdpG3yzA=="
+  "resolved" "https://registry.npmjs.org/@expo-google-fonts/inter/-/inter-0.1.0.tgz"
+  "version" "0.1.0"
+
 "@expo/config-plugins@1.0.21":
   "integrity" "sha512-sMTF0/lx52ovJPz9iH5l0aKRpPFFtYoAQ+38AYhXI890Sswr1UU4Pq3IA5RMdvtOTkTzNREr21WvEHd7X8D1dA=="
   "resolved" "https://registry.npmjs.org/@expo/config-plugins/-/config-plugins-1.0.21.tgz"
@@ -4414,6 +4419,13 @@
   "version" "9.3.0"
   dependencies:
     "uuid" "^3.4.0"
+
+"expo-font@^9.0.0":
+  "integrity" "sha512-hMuyPNyni1MXYzAdKRMlaEm7StCvuaxsNohhDF9noh0HXizmnsWc6a5AGcJJgRO/iJssk/iL2nzP4nYdB+rrGQ=="
+  "resolved" "https://registry.npmjs.org/expo-font/-/expo-font-9.0.0.tgz"
+  "version" "9.0.0"
+  dependencies:
+    "fontfaceobserver" "^2.1.0"
 
 "expo-font@~8.4.0":
   "integrity" "sha512-CPGcHLUkPP+yf618fiw2bWTFLojIYCCqWonco/JONcM3tsv6wjkafx4Qw1mMCRoFL7XoiBfHylkKnD0avpzQIQ=="
@@ -8317,7 +8329,7 @@
     "prop-types" "^15.6.0"
     "react-timer-mixin" "^0.13.4"
 
-"react-native@^0.62.1", "react-native@>=0.50.0", "react-native@https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz":
+"react-native@https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz":
   "integrity" "sha512-wYOQJnPj9CHg1db2/xXebxfzJpdwxeQpsqi9HLz5Y6Zv8xY/J7p6O4eeDyenw1FARWbeAPWwzl2y+OYE4CUrPA=="
   "resolved" "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz"
   dependencies:
@@ -8369,7 +8381,7 @@
   "resolved" "https://registry.npmjs.org/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz"
   "version" "0.13.4"
 
-"react@*", "react@^16.13.1", "react@16.13.1":
+"react@16.13.1":
   "integrity" "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.13.1.tgz"
   "version" "16.13.1"

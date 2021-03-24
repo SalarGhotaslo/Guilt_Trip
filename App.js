@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 
 import {
   StyleSheet,
@@ -38,7 +37,7 @@ import Svg from "react-native-svg";
 import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
 
 export default class App extends Component {
-    state = {
+  state = {
     isPedometerAvailable: "checking",
     appIsReady: false,
     stepCount: 0,
@@ -49,7 +48,6 @@ export default class App extends Component {
     speech: false,
     // yesterdaysCount: 0,
   };
-
 
   async componentDidMount() {
     try {
@@ -114,7 +112,7 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      // var colony2 = new Colony(50);
+      // var colony2 = new Colony(120);
       // save("population", String(colony2.showPopulation()));
       // save("sloths", JSON.stringify(colony2.sloths));
       var date = await getValueFor("date");
@@ -190,12 +188,12 @@ export default class App extends Component {
           }
           target={DEFAULT_TARGET}
         />
-      <SpeechBubble
-        xPosition={this.state.xPosition}
-        yPosition={this.state.yPosition}
-        speechBackground={this.state.speechBackground}
-        slothWords={this.state.slothWords}
-         />
+        <SpeechBubble
+          xPosition={this.state.xPosition}
+          yPosition={this.state.yPosition}
+          speechBackground={this.state.speechBackground}
+          slothWords={this.state.slothWords}
+        />
       </ScrollView>
     );
   }
@@ -208,10 +206,6 @@ const styles = StyleSheet.create({
     paddingTop: "10%",
   },
 });
-
-function isOdd(n) {
-  return n % 2 === 1;
-}
 
 function returnSloth(i) {
   if (i % 5 === 0) {
@@ -257,25 +251,27 @@ const DisplaySloths = (props) => {
 };
 
 const SpeechBubble = (props) => {
-  return(
-  <View
-    style={{
-      position: "absolute",
-      borderRadius: 10,
-      top: props.yPosition,
-      left: props.xPosition,
-      right: 0,
-      bottom: 0,
-      width: 150,
-      height: 70,
-      backgroundColor: props.speechBackground,
-      justifyContent: "center",
-      flex: 1,
-      alignItems: "center",
-      padding: 12,
-    }}
-  >
-    <Text style={{ alignItems: "center", fontSize: 12, }}>{props.slothWords}</Text>
-  </View>
-  )
-}
+  return (
+    <View
+      style={{
+        position: "absolute",
+        borderRadius: 10,
+        top: props.yPosition,
+        left: props.xPosition,
+        right: 0,
+        bottom: 0,
+        width: 150,
+        height: 70,
+        backgroundColor: props.speechBackground,
+        justifyContent: "center",
+        flex: 1,
+        alignItems: "center",
+        padding: 12,
+      }}
+    >
+      <Text style={{ alignItems: "center", fontSize: 12 }}>
+        {props.slothWords}
+      </Text>
+    </View>
+  );
+};
