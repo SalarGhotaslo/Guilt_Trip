@@ -112,7 +112,7 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      // var colony2 = new Colony(50);
+      // var colony2 = new Colony(120);
       // save("population", String(colony2.showPopulation()));
       // save("sloths", JSON.stringify(colony2.sloths));
       var date = await getValueFor("date");
@@ -131,7 +131,7 @@ export default class App extends Component {
         {
           appIsReady: true,
           stepCount: steps,
-          population: 60,
+          population: colony.showPopulation(),
           lastLogin: date,
           previousPopulation: previousPopulation,
           slothCollection: colony.sloths,
@@ -206,10 +206,6 @@ const styles = StyleSheet.create({
     paddingTop: "10%",
   },
 });
-
-function isOdd(n) {
-  return n % 2 === 1;
-}
 
 function returnSloth(i) {
   if (i % 5 === 0) {
