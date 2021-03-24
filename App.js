@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 
 import {
   StyleSheet,
@@ -18,7 +17,6 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   TouchableWithoutFeedback,
-  TouchableHighlightBase,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -39,7 +37,7 @@ import Svg from "react-native-svg";
 import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
 
 export default class App extends Component {
-    state = {
+  state = {
     isPedometerAvailable: "checking",
     appIsReady: false,
     stepCount: 0,
@@ -49,9 +47,8 @@ export default class App extends Component {
     previousPopulation: null,
     speech: false,
     // yesterdaysCount: 0,
-    showInfo:false,
+    showInfo: false,
   };
-
 
   async componentDidMount() {
     try {
@@ -144,7 +141,7 @@ export default class App extends Component {
           slothWords: "",
           yPosition: 800,
           xPosition: 220,
-          showInfo:false,
+          showInfo: false,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -179,18 +176,11 @@ export default class App extends Component {
           this.scrollView.scrollToEnd({ animated: true })
         }
       >
-    
         <TreeTop />
         <DisplaySloths
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
         />
-
-
-
-
-
-
 
         <TreeBottom
           slothPopulation={this.state.population}
@@ -201,49 +191,82 @@ export default class App extends Component {
           target={DEFAULT_TARGET}
           showInfo={this.state.showInfo}
         />
-        <View
-        style={{
-          position: "absolute",
-          borderRadius: 10,
-          bottom: 10,
-          right: 10,
-          width: 150,
-          height: 70,
-          backgroundColor: "#000000",
-          justifyContent: "center",
-          flex: 1,
-          alignItems: "center",
-          padding: 12,
-        }}>
-          <Button 
-          title="info" onPress={() => {this.setState({showInfo:true})}}
-          />
-          </View>
-
-
-
-        <Modal 
-        transparent={true}
-        visible={this.state.showInfo}
+        <TouchableOpacity
+          title="Sloth App Info"
+          onPress={() => {
+            this.setState({ showInfo: true });
+          }}
         >
-          <View style ={{backgroundColor:"#000000aa", flex:1}}>
-            <View style = {{backgroundColor:"#ffffff", margin:50, padding:40, borderRadius:10, flex:1}}>
-              <Text 
-              style = {{fontSize:80}}
+          <View
+            style={{
+              position: "absolute",
+              borderRadius: 10,
+              bottom: 80,
+              right: 10,
+              width: 150,
+              height: 70,
+              backgroundColor: "#000000",
+              justifyContent: "center",
+              flex: 1,
+              alignItems: "center",
+              padding: 12,
+            }}
+          ></View>
+        </TouchableOpacity>
+
+        <Modal transparent={true} visible={this.state.showInfo}>
+          <View style={{ backgroundColor: "#000000aa", flex: 1 }}>
+            <View
+              style={{
+                backgroundColor: "#ffffff",
+                margin: 50,
+                padding: 40,
+                borderRadius: 10,
+                flex: 1,
+              }}
             >
-              Modal Text</Text>
-              <Button title="hide" onPress={() => {this.setState({showInfo:false})}}/>
+              <Text style={{ fontSize: 30 }}>Welcome to Sloth</Text>
+              <Text />
+              <Text style={{ fontSize: 15 }}>
+                As we all know, sloth is one of the seven deadly sins. In this
+                case, it's deadly for your sloths!
+              </Text>
+              <Text />
+              <Text>
+                Beat your step target for the day to add to your snuggle of
+                sloths.
+              </Text>
+              <Text />
+              <Text>
+                As your tree grows, step targets will become higher and rarer
+                sloths will be unlocked.
+              </Text>
+              <Text />
+              <Text>
+                But, slackers beware, if you don’t hit your target, sloths will
+                die and you WILL feel guilty.
+              </Text>
+              <Text />
+              <Text>
+                Click on each sloth to learn about their passions, hopes and
+                dreams.
+              </Text>
+              <Button
+                title="Hide"
+                onPress={() => {
+                  this.setState({ showInfo: false });
+                }}
+              />
             </View>
           </View>
         </Modal>
-        
 
-      <SpeechBubble
-        xPosition={this.state.xPosition}
-        yPosition={this.state.yPosition}
-        speechBackground={this.state.speechBackground}
-        slothWords={this.state.slothWords}
-         />
+        <SpeechBubble
+          xPosition={this.state.xPosition}
+          yPosition={this.state.yPosition}
+          speechBackground={this.state.speechBackground}
+          slothWords={this.state.slothWords}
+        />
       </ScrollView>
     );
   }
@@ -305,25 +328,27 @@ const DisplaySloths = (props) => {
 };
 
 const SpeechBubble = (props) => {
-  return(
-  <View
-    style={{
-      position: "absolute",
-      borderRadius: 10,
-      top: props.yPosition,
-      left: props.xPosition,
-      right: 0,
-      bottom: 0,
-      width: 150,
-      height: 70,
-      backgroundColor: props.speechBackground,
-      justifyContent: "center",
-      flex: 1,
-      alignItems: "center",
-      padding: 12,
-    }}
-  >
-    <Text style={{ alignItems: "center", fontSize: 12, }}>{props.slothWords}</Text>
-  </View>
-  )
-}
+  return (
+    <View
+      style={{
+        position: "absolute",
+        borderRadius: 10,
+        top: props.yPosition,
+        left: props.xPosition,
+        right: 0,
+        bottom: 0,
+        width: 150,
+        height: 70,
+        backgroundColor: props.speechBackground,
+        justifyContent: "center",
+        flex: 1,
+        alignItems: "center",
+        padding: 12,
+      }}
+    >
+      <Text style={{ alignItems: "center", fontSize: 12 }}>
+        {props.slothWords}
+      </Text>
+    </View>
+  );
+};
