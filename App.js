@@ -26,7 +26,7 @@ import { Target, DEFAULT_TARGET } from "./src/Target";
 import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
-import { slothSpeech, getSloth } from "./src/slothSpeech";
+import { slothSpeech, setXPosition, setYPosition } from "./src/slothSpeech";
 import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
@@ -59,12 +59,14 @@ export default class App extends Component {
     this.interval = setInterval(() => {
       console.log("interval is ticking")
       if (this.state.speech) {
-      var speaker = getSloth(this.state.slothCollection)
+      var slothPosition = Math.floor(Math.random() * this.state.slothCollection.length)
+      var speaker = this.state.slothCollection[slothPosition]
       console.log("NEW SPEAKER")
       console.log(speaker)
-
       this.setState({
         slothWords: slothSpeech(speaker),
+        xPosition: setXPosition(slothPosition),
+        yPosition: setYPosition(slothPosition),
         speech: false,
         speechBackground: "white",
       });
@@ -131,6 +133,8 @@ export default class App extends Component {
           speech: false,
           speechBackround:"transparent",
           slothWords: "",
+          yPosition: 800,
+          xPosition: 220,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -174,7 +178,7 @@ export default class App extends Component {
           target={DEFAULT_TARGET}
         />
         <Text
-        style={{position: 'absolute', top: 800, left: 220, right: 0, bottom: 0, backgroundColor: this.state.speechBackground, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
+        style={{position: 'absolute', borderRadius: 50, top: this.state.yPosition, left: this.state.xPosition, right: 0, bottom: 0, width: 100, height: 100, backgroundColor: this.state.speechBackground, justifyContent: 'center', flex: 1, alignItems: 'center', padding: 0.1}}>
         {this.state.slothWords}
         </Text>
       </ScrollView>
@@ -195,17 +199,6 @@ function isOdd(n) {
 }
 
 
-const SpeechBubble = (props) => {
-  let slothWords = slothSpeech(props.slothCollection);
-  console.log("WORDS")
-  console.log(slothWords)
-  return(
-  <Text
-  style={{position: 'absolute', top: 800, left: 220, right: 0, bottom: 0, backgroundColor: "white", width: 100, height: 30, justifyContent: 'center', alignItems: 'center', padding: 0.1}}>
-  {slothWords}
-  </Text>
-  )
-}
 // const SlothSpeak = (props) => {
 //   //slothSpeech(this.state.slothCollection)
 //   state = {
@@ -320,5 +313,5 @@ const DisplaySloths = (props) => {
     }
   }
 //  console.log(slothImages)
-  return <View>{slothImages}</View>;
+  return <View>{slothImages.reverse()}</View>;
 };
