@@ -281,12 +281,9 @@ const styles = StyleSheet.create({
 
 function returnSloth(i) {
   if (i % 5 === 0) {
-    let x =
-      i / 5 === arrayOfRares.length
-        ? i / 5 - 1
-        : ((i / 5) % arrayOfRares.length) - 1;
+    let x = ((i / 5) % arrayOfRares.length) - 1;
     if (x < 0) {
-      x = 0;
+      x = arrayOfRares.length - 1;
     }
     return arrayOfRares[x];
   } else {
