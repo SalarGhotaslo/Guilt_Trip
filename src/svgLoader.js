@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // Regular Sloths
 
-import BigBallsTom from "../assets/svgs/segments/regular/BigBallsTom";
+import Simon from "../assets/svgs/segments/regular/Simon";
 import Sarah from "../assets/svgs/segments/regular/Sarah";
 import YPatrick from "../assets/svgs/segments/regular/YPatrick";
 import HiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
@@ -25,7 +25,7 @@ import Witch from "../assets/svgs/segments/legendary/Witch";
 
 export const arrayOfClassics = [
   <YPatrick />,
-  <BigBallsTom style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Simon style={[{ transform: [{ scaleX: -1 }] }]} />,
   <Sarah />,
   <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
   "Placeholder",
