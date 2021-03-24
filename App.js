@@ -84,7 +84,7 @@ export default class App extends Component {
           speechBackground: "transparent",
         });
       }
-    }, 2000);
+    }, 5000);
   }
 
   componentWillUnmount() {
