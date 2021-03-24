@@ -34,4 +34,17 @@ export const arrayOfClassics = [
   "Placeholder",
 ];
 
-export const arrayOfRares = [<HiddenSteve />];
+export const arrayOfRares = [
+  <Ash />,
+  <Aviator style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <BeerGlass />,
+  <BeerHat style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Devil />,
+  <Flowers style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <HairRibbon />,
+  <HeadPhones style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Jason />,
+  <Shark style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <thugLife />,
+  <Witch style={[{ transform: [{ scaleX: -1 }] }]} />,
+];
