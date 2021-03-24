@@ -1,10 +1,12 @@
+import React, { Component } from "react";
 // Regular Sloths
 
-import React, { Component } from "react";
-import TreeSegmentTom from "../assets/svgs/segments/regular/BigBallsTom";
-import TreeSegmentSarah from "../assets/svgs/segments/regular/Sarah";
-import TreeSegmentYPatrick from "../assets/svgs/segments/regular/YPatrick";
-import TreeSegmentHiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
+import BigBallsTom from "../assets/svgs/segments/regular/BigBallsTom";
+import Sarah from "../assets/svgs/segments/regular/Sarah";
+import YPatrick from "../assets/svgs/segments/regular/YPatrick";
+import HiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
+import Patrick from "../assets/svgs/segments/regular/Patrick";
+import Steve from "../assets/svgs/segments/regular/Steve";
 
 //Legendary Sloths
 
@@ -18,7 +20,7 @@ import HairRibbon from "../assets/svgs/segments/legendary/HairRibbon";
 import HeadPhones from "../assets/svgs/segments/legendary/HeadPhones";
 import Jason from "../assets/svgs/segments/legendary/Jason";
 import Shark from "../assets/svgs/segments/legendary/Shark";
-import thugLife from "../assets/svgs/segments/legendary/thugLife";
+import ThugLife from "../assets/svgs/segments/legendary/ThugLife";
 import Witch from "../assets/svgs/segments/legendary/Witch";
 
 export const arrayOfClassics = [
