@@ -33,8 +33,10 @@ import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
 import TreeTop from "./assets/svgs/TreeTop";
-import TreeSegmentTom from "./assets/svgs/TreeSegmentTom";
-import TreeSegmentSarah from "./assets/svgs/TreeSegmentSarah";
+import TreeSegmentTom from "./assets/svgs/segments/TreeSegmentTom";
+import TreeSegmentSarah from "./assets/svgs/segments/TreeSegmentSarah";
+import TreeSegmentYPatrick from "./assets/svgs/segments/TreeSegmentYPatrick";
+import TreeSegmentHiddenSteve from "./assets/svgs/segments/TreeSegmentHiddenSteve";
 import TreeBottom from "./assets/svgs/TreeBottom";
 
 export default class App extends Component {
@@ -183,8 +185,10 @@ export default class App extends Component {
 
         <TreeBottom
           slothPopulation={this.state.population}
-          count={this.state.stepCount}
-          remaining={DEFAULT_TARGET - this.state.stepCount}
+          count={this.state.stepCount + this.state.currentStepCount}
+          remaining={
+            DEFAULT_TARGET - this.state.stepCount - this.state.currentStepCount
+          }
           target={DEFAULT_TARGET}
         />
       <SpeechBubble
@@ -250,7 +254,6 @@ const SpeechBubble = (props) => {
 
 const DisplaySloths = (props) => {
   console.log("slothCollection");
-  //  console.log(props.slothCollection)
   const [visible, setVisible] = React.useState(false);
   const toggleAlert = React.useCallback(() => {
     setVisible(!visible);
@@ -278,10 +281,6 @@ const DisplaySloths = (props) => {
             <TreeSegmentTom />
           </TouchableWithoutFeedback>
         </View>
-
-        // <TouchableWithoutFeedback onPress={toggleAlert}>
-        //
-        // </TouchableWithoutFeedback>
 
         // <FancyAlert
         //   visible={visible}
