@@ -178,7 +178,7 @@ export default class App extends Component {
           target={DEFAULT_TARGET}
         />
         <Text
-        style={{position: 'absolute', borderRadius: 50, top: this.state.yPosition, left: this.state.xPosition, right: 0, bottom: 0, width: 100, height: 100, backgroundColor: this.state.speechBackground, justifyContent: 'center', flex: 1, alignItems: 'center', padding: 0.1}}>
+        style={{position: 'absolute', borderRadius: 50, top: this.state.yPosition, left: this.state.xPosition, right: 0, bottom: 0, width: 110, height: 70, backgroundColor: this.state.speechBackground, justifyContent: 'center', flex: 1, alignItems: 'center', padding: 0.1}}>
         {this.state.slothWords}
         </Text>
       </ScrollView>
