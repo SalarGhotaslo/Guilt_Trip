@@ -35,7 +35,6 @@ import TreeSegmentSarah from "./assets/svgs/segments/TreeSegmentSarah";
 import TreeSegmentYPatrick from "./assets/svgs/segments/TreeSegmentYPatrick";
 import TreeSegmentHiddenSteve from "./assets/svgs/segments/TreeSegmentHiddenSteve";
 import TreeBottom from "./assets/svgs/TreeBottom";
-import { Sarah } from "./src/prestige";
 import Svg from "react-native-svg";
 
 export default class App extends Component {
@@ -171,31 +170,24 @@ function isOdd(n) {
   return n % 2 === 1;
 }
 
-// let Tom = <TreeSegmentTom />;
-// let Segment0 = <TreeSegmentSarah />;
-// let Segment1 = <TreeSegmentSarah />;
-// let Segment2 = <TreeSegmentSarah />;
-// let Segment3 = <TreeSegmentSarah />;
+const arrayOfSegments = [
+  <TreeSegmentYPatrick />,
+  <TreeSegmentTom />,
+  <TreeSegmentSarah />,
+  <TreeSegmentHiddenSteve />,
+  <TreeSegmentTom />,
+];
 
-// let arrayOfSegments = [
-// {Segment0: "success"},
-// {Segment1: "yes"},
-// {Segment2: "yep"},
-// ]
-// function returnPrestige(i = 0) {
-//   let num = i.toString()
-//   let test = `Segment${num}`;
-//   arrayOfSegments.includes(test)
-// }
-// for (i = 0; i < arrayOfSegments.length; i++)
-// ("Segment60");
+function returnSloth(i) {
+  return arrayOfSegments[i];
+}
 
 const DisplaySloths = (props) => {
   let slothImages = [];
-  for (let i = 0, j = 0; i < props.slothPopulation; i++, j++) {
-    if (isOdd(j)) {
+  for (let i = 0; i < props.slothPopulation; i++) {
+    if (isOdd(i)) {
       slothImages.push(
-        <View key={j}>
+        <View key={i}>
           <TouchableWithoutFeedback
             onPress={() =>
               Alert.alert(
@@ -210,13 +202,13 @@ const DisplaySloths = (props) => {
               )
             }
           >
-            <TreeSegmentTom />
+            {returnSloth(i)}
           </TouchableWithoutFeedback>
         </View>
       );
-    } else if (!isOdd(j)) {
+    } else if (!isOdd(i)) {
       slothImages.push(
-        <View key={j}>
+        <View key={i}>
           <TouchableWithoutFeedback
             onPress={() =>
               Alert.alert(
@@ -231,13 +223,13 @@ const DisplaySloths = (props) => {
               )
             }
           >
-            <TreeSegmentSarah />
+            {returnSloth(i)}
           </TouchableWithoutFeedback>
         </View>
       );
     } else if (i % 5 === 0 && i != 0) {
       slothImages.push(
-        <View key={j}>
+        <View key={i}>
           <TouchableWithoutFeedback
             onPress={() =>
               Alert.alert(
@@ -252,8 +244,7 @@ const DisplaySloths = (props) => {
               )
             }
           >
-            <TreeSegmentYPatrick />
-            {/* returnPrestige() */}
+            {returnSloth(i)}
           </TouchableWithoutFeedback>
         </View>
       );
