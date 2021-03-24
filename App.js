@@ -85,6 +85,9 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
+      // var colony2 = new Colony(50);
+      // save("population", String(colony2.showPopulation()));
+      // save("sloths", JSON.stringify(colony2.sloths));
       var date = await getValueFor("date");
       var population = await getValueFor("population");
       var previousPopulation = population;
@@ -179,36 +182,21 @@ const arrayOfClassics = [
   <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
   <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
   <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentYPatrick style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom />,
-  <TreeSegmentSarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <TreeSegmentTom style={[{ transform: [{ scaleX: -1 }] }]} />,
 ];
 
 const arrayOfRares = [
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
-  <TreeSegmentHiddenSteve />,
   <TreeSegmentHiddenSteve />,
 ];
 
 function returnSloth(i) {
   if (i % 5 === 0) {
-    return arrayOfRares[i / 5 - 1];
+    let x = ((i/5) % arrayOfRares.length) - 1
+    if(x<0) {x=0} 
+    return arrayOfRares[x];
   } else {
-    return arrayOfClassics[(i % 10) - 1];
+    let x = ((i%10) % arrayOfClassics.length) - 1
+    if(x<0) {x=0} 
+    return arrayOfClassics[x];
   }
 }
 
@@ -238,3 +226,4 @@ const DisplaySloths = (props) => {
   }
   return <View>{slothImages.reverse()}</View>;
 };
+
