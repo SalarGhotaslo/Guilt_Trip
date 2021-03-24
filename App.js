@@ -69,7 +69,7 @@ export default class App extends Component {
         xPosition: setXPosition(slothPosition),
         yPosition: setYPosition(slothPositionY),
         speech: false,
-        speechBackground: "white",
+        speechBackground: "transparent",
       });
     } else {
       this.setState({
@@ -79,7 +79,7 @@ export default class App extends Component {
       })
     }
 
-  }, 2000);
+  }, 5000);
   }
 
   componentWillUnmount() {
