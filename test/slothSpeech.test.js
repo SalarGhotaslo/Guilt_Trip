@@ -34,9 +34,9 @@ import { slothSpeech, setXPosition, RIGHT_SIDE, LEFT_SIDE, windowWidth, windowHe
    })
 
    test('It can calculate the correct right hand side position', () => {
-     expect(setXPosition(1)).toEqual(RIGHT_SIDE)
+     expect(setXPosition(0)).toEqual(RIGHT_SIDE)
    })
 
    test('It can calculate the correct right hand side position', () => {
-     expect(setXPosition(0)).toEqual(LEFT_SIDE)
+     expect(setXPosition(1)).toEqual(LEFT_SIDE)
    })
