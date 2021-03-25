@@ -36,6 +36,7 @@ import TreeTop from "./assets/svgs/TreeTop";
 import TreeBottom from "./assets/svgs/TreeBottom";
 import Svg from "react-native-svg";
 import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
+import FontComponent from "./FontComponent";
 
 export default class App extends Component {
   state = {
@@ -182,7 +183,7 @@ export default class App extends Component {
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
         />
-
+        <FontComponent />
         <TreeBottom
           slothPopulation={this.state.population}
           count={this.state.stepCount + this.state.currentStepCount}
