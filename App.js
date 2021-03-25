@@ -119,8 +119,8 @@ export default class App extends Component {
       // save("sloths", "0");
 
       // CUSTOM GAME:
-      // var colony3 = new Colony(60);
-      // save("date", "2021-03-25")
+      // var colony3 = new Colony(61);
+      // save("date", "2021-03-24");
       // save("population", String(colony3.showPopulation()));
       // save("sloths", JSON.stringify(colony3.sloths));
       var date = await getValueFor("date");
