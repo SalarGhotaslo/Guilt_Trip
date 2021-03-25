@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { G, Path, Text, TSpan } from "react-native-svg";
-import { Dimensions } from "react-native";
+import { Dimensions, Modal, View, Button } from "react-native";
 import * as Font from "expo-font";
 const windowWidth = Dimensions.get("window").width;
 

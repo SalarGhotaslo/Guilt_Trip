@@ -1,7 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-
-
+import {
+  useFonts,
+  Inter_900Black,
+  Inter_500Medium,
+} from "@expo-google-fonts/inter";
 import {
   StyleSheet,
   Modal,
@@ -17,6 +20,7 @@ import {
   TouchableHighlight,
   TouchableWithoutFeedback,
   TouchableHighlightBase,
+  Button,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
@@ -37,7 +41,7 @@ import Svg from "react-native-svg";
 import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
 
 export default class App extends Component {
-    state = {
+  state = {
     isPedometerAvailable: "checking",
     appIsReady: false,
     stepCount: 0,
@@ -47,8 +51,8 @@ export default class App extends Component {
     previousPopulation: null,
     speech: false,
     // yesterdaysCount: 0,
+    showInfo: false,
   };
-
 
   async componentDidMount() {
     try {
@@ -113,7 +117,7 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      // var colony2 = new Colony(50);
+      // var colony2 = new Colony(60);
       // save("population", String(colony2.showPopulation()));
       // save("sloths", JSON.stringify(colony2.sloths));
       var date = await getValueFor("date");
@@ -143,7 +147,8 @@ export default class App extends Component {
           slothWords: "",
           yPosition: 800,
           xPosition: 220,
-          dynamicTarget: target.dynamicTarget(colony.showPopulation())
+          dynamicTarget: target.dynamicTarget(colony.showPopulation()),
+          showInfo: false,
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -192,12 +197,85 @@ export default class App extends Component {
           }
           target={this.state.dynamicTarget}
         />
-      <SpeechBubble
-        xPosition={this.state.xPosition}
-        yPosition={this.state.yPosition}
-        speechBackground={this.state.speechBackground}
-        slothWords={this.state.slothWords}
-         />
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ showInfo: true });
+          }}
+        >
+          <Image
+            style={{
+              position: "absolute",
+              bottom: 60,
+              right: 10,
+              width: 150,
+              height: 180,
+              flex: 1,
+            }}
+            source={require("./assets/infoSloth.png")}
+          />
+        </TouchableOpacity>
+
+        <Modal transparent={true} visible={this.state.showInfo}>
+          <View style={{ backgroundColor: "#000000aa", flex: 1 }}>
+            <View
+              style={{
+                backgroundColor: "#ffffff",
+                margin: 50,
+                padding: 40,
+                borderRadius: 10,
+                flex: 1,
+              }}
+            >
+              <Text style={{ fontSize: 30 }}>Welcome to Sloth</Text>
+              <Text />
+              <Text style={{ fontSize: 15 }}>
+                As we all know, sloth is one of the seven deadly sins. In this
+                case, it's deadly for your sloths!
+              </Text>
+              <Text />
+              <Text>
+                Beat your step target for the day to add to your snuggle of
+                sloths.
+              </Text>
+              <Text />
+              <Text>
+                As your tree grows, step targets will become higher and rarer
+                sloths will be unlocked.
+              </Text>
+              <Text />
+              <Text>
+                But, slackers beware, if you don’t hit your target, sloths will
+                die and you WILL feel guilty.
+              </Text>
+              <Text />
+              <Text>
+                Click on each sloth to learn about their passions, hopes and
+                dreams.
+              </Text>
+              <Image
+                style={{
+                  flex: 1,
+                  width: null,
+                  height: null,
+                  resizeMode: "contain",
+                }}
+                source={require("./assets/splash.png")}
+              />
+              <Button
+                title="Hide"
+                onPress={() => {
+                  this.setState({ showInfo: false });
+                }}
+              />
+            </View>
+          </View>
+        </Modal>
+        <SpeechBubble
+          xPosition={this.state.xPosition}
+          yPosition={this.state.yPosition}
+          speechBackground={this.state.speechBackground}
+          slothWords={this.state.slothWords}
+        />
       </ScrollView>
     );
   }
@@ -211,15 +289,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function isOdd(n) {
-  return n % 2 === 1;
-}
-
 function returnSloth(i) {
   if (i % 5 === 0) {
     let x = ((i / 5) % arrayOfRares.length) - 1;
     if (x < 0) {
-      x = 0;
+      x = arrayOfRares.length - 1;
     }
     return arrayOfRares[x];
   } else {
@@ -259,25 +333,27 @@ const DisplaySloths = (props) => {
 };
 
 const SpeechBubble = (props) => {
-  return(
-  <View
-    style={{
-      position: "absolute",
-      borderRadius: 10,
-      top: props.yPosition,
-      left: props.xPosition,
-      right: 0,
-      bottom: 0,
-      width: 150,
-      height: 70,
-      backgroundColor: props.speechBackground,
-      justifyContent: "center",
-      flex: 1,
-      alignItems: "center",
-      padding: 12,
-    }}
-  >
-    <Text style={{ alignItems: "center", fontSize: 12, }}>{props.slothWords}</Text>
-  </View>
-  )
-}
+  return (
+    <View
+      style={{
+        position: "absolute",
+        borderRadius: 10,
+        top: props.yPosition,
+        left: props.xPosition,
+        right: 0,
+        bottom: 0,
+        width: 150,
+        height: 70,
+        backgroundColor: props.speechBackground,
+        justifyContent: "center",
+        flex: 1,
+        alignItems: "center",
+        padding: 12,
+      }}
+    >
+      <Text style={{ alignItems: "center", fontSize: 12 }}>
+        {props.slothWords}
+      </Text>
+    </View>
+  );
+};
