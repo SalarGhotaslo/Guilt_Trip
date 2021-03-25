@@ -203,13 +203,13 @@ export default class App extends Component {
           <Image
             style={{
               position: "absolute",
-              bottom: 80,
+              bottom: 60,
               right: 10,
               width: 150,
-              height: 150,
+              height: 180,
               flex: 1,
             }}
-            source={require("./assets/splash.png")}
+            source={require("./assets/infoSloth.png")}
           />
         </TouchableOpacity>
 
