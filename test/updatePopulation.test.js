@@ -4,7 +4,7 @@ import { Colony } from '../src/Colony'
 import { Pedometer } from 'expo-sensors'
 
 const STEPS_MISSED = 5
-const STEPS_HIT = 5000
+const STEPS_HIT = 10000
 
 Pedometer.getStepCountAsync = jest.fn()
 Pedometer.isAvailableAsync = jest.fn()
@@ -84,8 +84,8 @@ describe('updatePopulation function', () => {
     Pedometer.getStepCountAsync
       .mockReturnValueOnce({"steps":STEPS_HIT})
       .mockReturnValueOnce({"steps":STEPS_MISSED})
-      .mockReturnValue({"steps":STEPS_HIT})
-      .mockReturnValue({"steps":STEPS_HIT});
+      .mockReturnValueOnce({"steps":STEPS_HIT})
+      .mockReturnValueOnce({"steps":STEPS_HIT});
     await updatePopulation(testTarget, testColony, fourDaysAgo, today);
     expect(testColony.showPopulation()).not.toBe(5);
     expect(testColony.showPopulation()).toBe(7);

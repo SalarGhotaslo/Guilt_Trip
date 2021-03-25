@@ -5,7 +5,6 @@ import {
   Inter_900Black,
   Inter_500Medium,
 } from "@expo-google-fonts/inter";
-
 import {
   StyleSheet,
   Modal,
@@ -130,6 +129,8 @@ export default class App extends Component {
       save("population", String(colony.showPopulation()));
       save("sloths", JSON.stringify(colony.sloths));
       var steps = await performStepApi();
+      var target = new Target();
+
     } catch (e) {
       console.log(e);
     } finally {
@@ -146,6 +147,7 @@ export default class App extends Component {
           slothWords: "",
           yPosition: 800,
           xPosition: 220,
+          dynamicTarget: target.dynamicTarget(colony.showPopulation()),
           showInfo: false,
         },
         async () => {
@@ -191,9 +193,9 @@ export default class App extends Component {
           slothPopulation={this.state.population}
           count={this.state.stepCount + this.state.currentStepCount}
           remaining={
-            DEFAULT_TARGET - this.state.stepCount - this.state.currentStepCount
+            this.state.dynamicTarget - this.state.stepCount - this.state.currentStepCount
           }
-          target={DEFAULT_TARGET}
+          target={this.state.dynamicTarget}
         />
         <TouchableOpacity
           onPress={() => {
