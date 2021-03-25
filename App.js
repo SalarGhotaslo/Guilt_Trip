@@ -17,11 +17,23 @@ import { save, getValueFor } from "./src/accessStorage";
 import { Target } from "./src/Target";
 import { performStepApi } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
-import { slothSpeech, setXPosition, setYPosition } from "./src/slothSpeech";
+import {
+  slothSpeech,
+  setXPosition,
+  setYPosition,
+  windowWidth,
+} from "./src/slothSpeech";
 import { alertsFunction } from "./src/alerts";
 import TreeTop from "./assets/svgs/TreeTop";
 import TreeBottom from "./assets/svgs/TreeBottom";
 import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
+import * as Font from "expo-font";
+
+let customFonts = {
+  Patrick: require("./assets/fonts/PatrickHand-Regular.ttf"),
+  Karla: require("./assets/fonts/Karla-VariableFont_wght.ttf"),
+  Josefin: require("./assets/fonts/JosefinSans-VariableFont_wght.ttf"),
+};
 
 export default class App extends Component {
   state = {
@@ -38,6 +50,7 @@ export default class App extends Component {
 
   async componentDidMount() {
     try {
+      await Font.loadAsync(customFonts);
       await SplashScreen.preventAutoHideAsync();
     } catch (e) {
       console.warn(e);
@@ -99,11 +112,11 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      // NEW GAME: 
+      // NEW GAME:
       // save("date", "0");
       // save("population", "0");
       // save("sloths", "0");
-      
+
       // CUSTOM GAME:
       // var colony2 = new Colony(60);
       // save("population", String(colony2.showPopulation()));
@@ -118,7 +131,6 @@ export default class App extends Component {
       save("sloths", JSON.stringify(colony.sloths));
       var steps = await performStepApi();
       var target = new Target();
-
     } catch (e) {
       console.log(e);
     } finally {
@@ -176,37 +188,35 @@ export default class App extends Component {
           slothPopulation={this.state.population}
           slothCollection={this.state.slothCollection}
         />
-
         <TreeBottom
           slothPopulation={this.state.population}
           count={this.state.stepCount + this.state.currentStepCount}
           remaining={
-            this.state.dynamicTarget - this.state.stepCount - this.state.currentStepCount
+            this.state.dynamicTarget -
+            this.state.stepCount -
+            this.state.currentStepCount
           }
           target={this.state.dynamicTarget}
         />
-        
+
         <TouchableNativeFeedback
-          style={{backgroundColor:"#ffffff"}}
+          style={{ backgroundColor: "#ffffff" }}
           onPress={() => {
             this.setState({ showInfo: true });
           }}
         >
-          
-            <Image
-              style={{
-                position: "absolute",
-                bottom: 60,
-                right: 10,
-                width: 150,
-                height: 180,
-                flex: 1,
-              }}
-              source={require("./assets/infoSloth.png")}
-            />
-          
+          <Image
+            style={{
+              position: "absolute",
+              bottom: 60,
+              right: 10,
+              width: 150,
+              height: 180,
+              flex: 1,
+            }}
+            source={require("./assets/infoSloth.png")}
+          />
         </TouchableNativeFeedback>
-        
 
         <Modal transparent={true} visible={this.state.showInfo}>
           <View style={{ backgroundColor: "#000000aa", flex: 1 }}>
@@ -219,29 +229,31 @@ export default class App extends Component {
                 flex: 1,
               }}
             >
-              <Text style={{ fontSize: 30 }}>Welcome to Sloth</Text>
+              <Text style={{ fontSize: 30, fontFamily: "Karla" }}>
+                Welcome to Sloth
+              </Text>
               <Text />
-              <Text style={{ fontSize: 15 }}>
+              <Text style={{ fontSize: 15, fontFamily: "Karla" }}>
                 As we all know, sloth is one of the seven deadly sins. In this
                 case, it's deadly for your sloths!
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 Beat your step target for the day to add to your snuggle of
                 sloths.
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 As your tree grows, step targets will become higher and rarer
                 sloths will be unlocked.
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 But, slackers beware, if you don’t hit your target, sloths will
                 die and you WILL feel guilty.
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 Click on each sloth to learn about their passions, hopes and
                 dreams.
               </Text>
@@ -335,7 +347,7 @@ const SpeechBubble = (props) => {
         left: props.xPosition,
         right: 0,
         bottom: 0,
-        width: 150,
+        width: 0.35 * windowWidth,
         height: 70,
         backgroundColor: props.speechBackground,
         justifyContent: "center",
@@ -344,7 +356,14 @@ const SpeechBubble = (props) => {
         padding: 12,
       }}
     >
-      <Text style={{ alignItems: "center", fontSize: 12 }}>
+      <Text
+        style={{
+          alignItems: "center",
+          fontSize: 0.032 * windowWidth,
+          fontFamily: "Karla",
+          fontWeight: 600,
+        }}
+      >
         {props.slothWords}
       </Text>
     </View>
