@@ -15,6 +15,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
 import { save, getValueFor } from "./src/accessStorage";
 import { Target } from "./src/Target";
+import { Colony } from "./src/Colony";
 import { performStepApi } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import {
@@ -118,9 +119,10 @@ export default class App extends Component {
       // save("sloths", "0");
 
       // CUSTOM GAME:
-      // var colony2 = new Colony(60);
-      // save("population", String(colony2.showPopulation()));
-      // save("sloths", JSON.stringify(colony2.sloths));
+      // var colony3 = new Colony(60);
+      // save("date", "2021-03-25")
+      // save("population", String(colony3.showPopulation()));
+      // save("sloths", JSON.stringify(colony3.sloths));
       var date = await getValueFor("date");
       var population = await getValueFor("population");
       var previousPopulation = population;
