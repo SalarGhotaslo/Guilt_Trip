@@ -239,29 +239,31 @@ export default class App extends Component {
                 flex: 1,
               }}
             >
-              <Text style={{ fontSize: 30 }}>Welcome to Sloth</Text>
+              <Text style={{ fontSize: 30, fontFamily: "Karla" }}>
+                Welcome to Sloth
+              </Text>
               <Text />
-              <Text style={{ fontSize: 15 }}>
+              <Text style={{ fontSize: 15, fontFamily: "Karla" }}>
                 As we all know, sloth is one of the seven deadly sins. In this
                 case, it's deadly for your sloths!
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 Beat your step target for the day to add to your snuggle of
                 sloths.
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 As your tree grows, step targets will become higher and rarer
                 sloths will be unlocked.
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 But, slackers beware, if you don’t hit your target, sloths will
                 die and you WILL feel guilty.
               </Text>
               <Text />
-              <Text>
+              <Text style={{ fontFamily: "Karla" }}>
                 Click on each sloth to learn about their passions, hopes and
                 dreams.
               </Text>
@@ -365,7 +367,12 @@ const SpeechBubble = (props) => {
       }}
     >
       <Text
-        style={{ alignItems: "center", fontSize: 14, fontFamily: "Josefin" }}
+        style={{
+          alignItems: "center",
+          fontSize: 0.032 * windowWidth,
+          fontFamily: "Karla",
+          fontWeight: 600,
+        }}
       >
         {props.slothWords}
       </Text>
