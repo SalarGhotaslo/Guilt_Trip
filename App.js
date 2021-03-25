@@ -31,7 +31,7 @@ import { Target, DEFAULT_TARGET } from "./src/Target";
 import { Colony, DEFAULT_POPULATION } from "./src/Colony";
 import { performStepApi, DAY } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
-import { slothSpeech, setXPosition, setYPosition } from "./src/slothSpeech";
+import { slothSpeech, setXPosition, setYPosition, windowWidth } from "./src/slothSpeech";
 import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
 import { FancyAlert } from "react-native-expo-fancy-alerts";
@@ -342,7 +342,7 @@ const SpeechBubble = (props) => {
         left: props.xPosition,
         right: 0,
         bottom: 0,
-        width: 150,
+        width: 0.35*windowWidth,
         height: 70,
         backgroundColor: props.speechBackground,
         justifyContent: "center",
