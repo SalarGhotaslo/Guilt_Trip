@@ -49,6 +49,7 @@ import * as Font from "expo-font";
 let customFonts = {
   Patrick: require("./assets/fonts/PatrickHand-Regular.ttf"),
   Karla: require("./assets/fonts/Karla-VariableFont_wght.ttf"),
+  Josefin: require("./assets/fonts/JosefinSans-VariableFont_wght.ttf"),
 };
 
 export default class App extends Component {
@@ -364,7 +365,7 @@ const SpeechBubble = (props) => {
       }}
     >
       <Text
-        style={{ alignItems: "center", fontSize: 14, fontFamily: "Patrick" }}
+        style={{ alignItems: "center", fontSize: 14, fontFamily: "Josefin" }}
       >
         {props.slothWords}
       </Text>
