@@ -1,6 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+import {
+  useFonts,
+  Inter_900Black,
+  Inter_500Medium,
+} from "@expo-google-fonts/inter";
 
 import {
   StyleSheet,
@@ -192,26 +196,21 @@ export default class App extends Component {
           target={DEFAULT_TARGET}
         />
         <TouchableOpacity
-          title="Sloth App Info"
           onPress={() => {
             this.setState({ showInfo: true });
           }}
         >
-          <View
+          <Image
             style={{
               position: "absolute",
-              borderRadius: 10,
-              bottom: 80,
+              bottom: 60,
               right: 10,
               width: 150,
-              height: 70,
-              backgroundColor: "#000000",
-              justifyContent: "center",
+              height: 180,
               flex: 1,
-              alignItems: "center",
-              padding: 12,
             }}
-          ></View>
+            source={require("./assets/infoSloth.png")}
+          />
         </TouchableOpacity>
 
         <Modal transparent={true} visible={this.state.showInfo}>
@@ -251,6 +250,15 @@ export default class App extends Component {
                 Click on each sloth to learn about their passions, hopes and
                 dreams.
               </Text>
+              <Image
+                style={{
+                  flex: 1,
+                  width: null,
+                  height: null,
+                  resizeMode: "contain",
+                }}
+                source={require("./assets/splash.png")}
+              />
               <Button
                 title="Hide"
                 onPress={() => {
