@@ -51,7 +51,7 @@ export default class App extends Component {
   async componentDidMount() {
     try {
       await Font.loadAsync(customFonts);
-      await SplashScreen.preventAutoHideAsync();
+      // await SplashScreen.preventAutoHideAsync();
     } catch (e) {
       console.warn(e);
     }
@@ -151,7 +151,7 @@ export default class App extends Component {
           showInfo: false,
         },
         async () => {
-          await SplashScreen.hideAsync();
+          //  await SplashScreen.hideAsync();
           alertsFunction(
             this.state.lastLogin,
             new Date(),
