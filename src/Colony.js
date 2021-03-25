@@ -39,7 +39,6 @@ export class Colony {
           personality = this.sloths[i].personality,
           passion = this.sloths[i].passion
         newSloths.push(new Sloth(name, personality, passion))
-        console.log(`Hi! I'm ${name}, I'm a ${personality} sloth and I love ${passion}`)
       }
       this.sloths = newSloths;
     }

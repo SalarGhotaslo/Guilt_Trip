@@ -10,7 +10,9 @@ export function alertsFunction(
   let today2 = new Date(today);
   let dateDifference2 = today2.setHours(0, 0, 0, 0) - lastLogin2;
   dateDifference2 = secondsToDays(dateDifference2);
-  if (dateDifference2 === 0) {
+  if(lastLogin === "0") {
+    Alert.alert("Welcome to Sloth!", "Walk to grow your Sloth family");
+  } else if (dateDifference2 === 0) {
     Alert.alert(
       "Welcome back!",
       "Check your steps - have you hit today's target yet?"
@@ -36,9 +38,7 @@ export function alertsFunction(
         previousPopulation - todayPopulation
       } adorable sloth's`
     );
-  } else if (dateDifference2 === "" || previousPopulation === "") {
-    Alert.alert("Welcome to Guilt trip!", "Walk to grow your Sloth family");
-  }
+  } 
 }
 
 function secondsToDays(milliseconds) {

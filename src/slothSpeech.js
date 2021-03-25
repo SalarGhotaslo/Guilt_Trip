@@ -36,11 +36,11 @@ function choosePhrase(array) {
 }
 
 export function setYPosition(slothPosition) {
-  console.log(slothPosition);
+  // console.log(slothPosition);
   let totalPosition =
     slothPosition * ((windowWidth * 39) / 90) +
     (windowWidth * 78) / 90 -
     windowWidth * 0.15;
-  console.log(totalPosition);
+  // console.log(totalPosition);
   return totalPosition;
 }
