@@ -86,7 +86,7 @@ const TreeBottom = (props) => {
           stroke="none"
           strokeWidth={0.106}
         >
-          {`Sloths : ${props.slothPopulation}`}
+          {`Steps : ${props.count}`}
         </Text>
         <Text
           xmlSpace="preserve"
@@ -137,7 +137,7 @@ const TreeBottom = (props) => {
           stroke="none"
           strokeWidth={0.106}
         >
-          {`Count : ${props.count}`}
+          {`Sloths : ${props.slothPopulation}`}
         </Text>
       </G>
     </Svg>
