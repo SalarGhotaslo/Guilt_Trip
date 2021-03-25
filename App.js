@@ -191,13 +191,29 @@ export default class App extends Component {
           }
           target={DEFAULT_TARGET}
         />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           title="Sloth App Info"
           onPress={() => {
             this.setState({ showInfo: true });
           }}
+        > */}
+        <TouchableOpacity
+          onPress={() => {
+            this.setState({ showInfo: true });
+          }}
         >
-          <View
+          <Image
+            style={{
+              position: "absolute",
+              bottom: 80,
+              right: 10,
+              width: 150,
+              height: 70,
+              flex: 1,
+            }}
+            source={require("./assets/splash.png")}
+          />
+          {/* <View
             style={{
               position: "absolute",
               borderRadius: 10,
@@ -211,7 +227,7 @@ export default class App extends Component {
               alignItems: "center",
               padding: 12,
             }}
-          ></View>
+          ></View> */}
         </TouchableOpacity>
 
         <Modal transparent={true} visible={this.state.showInfo}>
