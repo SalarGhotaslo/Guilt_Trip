@@ -114,7 +114,7 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
-      // var colony2 = new Colony(120);
+      // var colony2 = new Colony(60);
       // save("population", String(colony2.showPopulation()));
       // save("sloths", JSON.stringify(colony2.sloths));
       var date = await getValueFor("date");
@@ -283,7 +283,7 @@ function returnSloth(i) {
   if (i % 5 === 0) {
     let x = ((i / 5) % arrayOfRares.length) - 1;
     if (x < 0) {
-      x = 0;
+      x = arrayOfRares.length - 1;
     }
     return arrayOfRares[x];
   } else {

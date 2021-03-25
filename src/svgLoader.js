@@ -1,12 +1,27 @@
 import React, { Component } from "react";
 // Regular Sloths
 
-import BigBallsTom from "../assets/svgs/segments/regular/BigBallsTom";
+import Simon from "../assets/svgs/segments/regular/Simon";
 import Sarah from "../assets/svgs/segments/regular/Sarah";
 import YPatrick from "../assets/svgs/segments/regular/YPatrick";
 import HiddenSteve from "../assets/svgs/segments/regular/HiddenSteve";
 import Patrick from "../assets/svgs/segments/regular/Patrick";
 import Steve from "../assets/svgs/segments/regular/Steve";
+import LipSteve from "../assets/svgs/segments/regular/LipSteve";
+import VerticalSarah from "../assets/svgs/segments/regular/VerticalSarah";
+
+export const arrayOfClassics = [
+  <YPatrick />,
+  <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Sarah />,
+  <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  "Placeholder",
+  <Simon style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <VerticalSarah />,
+  <LipSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
+  <Patrick />,
+  "Placeholder",
+];
 
 //Legendary Sloths
 
@@ -22,19 +37,6 @@ import Jason from "../assets/svgs/segments/legendary/Jason";
 import Shark from "../assets/svgs/segments/legendary/Shark";
 import ThugLife from "../assets/svgs/segments/legendary/ThugLife";
 import Witch from "../assets/svgs/segments/legendary/Witch";
-
-export const arrayOfClassics = [
-  <YPatrick />,
-  <BigBallsTom style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <Sarah />,
-  <HiddenSteve style={[{ transform: [{ scaleX: -1 }] }]} />,
-  "Placeholder",
-  <Steve style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <YPatrick />,
-  <Sarah style={[{ transform: [{ scaleX: -1 }] }]} />,
-  <Patrick />,
-  "Placeholder",
-];
 
 export const arrayOfRares = [
   <Ash />,
