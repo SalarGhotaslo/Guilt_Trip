@@ -125,6 +125,7 @@ export default class App extends Component {
       save("population", String(colony.showPopulation()));
       save("sloths", JSON.stringify(colony.sloths));
       var steps = await performStepApi();
+      var target = new Target();
 
     } catch (e) {
       console.log(e);
@@ -142,6 +143,7 @@ export default class App extends Component {
           slothWords: "",
           yPosition: 800,
           xPosition: 220,
+          dynamicTarget: target.dynamicTarget(colony.showPopulation())
         },
         async () => {
           await SplashScreen.hideAsync();
@@ -186,9 +188,9 @@ export default class App extends Component {
           slothPopulation={this.state.population}
           count={this.state.stepCount + this.state.currentStepCount}
           remaining={
-            DEFAULT_TARGET - this.state.stepCount - this.state.currentStepCount
+            this.state.dynamicTarget - this.state.stepCount - this.state.currentStepCount
           }
-          target={DEFAULT_TARGET + (this.state.population * 100)}
+          target={this.state.dynamicTarget}
         />
       <SpeechBubble
         xPosition={this.state.xPosition}
