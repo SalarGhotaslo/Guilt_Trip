@@ -37,6 +37,12 @@ import TreeBottom from "./assets/svgs/TreeBottom";
 import Svg from "react-native-svg";
 import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
 import FontComponent from "./FontComponent";
+import * as Font from "expo-font";
+
+let customFonts = {
+  "PatrickHand-Regular": require("./assets/fonts/PatrickHand-Regular.ttf"),
+  // 'Inter-SemiBoldItalic': 'https://rsms.me/inter/font-files/Inter-SemiBoldItalic.otf?v=3.12',
+};
 
 export default class App extends Component {
   state = {
@@ -54,6 +60,7 @@ export default class App extends Component {
 
   async componentDidMount() {
     try {
+      await Font.loadAsync(customFonts);
       await SplashScreen.preventAutoHideAsync();
     } catch (e) {
       console.warn(e);
@@ -184,6 +191,7 @@ export default class App extends Component {
           slothCollection={this.state.slothCollection}
         />
         <FontComponent />
+        <Text style={{ fontFamily: "PatrickHand-Regular" }}>Helllo!!!!</Text>
         <TreeBottom
           slothPopulation={this.state.population}
           count={this.state.stepCount + this.state.currentStepCount}
