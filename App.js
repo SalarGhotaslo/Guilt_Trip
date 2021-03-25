@@ -1,6 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+import {
+  useFonts,
+  Inter_900Black,
+  Inter_500Medium,
+} from "@expo-google-fonts/inter";
 
 import {
   StyleSheet,
@@ -191,12 +195,6 @@ export default class App extends Component {
           }
           target={DEFAULT_TARGET}
         />
-        {/* <TouchableOpacity
-          title="Sloth App Info"
-          onPress={() => {
-            this.setState({ showInfo: true });
-          }}
-        > */}
         <TouchableOpacity
           onPress={() => {
             this.setState({ showInfo: true });
@@ -208,26 +206,11 @@ export default class App extends Component {
               bottom: 80,
               right: 10,
               width: 150,
-              height: 70,
+              height: 150,
               flex: 1,
             }}
             source={require("./assets/splash.png")}
           />
-          {/* <View
-            style={{
-              position: "absolute",
-              borderRadius: 10,
-              bottom: 80,
-              right: 10,
-              width: 150,
-              height: 70,
-              backgroundColor: "#000000",
-              justifyContent: "center",
-              flex: 1,
-              alignItems: "center",
-              padding: 12,
-            }}
-          ></View> */}
         </TouchableOpacity>
 
         <Modal transparent={true} visible={this.state.showInfo}>
@@ -267,6 +250,16 @@ export default class App extends Component {
                 Click on each sloth to learn about their passions, hopes and
                 dreams.
               </Text>
+              <Image
+                style={{
+                  bottom: -40,
+                  right: 130,
+                  width: 500,
+                  height: 550,
+                  flex: 1,
+                }}
+                source={require("./assets/splash.png")}
+              />
               <Button
                 title="Hide"
                 onPress={() => {
