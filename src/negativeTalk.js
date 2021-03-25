@@ -5,5 +5,5 @@ export let negativeTalk = [
   "This is going to be a disaster",
   "I know all the swear words",
   "Sloths travel under 38 metres a day - even less than you.",
-  "Only Koalas are lazier than sloths. But you’re coming close",
+  "Only Koalas are lazier than sloths. But you’re close",
 ]
