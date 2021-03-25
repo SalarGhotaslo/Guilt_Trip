@@ -18,7 +18,7 @@ export function createColony(date, population, sloths, dateToday = new Date()) {
     return new Colony(population, sloths);
   } else {
     return updatePopulation(
-      new Target(population),
+      new Target(),
       new Colony(population, sloths),
       lastLogin,
       today
