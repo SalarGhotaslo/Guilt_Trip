@@ -1,35 +1,21 @@
-import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import {
-  useFonts,
-  Inter_900Black,
-  Inter_500Medium,
-} from "@expo-google-fonts/inter";
 import {
   StyleSheet,
   Modal,
   Text,
-  SafeAreaView,
   View,
   Image,
   ScrollView,
-  ImageBackground,
-  ImageBackgroundComponent,
   Alert,
-  TouchableOpacity,
-  TouchableHighlight,
   TouchableWithoutFeedback,
-  TouchableHighlightBase,
   Button,
+  TouchableNativeFeedback,
 } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { Pedometer } from "expo-sensors";
 import { save, getValueFor } from "./src/accessStorage";
-import * as SecureStore from "expo-secure-store";
-import { updatePopulation } from "./src/updatePopulation";
-import { Target, DEFAULT_TARGET } from "./src/Target";
-import { Colony, DEFAULT_POPULATION } from "./src/Colony";
-import { performStepApi, DAY } from "./src/performStepApi";
+import { Target } from "./src/Target";
+import { performStepApi } from "./src/performStepApi";
 import { createColony } from "./src/createColony";
 import {
   slothSpeech,
@@ -37,12 +23,9 @@ import {
   setYPosition,
   windowWidth,
 } from "./src/slothSpeech";
-import { render } from "react-dom";
 import { alertsFunction } from "./src/alerts";
-import { FancyAlert } from "react-native-expo-fancy-alerts";
 import TreeTop from "./assets/svgs/TreeTop";
 import TreeBottom from "./assets/svgs/TreeBottom";
-import Svg from "react-native-svg";
 import { arrayOfClassics, arrayOfRares } from "./src/svgLoader";
 import * as Font from "expo-font";
 
@@ -62,7 +45,6 @@ export default class App extends Component {
     lastLogin: 0,
     previousPopulation: null,
     speech: false,
-    // yesterdaysCount: 0,
     showInfo: false,
   };
 
@@ -76,7 +58,7 @@ export default class App extends Component {
     this._subscribe();
     this.prepareResources();
     this.interval = setInterval(() => {
-      console.log("interval is ticking");
+      // console.log("interval is ticking");
       if (this.state.speech) {
         var slothPosition = Math.floor(
           Math.random() * this.state.slothCollection.length
@@ -84,8 +66,8 @@ export default class App extends Component {
         var speaker = this.state.slothCollection[slothPosition];
         var slothPositionY =
           (slothPosition - (this.state.slothCollection.length - 1)) * -1;
-        console.log("NEW SPEAKER");
-        console.log(speaker);
+        // console.log("NEW SPEAKER");
+        // console.log(speaker);
         this.setState({
           slothWords: slothSpeech(speaker),
           xPosition: setXPosition(slothPosition),
@@ -130,6 +112,12 @@ export default class App extends Component {
 
   prepareResources = async () => {
     try {
+      // NEW GAME:
+      // save("date", "0");
+      // save("population", "0");
+      // save("sloths", "0");
+
+      // CUSTOM GAME:
       // var colony2 = new Colony(60);
       // save("population", String(colony2.showPopulation()));
       // save("sloths", JSON.stringify(colony2.sloths));
@@ -210,7 +198,9 @@ export default class App extends Component {
           }
           target={this.state.dynamicTarget}
         />
-        <TouchableOpacity
+
+        <TouchableNativeFeedback
+          style={{ backgroundColor: "#ffffff" }}
           onPress={() => {
             this.setState({ showInfo: true });
           }}
@@ -226,7 +216,7 @@ export default class App extends Component {
             }}
             source={require("./assets/infoSloth.png")}
           />
-        </TouchableOpacity>
+        </TouchableNativeFeedback>
 
         <Modal transparent={true} visible={this.state.showInfo}>
           <View style={{ backgroundColor: "#000000aa", flex: 1 }}>
