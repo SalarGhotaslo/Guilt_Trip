@@ -86,7 +86,7 @@ const TreeBottom = (props) => {
           stroke="none"
           strokeWidth={0.106}
         >
-          {`Sloths : ${props.slothPopulation}`}
+          {`Steps : ${props.count}`}
         </Text>
         <Text
           xmlSpace="preserve"
@@ -110,7 +110,7 @@ const TreeBottom = (props) => {
           style={{
             lineHeight: 1.25,
           }}
-          x={13.397}
+          x={11.397}
           y={34.229}
           transform="scale(1.0105 .98962)"
           fontStyle="normal"
@@ -137,7 +137,7 @@ const TreeBottom = (props) => {
           stroke="none"
           strokeWidth={0.106}
         >
-          {`Count : ${props.count}`}
+          {`Sloths : ${props.slothPopulation}`}
         </Text>
       </G>
     </Svg>
