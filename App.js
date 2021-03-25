@@ -252,11 +252,10 @@ export default class App extends Component {
               </Text>
               <Image
                 style={{
-                  bottom: -40,
-                  right: 130,
-                  width: 500,
-                  height: 550,
                   flex: 1,
+                  width: null,
+                  height: null,
+                  resizeMode: "contain",
                 }}
                 source={require("./assets/splash.png")}
               />
