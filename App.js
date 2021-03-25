@@ -182,6 +182,8 @@ export default class App extends Component {
         onContentSizeChange={() =>
           this.scrollView.scrollToEnd({ animated: true })
         }
+        maximumZoomScale={3}
+        minimumZoomScale={1}
       >
         <TreeTop />
         <DisplaySloths
@@ -353,7 +355,7 @@ const SpeechBubble = (props) => {
         justifyContent: "center",
         flex: 1,
         alignItems: "center",
-        padding: 12,
+        padding: 6,
       }}
     >
       <Text
