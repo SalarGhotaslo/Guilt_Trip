@@ -361,7 +361,6 @@ const SpeechBubble = (props) => {
           alignItems: "center",
           fontSize: 0.032 * windowWidth,
           fontFamily: "Karla",
-          fontWeight: 600,
         }}
       >
         {props.slothWords}
