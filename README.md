@@ -113,5 +113,3 @@ What's next for sloth?
 - Animations
 - Push notifications
 - More sloths! (Always room for more)
--
--
