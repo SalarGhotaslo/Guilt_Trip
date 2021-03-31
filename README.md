@@ -59,7 +59,7 @@ What is the picture I can see whilst the page is loading?
 
 How unique are the sloth pictures?
 
-- Every 5 sloths a sloth is completely unique and his incredible attention to detail. This is to entice users to try and hit their target more often so they can keep unlocking these unique sloths and are left wondering what kind of sloths they could potentially unlock
+- Every 5 sloths a sloth is completely unique and has incredible attention to detail in the design. This is to entice users to try and hit their target more often so they can keep unlocking these unique sloths and are left wondering what kind of sloths they could potentially unlock
 
 - The other sloths are a variation of 8 sloths that repeat up the tree. We thought if each sloth is unique then this won't give the users enough motivation to try and hit that next big target!
 
