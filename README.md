@@ -102,3 +102,16 @@ What tech stack used:
 - Zoom!
 - Github
 - Google Drive
+
+What's next for sloth?
+
+- Players compare their sloths and trees with friends via a leaderboard
+- Sloth trading with friends
+- Players pay for unique skins
+- History of your fallen sloths
+- Day/night and seasonal cycles to the background
+- Animations
+- Push notifications
+- More sloths! (Always room for more)
+-
+-
