@@ -1,8 +1,6 @@
-# Sloth
+# Welcome to Sloth!
 
-## About
-
-Welcome to Sloth!
+## About sloth
 
 This app is built to make getting out of the house and stretching your legs fun.
 
@@ -59,9 +57,15 @@ What is the picture I can see whilst the page is loading?
 
 - This is the splash screen which shows one of our sloths, once the page is loaded you will be greeted with a message
 
-# Hope you enjoy the app! Below are instructions on how to use the app
+How unique are the sloth pictures?
 
-## How to use
+- Every 5 sloths a sloth is completely unique and his incredible attention to detail. This is to entice users to try and hit their target more often so they can keep unlocking these unique sloths and are left wondering what kind of sloths they could potentially unlock
+
+- The other sloths are a variation of 8 sloths that repeat up the tree. We thought if each sloth is unique then this won't give the users enough motivation to try and hit that next big target!
+
+### Hope you enjoy the app! Below are instructions on how to use the app
+
+# How to use
 
 ### Through Expo - **Recommended**
 
