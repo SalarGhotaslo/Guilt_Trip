@@ -31,7 +31,15 @@ When the user logs in the next day:
 
 If the user logs back on in 2-4 days:
 
-- The same features apply that have been mentioned above in the 'When the user logs in the next day:', the only difference is this now takes it into an accumulation
+- The same features apply that have been mentioned above in the 'When the user logs in the next day:', the only difference is this now takes it into an accumulation of what the user has done in the past 2-4 days. e.g. if the user has logged on for the first time in 4 days and on three of the days they hit their target but on one day they didn't, then they will be greeted with a message to say well done for hitting your target and that you have a gained a sloth.
+
+If the user logs back on > 5 days:
+
+- The user must log back in within 5 days of using the app otherwise it's game over and the game then resets for them and all the same features mentioned in 'When a user logs in for the first time:' will be displayed
+
+If a user runs out of sloths:
+
+- If a user has run out of sloths this is because they have continuously not been hitting their targets. This means they will get a message saying it's game over and then the game resets. Again, they will be displayed with the same things that are mentioned witin 'When a user logs in for the first time:'
 
 ## How to use
 
