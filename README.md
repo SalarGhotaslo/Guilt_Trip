@@ -10,7 +10,7 @@ As we all know, sloth is one of the seven deadly sins. In this case it’s deadl
 
 You start with sloths and a step target for the day. The app tracks your steps by using a pedometer. If your daily target is reached, your snuggle of sloths grows. If you don’t hit your target, a sloth dies!
 
-## What the user is shown
+## What the user is shown based on when they log in and if they hit/miss their targets
 
 When a user logs in for the first time:
 
@@ -40,6 +40,26 @@ If the user logs back on > 5 days:
 If a user runs out of sloths:
 
 - If a user has run out of sloths this is because they have continuously not been hitting their targets. This means they will get a message saying it's game over and then the game resets. Again, they will be displayed with the same things that are mentioned witin 'When a user logs in for the first time:'
+
+## Extra features
+
+If the user presses the info button on the sloth:
+
+- The user will be greeted with a information page which will explain how the app/game works
+
+If they click on a sloth:
+
+- The user will be displayed with pop up message to tell you the sloth: name, personality and hobbie. This combination being one of 600 trillion, so each sloth is pretty unique!
+
+What are the random messages floating about?
+
+- These are messages that the sloth is saying to the user. Each message is shown at random locations based on the sloth position and at random times.
+
+What is the picture I can see whilst the page is loading?
+
+- This is the splash screen which shows one of our sloths, once the page is loaded you will be greeted with a message
+
+# Hope you enjoy the app! Below are instructions on how to use the app
 
 ## How to use
 
