@@ -85,3 +85,20 @@ How unique are the sloth pictures?
 
 - if you're using a simulator, run using link found on http://localhost:19002/ named either 'Run on Android device/emulator' or 'Run on iOS simulator' depending on which simulator you are using.
 - if you're using the Expo go app, use your camera and scan the QR code found on http://localhost:19002/.
+
+# Extra information on this project
+
+## Tech stack
+
+What tech stack used:
+
+- React native
+- Javascript
+- Expo
+- Cypress
+- Jes
+- Secure store for storage
+- Inkscape
+- Zoom!
+- Github
+- Google Drive
